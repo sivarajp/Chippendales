@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
-import { View, Text, Platform } from 'react-native';
+import { View, Text, Platform, Linking, TouchableWithoutFeedback } from 'react-native';
 import ResponsiveImage from 'react-native-responsive-image';
 import { Button } from './components';
 
 class Chippendales extends Component {
+
+  handleClick = (url) => {
+      Linking.canOpenURL(url).then(supported => {
+        if (supported) {
+          Linking.openURL(url);
+        } else {
+          const str = 'Invalid Url:';
+          console.log(str, url);
+        }
+      });
+    };
 
   render() {
     const { containerStyle, imageStyle, howtoButtonStyle, howtoButtontextStyle,
@@ -44,7 +55,11 @@ class Chippendales extends Component {
         <View style={footerStyle}>
           <View style={companyStyle}>
              <ResponsiveImage source={{ uri: 'home_screen_logo' }} initWidth="50" initHeight="50" />
-             <Text style={companyNameStyle}>{companyName}</Text>
+             <TouchableWithoutFeedback onPress={() => this.handleClick('http://www.chippmoji.com')}>
+              <View>
+                <Text style={companyNameStyle}>{companyName}</Text>
+              </View>
+             </TouchableWithoutFeedback>
           </View>
           <View style={legalContainerStyle}>
              <Text style={legalTextStyle}>{legalText}</Text>
@@ -57,6 +72,7 @@ class Chippendales extends Component {
   }
 
 }
+
 
 const styles = {
   containerStyle: {
