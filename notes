@@ -1,0 +1,3 @@
+npm install react-native-responsive-image --save
+npm i react-native-vector-icons --save && react-native link react-native-vector-icons
+npm i react-native-elements --save
