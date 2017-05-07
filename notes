@@ -1,3 +1,16 @@
 npm install react-native-responsive-image --save
 npm i react-native-vector-icons --save && react-native link react-native-vector-icons
 npm i react-native-elements --save
+
+
+<View style={{ flex: 1 }}>
+  <WebView
+  ref='webview'
+  automaticallyAdjustContentInsets={false}
+  source={{ uri: 'https://google.com/' }}
+  javaScriptEnabled
+  domStorageEnabled
+  decelerationRate="normal"
+  startInLoadingState
+  />
+  </View>

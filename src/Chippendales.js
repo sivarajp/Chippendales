@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Platform, Linking, TouchableWithoutFeedback } from 'react-native';
 import ResponsiveImage from 'react-native-responsive-image';
 import { Button } from './components';
+import { COMPANY_NAME, LEGAL, SUPPORT, HOWTO, VIEWEMOJI } from './components/Constants';
 
 class Chippendales extends Component {
 
@@ -21,9 +22,9 @@ class Chippendales extends Component {
             viewEmojiButtonStyle, viewEmojiButtontextStyle,
             footerStyle, companyStyle, companyNameStyle,
             legalContainerStyle, legalTextStyle, supportTextStyle } = styles;
-    let companyName = 'CHIPPMOJI';
-    let legalText = 'LEGAL';
-    let legalSupport = 'SUPPORT';
+    let companyName = COMPANY_NAME;
+    let legalText = LEGAL;
+    let legalSupport = SUPPORT;
     //letterSpacing not working for android, added some hack
     if (Platform.OS === 'android') {
       companyName = companyName.split('').join('\u200A'.repeat(3));
@@ -40,13 +41,15 @@ class Chippendales extends Component {
           </View>
           <View>
             <Button
-            buttonText='How to' buttonStyle={howtoButtonStyle}
+            onPress={() => console.log('how to button pressed')}
+            buttonText={HOWTO} buttonStyle={howtoButtonStyle}
             textStyle={howtoButtontextStyle}
             />
           </View>
           <View>
             <Button
-            buttonText='View emojis' buttonStyle={viewEmojiButtonStyle}
+              onPress={() => console.log('View emoji button pressed ')}
+            buttonText={VIEWEMOJI} buttonStyle={viewEmojiButtonStyle}
             textStyle={viewEmojiButtontextStyle}
             />
           </View>
