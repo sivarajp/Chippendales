@@ -81,7 +81,7 @@ const styles = {
 
   buttonText: {
     fontSize: 50,
-    color: '#007aff',
+    color: '#EA158B',
     fontFamily: 'Arial'
   }
 }
