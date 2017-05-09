@@ -46,14 +46,14 @@ class HomeScreen extends Component {
           </View>
           <View>
             <Button
-            onPress={() => navigate('Howto')}
+            onPress={() => navigate('Howto', { screenindex: '0' })}
             buttonText={HOWTO} buttonStyle={howtoButtonStyle}
             textStyle={howtoButtontextStyle}
             />
           </View>
           <View>
             <Button
-              onPress={() => navigate('Viewemojis')}
+              onPress={() => navigate('Viewemojis', { screenindex: '1' })}
             buttonText={VIEWEMOJI} buttonStyle={viewEmojiButtonStyle}
             textStyle={viewEmojiButtontextStyle}
             />

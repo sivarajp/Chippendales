@@ -1,22 +1,91 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View, Text, ListView } from 'react-native';
 
-class Howto extends Component {
-  static navigationOptions = {
-    title: 'How To'
+const listOfInstructions = [
+  '1. Go to Settings.',
+  '2. General > Keyboard > Keyboards.',
+  '3. Select Add New Keybaord.',
+  '4. Choose Chippmoji.',
+  '5. Chippmoji > Allow Full Access.'
+];
+
+export default class How extends Component {
+
+  constructor(props) {
+    super(props);
+    const dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.guid !== r2.guid });
+    this.state = {
+      dataSource: dataSource.cloneWithRows(listOfInstructions)
+    };
   }
-  render() {
+
+  renderRow(rowData, sectionID, rowID) {
     return (
-       <View style={styles.containerStyle} />
+          <View>
+            <Text
+            style={styles.listItemStyle}
+            numberOfLines={1}
+            >{rowData}
+            </Text>
+          </View>
+    );
+  }
+
+  render() {
+    const { container, header, listContainer, helpText } = styles;
+    return (
+      <View style={container}>
+         <View>
+          <Text>Back</Text>
+         </View>
+         <View>
+           <Text style={header}>HOW TO INSTALL</Text>
+         </View>
+         <View>
+            <ListView
+               style={listContainer} dataSource={this.state.dataSource}
+               renderRow={this.renderRow.bind(this)}
+            />
+            <Text style={helpText}>NOTHING YOU TYPE WILL BE RECORDED</Text>
+         </View>
+      </View>
     );
   }
 }
 
-const styles = {
-    containerStyle: {
-      justifyContent: 'center',
-      flex: 1
-    }
-};
-
-export { Howto };
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    margin: 10,
+    marginTop: 20
+  },
+  header: {
+    paddingTop: 15,
+    fontSize: 25,
+    letterSpacing: 2,
+    fontFamily: 'CircularStd-Bold',
+    color: '#000000',
+  },
+  listContainer: {
+    paddingTop: 25,
+    paddingBottom: 10,
+    flexWrap: 'wrap',
+    margin: 0,
+    flex: 1
+  },
+  listItemStyle: {
+    paddingLeft: 20,
+    fontSize: 16,
+    color: '#000000',
+    paddingTop: 15,
+    fontFamily: 'CircularStd-Book',
+  },
+  helpText: {
+    fontSize: 10,
+    paddingLeft: 25,
+    alignItems: 'flex-start',
+    flex: 2,
+    fontFamily: 'VisbyCF-Bold'
+  }
+});
