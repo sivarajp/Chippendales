@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|left"
-            android:text="ROKOmoji"
+            android:text="Chippmoji"
             android:textColor="@color/text_txt"
             android:textSize="15sp" />
 

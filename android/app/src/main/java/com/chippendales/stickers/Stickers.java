@@ -31,7 +31,7 @@ public class Stickers {
     private static final String PACK_DATA_LIST = "PACK_DATA_LIST";
     private static final String SAVE_VERSION = "SAVE_VERSION";
     public StickerpacksResponse stickerpacksResponse;
-    public final List<PackData> packDataList;
+    public final List<PackData> packDataList = new ArrayList<>();
     public List<PackData> packDataListDefault = new ArrayList<PackData>();
 
     private SharedPreferences sharedPreferences;
@@ -42,20 +42,21 @@ public class Stickers {
         lContext = context;
         sharedPreferences = context.getSharedPreferences("Chippmoji", Context.MODE_PRIVATE);
         checkVersion(false);
-        String packDataListString = sharedPreferences.getString(PACK_DATA_LIST, null);
-        packDataList = new ArrayList<>();
-        if (packDataListString != null) {
-//            Type listType = new TypeToken<List<PackData>>() {
-//            }.getType();
-//
-//            Gson gson = new Gson();
-//            packDataList.addAll((Collection<? extends PackData>) gson.fromJson(packDataListString, listType));
-        } else {
-            setDefaultStickerPack();
-        }
+        setDefaultStickerPack();
+//        String packDataListString = sharedPreferences.getString(PACK_DATA_LIST, null);
+//        packDataList = new ArrayList<>();
+//        if (packDataListString != null) {
+////            Type listType = new TypeToken<List<PackData>>() {
+////            }.getType();
+////
+////            Gson gson = new Gson();
+////            packDataList.addAll((Collection<? extends PackData>) gson.fromJson(packDataListString, listType));
+//        } else {
+//           setDefaultStickerPack();
+//        }
     }
 
-    public static Boolean itGif(String pathName) {
+    public static Boolean isGif(String pathName) {
         if ("image/gif".equals(getMimeTypeOfFile(pathName))) {
             return true;
         }
@@ -78,6 +79,7 @@ public class Stickers {
     }
 
     public void loadStickers(final CallbackStickersLoaded callback) {
+        callback.pack();
         long timeWaiting = 15 * 60 * 1000; //15 min
         //long timeWaiting = 10000; //10 sec
         if ((System.currentTimeMillis() - lastDownload) > timeWaiting) {
@@ -97,7 +99,7 @@ public class Stickers {
 //                }
 //            });
         } else {
-            callback.pack();
+
         }
     }
 
@@ -195,7 +197,7 @@ public class Stickers {
                 return null;
             }
             try {
-                float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, lContext.getResources().getDisplayMetrics());
+                float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, lContext.getResources().getDisplayMetrics());
                 int optimaDp = Math.round(px);
                 //int height = Math.round(bm.getHeight() / (bm.getWidth() / optimaWidth));
 
@@ -219,7 +221,7 @@ public class Stickers {
                 Log.v("TAG","w: "+width+" h1: "+height);
 
                 Bitmap ico = Bitmap.createScaledBitmap(bm, width, height, true);
-                ico.compress(Bitmap.CompressFormat.PNG, 100, dataWriter);
+                ico.compress(Bitmap.CompressFormat.WEBP, 100, dataWriter);
                 Log.i(TAG, "create icon " + outputFile.getName() + ": " + outputFile.length() + " bytes; Width: " + width + "px Height: " + height);
                 return outputFile;
             } finally {
@@ -294,18 +296,18 @@ public class Stickers {
         checkVersion(true);
         InputStream in = null;
         String packList[]=new String[0];
-        final String PACK_LIB="pack";
+        final String PACK_LIB="pack/speechbubbles";
         final String PACK_APP="pack_app";
-        final String PACK_ICON="pack_on.png";
+        final String PACK_ICON="z_pack_on.png";
         String curAssets="";
 
-        try {
-            in = lContext.getAssets().open(PACK_APP+"/"+PACK_ICON);
-            curAssets=PACK_APP;
-            packList = lContext.getAssets().list(curAssets);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            in = lContext.getAssets().open(PACK_APP+"/"+PACK_ICON);
+//            curAssets=PACK_APP;
+//            packList = lContext.getAssets().list(curAssets);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         if(in==null) {
             try {
                 in = lContext.getAssets().open(PACK_LIB+"/"+PACK_ICON);
@@ -320,8 +322,9 @@ public class Stickers {
             long packId = 1;
             PackData packData = new PackData();
             packData.objectId = packId;
-            packData.name = "ROKOmoji";
+            packData.name = "Chippmoji";
             packData.iconOn = copyImgFile(in, "i" + packId + "_on");
+            Log.e("Testing image file name", packData.iconOn.getPath());
             //packData.iconOff = copyImgFile(inOff, "i" + packId + "_off");
             List<StickerData> stickerData = new ArrayList<StickerData>();
             long i = 0;
@@ -344,14 +347,20 @@ public class Stickers {
                     sd.packId = packId;
                     sd.packName = packData.name;
                     sd.file = file;
-                    sd.iconKey = createIconKey(file, "si" + img);
                     sd.mime = getMimeTypeOfFile(file.getPath());//"image/gif"
+                    if (isGif(file.getPath())) {
+                        sd.iconKey = file;
+                    } else {
+                        sd.iconKey = createIconKey(file, "si" + img);
+                    }
+
                     sd.url = null;
                     stickerData.add(sd);
                 }
             }
             packData.stickers = stickerData;
             packDataListDefault.add(packData);
+            Log.e("Testing", stickerData.toString());
         }
     }
 

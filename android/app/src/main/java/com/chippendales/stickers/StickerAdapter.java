@@ -3,10 +3,12 @@ package com.chippendales.stickers;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.chippendales.KeyboardService;
 import com.chippendales.R;
 
@@ -39,7 +41,15 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerHolder> {
 
         try {
             Bitmap ico = BitmapFactory.decodeFile(sticker.iconKey.getPath());
-            holder.imageView.setImageBitmap(ico);
+            //holder.imageView.setImageBitmap(ico);
+            //GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(holder.imageView);
+            if (sticker.mime.equals("image/gif")) {
+                Log.e("Gif file name", sticker.iconKey.getPath());
+                Glide.with(keyboardService.getBaseContext()).load(sticker.iconKey.getPath()).asGif().into(holder.imageView);
+            } else {
+                holder.imageView.setImageBitmap(ico);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

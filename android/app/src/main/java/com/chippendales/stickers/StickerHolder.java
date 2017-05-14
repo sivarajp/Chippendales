@@ -7,10 +7,6 @@ import android.widget.ImageView;
 import com.chippendales.R;
 
 
-/**
- * Created by mist on 12.12.16.
- */
-
 public class StickerHolder  extends RecyclerView.ViewHolder {
     public ImageView imageView;
 

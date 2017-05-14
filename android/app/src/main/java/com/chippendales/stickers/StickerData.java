@@ -15,4 +15,18 @@ public class StickerData {
     public String url;
     public long packId;
     public String packName;
+
+    @Override
+    public String toString() {
+        return "StickerData{" +
+                "objectId=" + objectId +
+                ", file=" + file +
+                ", iconKey=" + iconKey +
+                ", imageId=" + imageId +
+                ", mime='" + mime + '\'' +
+                ", url='" + url + '\'' +
+                ", packId=" + packId +
+                ", packName='" + packName + '\'' +
+                '}';
+    }
 }
