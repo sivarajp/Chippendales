@@ -67,7 +67,7 @@ const styles = {
   },
 
   buttonWrapper: {
-    backgroundColor: 'transparent',
+    backgroundColor: '#FF0000',
     flexDirection: 'row',
     position: 'absolute',
     top: 0,
@@ -82,7 +82,10 @@ const styles = {
   buttonText: {
     fontSize: 50,
     color: '#EA158B',
-    fontFamily: 'Arial'
+    fontFamily: 'Arial',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    marginBottom: 10
   }
 }
 
@@ -530,11 +533,7 @@ export default class extends Component {
 
   renderButtons = () => {
     return (
-      <View pointerEvents='box-none' style={[styles.buttonWrapper, {
-        width: this.state.width,
-        height: this.state.height
-      }, this.props.buttonWrapperStyle]}>
-        {this.renderPrevButton()}
+      <View pointerEvents='box-none' style={{ backgroundColor: '#FFFFFF', alignItems: 'center'}}>
         {this.renderNextButton()}
       </View>
     )
