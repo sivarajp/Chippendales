@@ -4,23 +4,21 @@ import {
   View
 } from 'react-native';
 import Swiper from './swipe/';
-import Howto from './Howto';
+import { Howto, SpeechBubbles, EmojiObjects, Dancer } from './';
+
 
 class SliderScreens extends Component {
  constructor(props) {
     super(props);
     this.state = {
       items: [],
-      screenindex: this.props.navigation.state.params.screenindex
+      screenindex: this.props.navigation.state.params.screenindex,
+      navigate: this.props.navigation.navigate
     };
   }
   componentDidMount() {
     this.setState({
-      items: [
-        { title: 'Hello Swiper', css: styles.slide1 },
-        { title: 'Beautiful', css: styles.slide2 },
-        { title: 'And simple', css: styles.slide3 }
-      ]
+      items: []
     });
   }
   render() {
@@ -28,16 +26,16 @@ class SliderScreens extends Component {
     return (
     <Swiper style={styles.wrapper} horizontal showsButtons showsPagination={false} index={zindex}>
           <View style={styles.slide1}>
-              <Howto />
+              <Howto navigate={this.state.navigate} />
+          </View>
+          <View style={styles.slide3}>
+               <EmojiObjects navigate={this.state.navigate} />
           </View>
           <View style={styles.slide2}>
-            <Text style={styles.text}>View Emojis</Text>
+               <SpeechBubbles navigate={this.state.navigate} />
           </View>
           <View style={styles.slide3}>
-            <Text style={styles.text}>View Gifs</Text>
-          </View>
-          <View style={styles.slide3}>
-            <Text style={styles.text}>View Sticker</Text>
+            <Dancer navigate={this.state.navigate} />
           </View>
         </Swiper>
     );

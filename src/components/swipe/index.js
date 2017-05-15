@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
 import {
   Text,
   View,
@@ -8,9 +8,11 @@ import {
   ViewPagerAndroid,
   Platform,
   ActivityIndicator
-} from 'react-native'
+} from 'react-native';
+import ResponsiveImage from 'react-native-responsive-image';
 
-const { width, height } = Dimensions.get('window')
+
+const { width, height } = Dimensions.get('window');
 
 /**
  * Default styles
@@ -503,7 +505,10 @@ export default class extends Component {
 
     if (this.props.loop ||
       this.state.index !== this.state.total - 1) {
-      button = this.props.nextButton || <Text style={styles.buttonText}>›</Text>
+      button = this.props.nextButton ||
+      <ResponsiveImage
+          source={{ uri: 'rightarrows' }} initWidth="25" initHeight="25"
+      />
     }
 
     return (
@@ -533,7 +538,7 @@ export default class extends Component {
 
   renderButtons = () => {
     return (
-      <View pointerEvents='box-none' style={{ backgroundColor: '#FFFFFF', alignItems: 'center'}}>
+      <View pointerEvents='box-none' style={{ backgroundColor: '#FFFFFF', alignItems: 'center', paddingBottom: 30}}>
         {this.renderNextButton()}
       </View>
     )
