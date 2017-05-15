@@ -73,8 +73,10 @@ const styles = {
       marginTop: 20
     },
     list: {
+        justifyContent: 'center',
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        alignItems: 'center'
     },
     item: {
         margin: 3,

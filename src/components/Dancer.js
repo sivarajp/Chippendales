@@ -65,11 +65,12 @@ const styles = {
       marginTop: 20
     },
     list: {
+        justifyContent: 'center',
         flexDirection: 'row',
         flexWrap: 'wrap'
     },
     item: {
-        margin: 3,
+        margin: 5,
         width: 100,
         height: 100
     }

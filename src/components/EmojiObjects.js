@@ -46,7 +46,7 @@ class EmojiObjects extends Component {
                     initWidth="100" initHeight="100"
                 />
           </View>
-          <View>
+          <View style={{justifyContent: 'center'}}>
              <ListView
                 contentContainerStyle={styles.list}
                 dataSource={this.state.dataSource}
