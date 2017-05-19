@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
 import {
   Text,
   View,
@@ -8,9 +8,11 @@ import {
   ViewPagerAndroid,
   Platform,
   ActivityIndicator
-} from 'react-native'
+} from 'react-native';
+import ResponsiveImage from 'react-native-responsive-image';
 
-const { width, height } = Dimensions.get('window')
+
+const { width, height } = Dimensions.get('window');
 
 /**
  * Default styles
@@ -67,7 +69,7 @@ const styles = {
   },
 
   buttonWrapper: {
-    backgroundColor: 'transparent',
+    backgroundColor: '#FF0000',
     flexDirection: 'row',
     position: 'absolute',
     top: 0,
@@ -82,7 +84,10 @@ const styles = {
   buttonText: {
     fontSize: 50,
     color: '#EA158B',
-    fontFamily: 'Arial'
+    fontFamily: 'Arial',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    marginBottom: 10
   }
 }
 
@@ -500,7 +505,10 @@ export default class extends Component {
 
     if (this.props.loop ||
       this.state.index !== this.state.total - 1) {
-      button = this.props.nextButton || <Text style={styles.buttonText}>›</Text>
+      button = this.props.nextButton ||
+      <ResponsiveImage
+          source={{ uri: 'rightarrows' }} initWidth="25" initHeight="25"
+      />
     }
 
     return (
@@ -530,11 +538,7 @@ export default class extends Component {
 
   renderButtons = () => {
     return (
-      <View pointerEvents='box-none' style={[styles.buttonWrapper, {
-        width: this.state.width,
-        height: this.state.height
-      }, this.props.buttonWrapperStyle]}>
-        {this.renderPrevButton()}
+      <View pointerEvents='box-none' style={{ backgroundColor: '#FFFFFF', alignItems: 'center', paddingBottom: 30}}>
         {this.renderNextButton()}
       </View>
     )

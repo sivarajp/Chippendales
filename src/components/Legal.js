@@ -11,7 +11,7 @@ class Legal extends Component {
        <WebView
        ref='webview'
        automaticallyAdjustContentInsets={false}
-       source={{ uri: 'https://google.com/' }}
+       source={{ uri: 'https://www.chippmoji.com/legal' }}
        javaScriptEnabled
        domStorageEnabled
        decelerationRate="normal"

@@ -11,7 +11,7 @@ const App = StackNavigator({
   Main: { screen: HomeScreen },
   Legal: { screen: Legal },
   Howto: { screen: SliderScreens },
-  Viewemojis: { screen: SliderScreens }
+  SpeechBubbles: { screen: SliderScreens }
 }, stackNavigatorConfig
 );
 

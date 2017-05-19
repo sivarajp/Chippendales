@@ -53,7 +53,7 @@ class HomeScreen extends Component {
           </View>
           <View>
             <Button
-              onPress={() => navigate('Viewemojis', { screenindex: '1' })}
+              onPress={() => navigate('SpeechBubbles', { screenindex: '2' })}
             buttonText={VIEWEMOJI} buttonStyle={viewEmojiButtonStyle}
             textStyle={viewEmojiButtontextStyle}
             />

@@ -19,7 +19,7 @@ export default class SwiperExample extends Component {
           <Text style={styles.text}>And simple</Text>
         </View>
       </Swiper>
-    )
+    );
   }
 }
 const styles = StyleSheet.create({

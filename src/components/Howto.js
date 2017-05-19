@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ListView } from 'react-native';
+import { StyleSheet, View, Text, ListView, TouchableHighlight } from 'react-native';
+import ResponsiveImage from 'react-native-responsive-image';
+
 
 const listOfInstructions = [
   '1. Go to Settings.',
@@ -9,17 +11,18 @@ const listOfInstructions = [
   '5. Chippmoji > Allow Full Access.'
 ];
 
-export default class How extends Component {
-
+class Howto extends Component {
   constructor(props) {
+    console.log(props);
     super(props);
     const dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.guid !== r2.guid });
     this.state = {
-      dataSource: dataSource.cloneWithRows(listOfInstructions)
+      dataSource: dataSource.cloneWithRows(listOfInstructions),
+      navigate: this.props.navigate
     };
   }
 
-  renderRow(rowData, sectionID, rowID) {
+  renderRow(rowData) {
     return (
           <View>
             <Text
@@ -36,7 +39,11 @@ export default class How extends Component {
     return (
       <View style={container}>
          <View>
-          <Text>Back</Text>
+            <TouchableHighlight onPress={() => this.state.navigate('Main')}>
+              <ResponsiveImage
+                  source={{ uri: 'arrows' }} initWidth="25" initHeight="25"
+              />
+            </TouchableHighlight>
          </View>
          <View>
            <Text style={header}>HOW TO INSTALL</Text>
@@ -57,7 +64,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    margin: 10,
     marginTop: 20
   },
   header: {
@@ -89,3 +95,5 @@ const styles = StyleSheet.create({
     fontFamily: 'VisbyCF-Bold'
   }
 });
+
+export { Howto };
