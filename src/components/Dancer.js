@@ -8,16 +8,11 @@ const listofImages = [
 
 class Dancer extends Component {
 
-  static navigationOptions = {
-      title: 'View Emojis'
-  }
-
   constructor(props) {
     super(props);
     const dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.guid !== r2.guid });
     this.state = {
       dataSource: dataSource.cloneWithRows(listofImages),
-      navigate: this.props.navigate
     };
   }
 
@@ -34,19 +29,6 @@ class Dancer extends Component {
     return (
        <View style={styles.container}>
           <View>
-              <TouchableHighlight onPress={() => this.state.navigate('Main')}>
-                <ResponsiveImage
-                    source={{ uri: 'arrows' }} initWidth="25" initHeight="25"
-                />
-              </TouchableHighlight>
-          </View>
-          <View style={{ marginTop: 15 }}>
-                <ResponsiveImage
-                    source={require('../assets/images/header/DancerIcon.png')}
-                    initWidth="100" initHeight="100"
-                />
-          </View>
-          <View>
              <ListView
                 contentContainerStyle={styles.list}
                 dataSource={this.state.dataSource}
@@ -61,8 +43,7 @@ class Dancer extends Component {
 const styles = {
     container: {
       flex: 1,
-      alignItems: 'center',
-      marginTop: 20
+      alignItems: 'center'
     },
     list: {
         justifyContent: 'center',

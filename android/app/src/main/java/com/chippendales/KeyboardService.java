@@ -98,11 +98,7 @@ public class KeyboardService extends InputMethodService {
     }
 
     private void showStickers() {
-//        if (stickers.packDataList.size() > 0) {
-//            packDataList = stickers.packDataList;
-//        } else {
-//            packDataList = stickers.packDataListDefault;
-//        }
+
         packDataList = stickers.packDataListDefault;
         final List<PackData> curDataList = new ArrayList<>(packDataList);
         if (curDataList.size() > 0) {
@@ -209,27 +205,8 @@ public class KeyboardService extends InputMethodService {
             }
             final InputContentInfoCompat inputContentInfoCompat = icic;
             InputConnectionCompat.commitContent(getCurrentInputConnection(), getCurrentInputEditorInfo(), inputContentInfoCompat, flag, null);
-            // events
-//            Event used = new Event("_ROKO.Stickers.Used");
-//            used.set("photoType", "New");
-//            used.set("stickerId", stickerData.objectId);
-//            used.set("stickerPackId", stickerData.packId);
-//            used.set("positionInPack", position + 1);
-//            used.set("stickerPackName", stickerData.packName);
-//            used.set("imageId", stickerData.imageId);
-//            used.set("isResized", false);
-//            RokoLogger.addEvents(used);
-//
-//            Event placed = new Event("_ROKO.Stickers.Placed");
-//            placed.set("stickerId", stickerData.objectId);
-//            placed.set("stickerPackId", stickerData.packId);
-//            placed.set("stickerPackName", stickerData.packName);
-//            placed.set("positionInPack", position + 1);
-//
-//            RokoLogger.addEvents(placed);
 
         } else {
-            //if (!stickerToShare(stickerData, contentUri)) {
             if (!stickerToShare(stickerData)) {
                 Toast.makeText(this, "Application does not support stickers", Toast.LENGTH_SHORT).show();
             }

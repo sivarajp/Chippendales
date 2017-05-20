@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, Platform, Linking, TouchableWithoutFeedback } from 'react-native';
 import ResponsiveImage from 'react-native-responsive-image';
+import { Actions } from 'react-native-router-flux';
 import { Button } from './';
 import { COMPANY_NAME, LEGAL, SUPPORT, HOWTO, VIEWEMOJI } from './Constants';
 
 class HomeScreen extends Component {
 
-  static navigationOptions = {
-    header: null
-  }
 
   handleClick = (url) => {
       Linking.canOpenURL(url).then(supported => {
@@ -22,7 +20,6 @@ class HomeScreen extends Component {
     };
 
   render() {
-    const { navigate } = this.props.navigation;
     const { containerStyle, imageStyle, howtoButtonStyle, howtoButtontextStyle,
             viewEmojiButtonStyle, viewEmojiButtontextStyle,
             footerStyle, companyStyle, companyNameStyle,
@@ -46,16 +43,16 @@ class HomeScreen extends Component {
           </View>
           <View>
             <Button
-            onPress={() => navigate('Howto', { screenindex: '0' })}
-            buttonText={HOWTO} buttonStyle={howtoButtonStyle}
-            textStyle={howtoButtontextStyle}
+              onPress={() => Actions.Howto()}
+              buttonText={HOWTO} buttonStyle={howtoButtonStyle}
+              textStyle={howtoButtontextStyle}
             />
           </View>
           <View>
             <Button
-              onPress={() => navigate('SpeechBubbles', { screenindex: '2' })}
-            buttonText={VIEWEMOJI} buttonStyle={viewEmojiButtonStyle}
-            textStyle={viewEmojiButtontextStyle}
+              onPress={() => Actions.SliderScreens()}
+              buttonText={VIEWEMOJI} buttonStyle={viewEmojiButtonStyle}
+              textStyle={viewEmojiButtontextStyle}
             />
           </View>
         </View>
@@ -70,7 +67,7 @@ class HomeScreen extends Component {
              </TouchableWithoutFeedback>
           </View>
           <View style={legalContainerStyle}>
-             <TouchableWithoutFeedback onPress={() => navigate('Legal')}>
+             <TouchableWithoutFeedback onPress={() => Actions.Legal()}>
              <View>
               <Text style={legalTextStyle}>{legalText}</Text>
              </View>

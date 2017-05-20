@@ -1,18 +1,13 @@
-import { StackNavigator } from 'react-navigation';
-import { HomeScreen, Legal, SliderScreens } from './components';
+import React, { Component } from 'react';
+import { RouterComponent } from './components/';
 
-const stackNavigatorConfig = {
-  initialRouteName: 'Main',
-  mode: 'modal',
-  headerMode: 'none'
-};
 
-const App = StackNavigator({
-  Main: { screen: HomeScreen },
-  Legal: { screen: Legal },
-  Howto: { screen: SliderScreens },
-  SpeechBubbles: { screen: SliderScreens }
-}, stackNavigatorConfig
-);
+class Chippendales extends Component {
+  render() {
+    return (
+      <RouterComponent />
+    );
+  }
+}
 
-export default App;
+export default Chippendales;
