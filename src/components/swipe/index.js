@@ -499,7 +499,7 @@ export default class extends Component {
     }
 
     return (
-      <View style={{ margin: 25, flexDirection: 'row', justifyContent: 'center', alignItems: 'space-between' }}>
+      <View style={{ margin: 25, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
         {dots}
       </View>
     )
