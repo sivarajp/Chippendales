@@ -195,7 +195,7 @@ public class KeyboardService extends InputMethodService {
             }
         }
 
-        if (contentSupportedGif) {
+        if (contentSupportedGif && MIME_TYPE_GIF.equals(stickerData.mime)) {
             String description = "Images";
             InputContentInfoCompat icic;
             if (stickerData.url == null) {
