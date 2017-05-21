@@ -17,7 +17,6 @@ class EmojiObjects extends Component {
   }
 
   renderRow(rowData) {
-    console.log(rowData);
     return (
           <View style={styles.item}>
             <Image source={rowData} style={styles.item} />

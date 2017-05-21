@@ -14,7 +14,6 @@ const listOfInstructions = [
 
 class Howto extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
     const dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.guid !== r2.guid });
     this.state = {
