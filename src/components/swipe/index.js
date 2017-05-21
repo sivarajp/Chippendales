@@ -125,7 +125,7 @@ export default class extends Component {
     activeDotStyle: PropTypes.object,
     dotColor: PropTypes.string,
     activeDotColor: PropTypes.string,
-    paginationStyle: PropTypes.string
+    paginationStyle: PropTypes.object
   }
 
   /**
