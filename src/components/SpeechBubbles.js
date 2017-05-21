@@ -7,7 +7,15 @@ const listofImages = [
   require('../assets/images/speechbubbles/DatD.png'),
   require('../assets/images/speechbubbles/HeCould.png'),
   require('../assets/images/speechbubbles/LastFling.png'),
-  require('../assets/images/speechbubbles/Ri-dick-ulous.png'),
+  require('../assets/images/speechbubbles/Redick.png'),
+  require('../assets/images/speechbubbles/TalkDirty.png'),
+  require('../assets/images/speechbubbles/TooLit.gif'),
+  require('../assets/images/speechbubbles/TruthDare.gif'),
+  require('../assets/images/speechbubbles/Cheers.png'),
+  require('../assets/images/speechbubbles/DatD.png'),
+  require('../assets/images/speechbubbles/HeCould.png'),
+  require('../assets/images/speechbubbles/LastFling.png'),
+  require('../assets/images/speechbubbles/Redick.png'),
   require('../assets/images/speechbubbles/TalkDirty.png'),
   require('../assets/images/speechbubbles/TooLit.gif'),
   require('../assets/images/speechbubbles/TruthDare.gif')
@@ -25,7 +33,6 @@ class SpeechBubbles extends Component {
   }
 
   renderRow(rowData) {
-    console.log(rowData);
     return (
           <View style={styles.item}>
             <Image source={rowData} style={styles.item} />
