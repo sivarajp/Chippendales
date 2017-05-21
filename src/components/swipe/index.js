@@ -550,10 +550,7 @@ export default class extends Component {
 
   renderButtons = () => {
     return (
-      <View pointerEvents='box-none' style={[styles.buttonWrapper, {
-        width: this.state.width,
-        height: this.state.height
-      }, this.props.buttonWrapperStyle]}>
+      <View pointerEvents='box-none' style={this.props.buttonWrapperStyle}>
         {this.renderNextButton()}
       </View>
     )

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  Text,
   View,
   TouchableHighlight
 } from 'react-native';
@@ -44,10 +43,10 @@ class SliderScreens extends Component {
                  <EmojiObjects />
             </View>
             <View style={styles.slide2}>
-                 <SpeechBubbles />
+                 <Dancer />
             </View>
             <View style={styles.slide3}>
-              <Dancer />
+                 <SpeechBubbles />
             </View>
       </Swiper>
     </View>
@@ -84,13 +83,11 @@ const styles = {
   },
   buttonWrapperStyle: {
     backgroundColor: 'transparent',
-    flexDirection: 'row',
-    position: 'absolute',
-    flex: 1,
+    position: 'relative',
     paddingHorizontal: 10,
-    paddingVertical: 70,
+    paddingVertical: 40,
     justifyContent: 'center',
-    alignItems: 'flex-end'
+    alignItems: 'center'
   }
 };
 
