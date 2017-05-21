@@ -1,4 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+/**
+ * Modified version to fit the needs. Could have passed customised props. Will work on it later
+ * react-native-swiper
+ * @author leecade<leecade@163.com>
+ */
+import React, { Component, PropTypes } from 'react'
 import {
   Text,
   View,
@@ -12,7 +17,7 @@ import {
 import ResponsiveImage from 'react-native-responsive-image';
 
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 /**
  * Default styles
@@ -25,7 +30,8 @@ const styles = {
   },
 
   wrapper: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+      position: 'relative'
   },
 
   slide: {
@@ -33,24 +39,22 @@ const styles = {
   },
 
   pagination_x: {
-    position: 'absolute',
+    position: 'relative',
     bottom: 25,
     left: 0,
     right: 0,
     flexDirection: 'row',
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent'
   },
 
   pagination_y: {
-    position: 'absolute',
+    position: 'relative',
     right: 15,
     top: 0,
     bottom: 0,
     flexDirection: 'column',
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent'
@@ -69,7 +73,7 @@ const styles = {
   },
 
   buttonWrapper: {
-    backgroundColor: '#FF0000',
+    backgroundColor: 'transparent',
     flexDirection: 'row',
     position: 'absolute',
     top: 0,
@@ -77,17 +81,14 @@ const styles = {
     flex: 1,
     paddingHorizontal: 10,
     paddingVertical: 10,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center'
   },
 
   buttonText: {
     fontSize: 50,
-    color: '#EA158B',
-    fontFamily: 'Arial',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    marginBottom: 10
+    color: '#007aff',
+    fontFamily: 'Arial'
   }
 }
 
@@ -123,7 +124,8 @@ export default class extends Component {
     dotStyle: PropTypes.object,
     activeDotStyle: PropTypes.object,
     dotColor: PropTypes.string,
-    activeDotColor: PropTypes.string
+    activeDotColor: PropTypes.string,
+    paginationStyle: PropTypes.string
   }
 
   /**
@@ -148,7 +150,8 @@ export default class extends Component {
     autoplay: false,
     autoplayTimeout: 2.5,
     autoplayDirection: true,
-    index: 0
+    index: 0,
+    paginationStyle: {}
   }
 
   /**
@@ -456,35 +459,47 @@ export default class extends Component {
     if (this.state.total <= 1) return null
 
     let dots = []
-    const ActiveDot = this.props.activeDot || <View style={[{
-      backgroundColor: this.props.activeDotColor || '#007aff',
-      width: 8,
-      height: 8,
-      borderRadius: 4,
-      marginLeft: 3,
-      marginRight: 3,
-      marginTop: 3,
-      marginBottom: 3
-    }, this.props.activeDotStyle]} />
-    const Dot = this.props.dot || <View style={[{
-      backgroundColor: this.props.dotColor || 'rgba(0,0,0,.2)',
-      width: 8,
-      height: 8,
-      borderRadius: 4,
-      marginLeft: 3,
-      marginRight: 3,
-      marginTop: 3,
-      marginBottom: 3
-    }, this.props.dotStyle ]} />
+
+    const ActiveDot = [
+      require('../../assets/images/header/LipsIcon.png'),
+      require('../../assets/images/header/DancerIcon.png'),
+      require('../../assets/images/header/SpeechBubbleIcon.png')
+    ]
+
+    const Dot = [
+      require('../../assets/images/header/LipsIcon_inactive.png'),
+      require('../../assets/images/header/DancerIcon_inactive.png'),
+      require('../../assets/images/header/SpeechBubbleIcon_inactive.png')
+    ]
+
     for (let i = 0; i < this.state.total; i++) {
-      dots.push(i === this.state.index
-        ? React.cloneElement(ActiveDot, {key: i})
-        : React.cloneElement(Dot, {key: i})
-      )
+      if (i === this.state.index) {
+        const activeElement =
+          <View style={{marginLeft: 10, marginRight:10}}>
+                <ResponsiveImage
+                    source={ActiveDot[i]}
+                    initWidth="75" initHeight="75"
+                />
+          </View>
+        dots.push(React.cloneElement(activeElement, {key: i}))
+      } else {
+        const inactiveElement =
+        <TouchableOpacity onPress={() => this.scrollBy(i - this.state.index)}>
+          <View style={{marginLeft: 10, marginRight:10}}>
+                <ResponsiveImage
+                    source={Dot[i]}
+                    initWidth="75" initHeight="75"
+                />
+          </View>
+        </TouchableOpacity>
+
+        dots.push(React.cloneElement(inactiveElement, {key: i}))
+      }
+
     }
 
     return (
-      <View pointerEvents='none' style={[styles['pagination_' + this.state.dir], this.props.paginationStyle]}>
+      <View style={{ margin: 25, flexDirection: 'row', justifyContent: 'center', alignItems: 'space-between' }}>
         {dots}
       </View>
     )
@@ -505,10 +520,7 @@ export default class extends Component {
 
     if (this.props.loop ||
       this.state.index !== this.state.total - 1) {
-      button = this.props.nextButton ||
-      <ResponsiveImage
-          source={{ uri: 'rightarrows' }} initWidth="25" initHeight="25"
-      />
+      button = this.props.nextButton || <Text style={styles.buttonText}>›</Text>
     }
 
     return (
@@ -538,7 +550,7 @@ export default class extends Component {
 
   renderButtons = () => {
     return (
-      <View pointerEvents='box-none' style={{ backgroundColor: '#FFFFFF', alignItems: 'center', paddingBottom: 30}}>
+      <View pointerEvents='box-none' style={this.props.buttonWrapperStyle}>
         {this.renderNextButton()}
       </View>
     )
@@ -625,14 +637,11 @@ export default class extends Component {
     }
 
     return (
-      <View style={[styles.container, {
-        width: state.width,
-        height: state.height
-      }]}>
-        {this.renderScrollView(pages)}
+      <View>
         {props.showsPagination && (props.renderPagination
           ? this.props.renderPagination(state.index, state.total, this)
           : this.renderPagination())}
+        {this.renderScrollView(pages)}
         {this.renderTitle()}
         {this.props.showsButtons && this.renderButtons()}
       </View>

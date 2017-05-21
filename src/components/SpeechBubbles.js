@@ -7,7 +7,15 @@ const listofImages = [
   require('../assets/images/speechbubbles/DatD.png'),
   require('../assets/images/speechbubbles/HeCould.png'),
   require('../assets/images/speechbubbles/LastFling.png'),
-  require('../assets/images/speechbubbles/Ri-dick-ulous.png'),
+  require('../assets/images/speechbubbles/Redick.png'),
+  require('../assets/images/speechbubbles/TalkDirty.png'),
+  require('../assets/images/speechbubbles/TooLit.gif'),
+  require('../assets/images/speechbubbles/TruthDare.gif'),
+  require('../assets/images/speechbubbles/Cheers.png'),
+  require('../assets/images/speechbubbles/DatD.png'),
+  require('../assets/images/speechbubbles/HeCould.png'),
+  require('../assets/images/speechbubbles/LastFling.png'),
+  require('../assets/images/speechbubbles/Redick.png'),
   require('../assets/images/speechbubbles/TalkDirty.png'),
   require('../assets/images/speechbubbles/TooLit.gif'),
   require('../assets/images/speechbubbles/TruthDare.gif')
@@ -16,21 +24,15 @@ const listofImages = [
 
 class SpeechBubbles extends Component {
 
-  static navigationOptions = {
-      title: 'View Emojis'
-  }
-
   constructor(props) {
     super(props);
     const dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.guid !== r2.guid });
     this.state = {
       dataSource: dataSource.cloneWithRows(listofImages),
-      navigate: this.props.navigate
     };
   }
 
   renderRow(rowData) {
-    console.log(rowData);
     return (
           <View style={styles.item}>
             <Image source={rowData} style={styles.item} />
@@ -41,19 +43,6 @@ class SpeechBubbles extends Component {
   render() {
     return (
        <View style={styles.container}>
-          <View>
-              <TouchableHighlight onPress={() => this.state.navigate('Main')}>
-                <ResponsiveImage
-                    source={{ uri: 'arrows' }} initWidth="25" initHeight="25"
-                />
-              </TouchableHighlight>
-          </View>
-          <View style={{ marginTop: 15 }}>
-                <ResponsiveImage
-                    source={require('../assets/images/header/SpeechBubbleIcon.png')}
-                    initWidth="100" initHeight="100"
-                />
-          </View>
           <View>
              <ListView
                 contentContainerStyle={styles.list}
@@ -69,8 +58,7 @@ class SpeechBubbles extends Component {
 const styles = {
     container: {
       flex: 1,
-      alignItems: 'center',
-      marginTop: 20
+      alignItems: 'center'
     },
     list: {
         justifyContent: 'center',

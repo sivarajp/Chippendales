@@ -8,3 +8,4 @@ export * from './SliderScreens';
 export * from './Howto';
 export * from './EmojiObjects';
 export * from './Dancer';
+export * from './RouterComponent';

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, ListView, TouchableHighlight } from 'react-native';
 import ResponsiveImage from 'react-native-responsive-image';
+import { Actions } from 'react-native-router-flux';
 
 
 const listOfInstructions = [
@@ -13,12 +14,10 @@ const listOfInstructions = [
 
 class Howto extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
     const dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.guid !== r2.guid });
     this.state = {
       dataSource: dataSource.cloneWithRows(listOfInstructions),
-      navigate: this.props.navigate
     };
   }
 
@@ -39,11 +38,11 @@ class Howto extends Component {
     return (
       <View style={container}>
          <View>
-            <TouchableHighlight onPress={() => this.state.navigate('Main')}>
-              <ResponsiveImage
-                  source={{ uri: 'arrows' }} initWidth="25" initHeight="25"
-              />
-            </TouchableHighlight>
+           <TouchableHighlight onPress={() => Actions.HomeScreen({ direction: 'fade' })}>
+             <ResponsiveImage
+                 source={{ uri: 'arrows' }} initWidth="25" initHeight="25"
+             />
+           </TouchableHighlight>
          </View>
          <View>
            <Text style={header}>HOW TO INSTALL</Text>
