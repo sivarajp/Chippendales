@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { View, Image, TouchableHighlight, ListView } from 'react-native';
+import { View, TouchableOpacity, ListView } from 'react-native';
 import ResponsiveImage from 'react-native-responsive-image';
-
-const listofImages = [
-];
+import Share from 'react-native-share';
+import { listofImages } from './SpeechBubblesConst';
 
 
 class EmojiObjects extends Component {
@@ -16,11 +15,24 @@ class EmojiObjects extends Component {
     };
   }
 
+  shareImage(encodedImage) {
+    Share.open({
+      title: 'Chippmoji',
+      message: '',
+      url: encodedImage,
+      subject: 'Chippmoji'
+    });
+  }
+
   renderRow(rowData) {
     return (
+        <TouchableOpacity onPress={() => { this.shareImage(rowData.encodedImage); }}>
           <View style={styles.item}>
-            <Image source={rowData} style={styles.item} />
+            <ResponsiveImage
+             source={{ uri: rowData.encodedImage }} initWidth="100" initHeight="100"
+            />
           </View>
+        </TouchableOpacity>
     );
   }
 
@@ -50,9 +62,7 @@ const styles = {
         flexWrap: 'wrap'
     },
     item: {
-        margin: 3,
-        width: 100,
-        height: 100
+        margin: 3
     }
 };
 

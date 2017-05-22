@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, Image, TouchableOpacity, ListView } from 'react-native';
+import { View, TouchableOpacity, ListView } from 'react-native';
 import ResponsiveImage from 'react-native-responsive-image';
-import { listofImages } from './SpeechBubblesConst'
 import Share from 'react-native-share';
+import { listofImages } from './SpeechBubblesConst';
 
 class SpeechBubbles extends Component {
 
@@ -13,21 +13,23 @@ class SpeechBubbles extends Component {
       dataSource: dataSource.cloneWithRows(listofImages)
     };
   }
-
+  
   shareImage(encodedImage) {
     Share.open({
       title: 'Chippmoji',
       message: '',
       url: encodedImage,
-      subject: "Chippmoji"
+      subject: 'Chippmoji'
     });
   }
 
   renderRow(rowData) {
     return (
-        <TouchableOpacity onPress={()=>{ this.shareImage(rowData.encodedImage)}}>
+        <TouchableOpacity onPress={() => { this.shareImage(rowData.encodedImage); }}>
           <View style={styles.item}>
-            <ResponsiveImage source={rowData.img } initWidth="100" initHeight="100" />
+            <ResponsiveImage
+             source={{ uri: rowData.encodedImage }} initWidth="100" initHeight="100"
+            />
           </View>
         </TouchableOpacity>
     );
