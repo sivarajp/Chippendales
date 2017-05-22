@@ -522,9 +522,12 @@ export default class extends Component {
       this.state.index !== this.state.total - 1) {
       button = this.props.nextButton || <Text style={styles.buttonText}>›</Text>
     }
-
+    let defScroll = 1;
+    if (this.state.index === this.state.total - 1) {
+          defScroll = this.state.index * -1;
+    }
     return (
-      <TouchableOpacity onPress={() => button !== null && this.scrollBy(1)}>
+      <TouchableOpacity onPress={() => button !== null && this.scrollBy(defScroll)}>
         <View>
           {button}
         </View>
@@ -576,7 +579,8 @@ export default class extends Component {
         {...this.props}
         initialPage={this.props.loop ? this.state.index + 1 : this.state.index}
         onPageSelected={this.onScrollEnd}
-        style={{flex: 1}}>
+        style={{flex: 1}}
+        scrollEnabled={false}>
         {pages}
       </ViewPagerAndroid>
     )

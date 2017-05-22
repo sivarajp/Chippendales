@@ -34,6 +34,8 @@ class SliderScreens extends Component {
       <Swiper
       style={styles.wrapper} horizontal showsButtons showsPagination index={zindex}
       buttonWrapperStyle={styles.buttonWrapperStyle}
+      loadMinimal
+      loadMinimalSize={2}
       nextButton={<ResponsiveImage
           source={{ uri: 'rightarrows' }} initWidth="35" initHeight="35"
       />}
