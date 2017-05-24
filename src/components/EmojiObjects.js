@@ -58,6 +58,7 @@ const styles = {
       alignItems: 'center'
     },
     list: {
+        justifyContent: 'center',
         flexDirection: 'row',
         flexWrap: 'wrap'
     },
