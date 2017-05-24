@@ -9,4 +9,9 @@
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
+    <!-- IME HorizontalScrollView -->
+    <style name="IMEHorizontalScrollViewStyle" parent="android:Widget.Holo.HorizontalScrollView">
+        <item name="android:background">#FFFFFF</item>
+    </style>
+
 </resources>

@@ -33,11 +33,12 @@ import android.view.inputmethod.InputBinding;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.chippendales.packs.PackAdapter;
 import com.chippendales.packs.PackData;
@@ -69,7 +70,7 @@ public class KeyboardService extends InputMethodService {
     public static File tempDir;
     private static String DEEPLINK_TEXT = "Check out the Chippmoji Keyboard! ";
     public Stickers stickers;
-    LinearLayout mainBoard;
+    LinearLayout mainBoard, speechBoard;
     ScrollView scrollView;
     private StickerAdapter stickerAdapter;
     private List<PackData> packDataList = new ArrayList<PackData>();
@@ -82,6 +83,10 @@ public class KeyboardService extends InputMethodService {
     private String deeplinkContentId;
     private long startTime = 0;
     private EditorInfo editorInfo;
+
+
+    private ViewFlipper keyboardViewFlipper;
+    Button lips, speech, dance;
 
     public static boolean rokomojiEnabled(Activity activity) {
 //        requestPermissionIfNeeded(Manifest.permission.READ_EXTERNAL_STORAGE, activity);
@@ -107,6 +112,7 @@ public class KeyboardService extends InputMethodService {
                 public void run() {
                     packAdapter = new PackAdapter(returnThis(), curDataList);
                     if (packView != null) {
+                        Log.e("inside", "inside");
                         packView.setAdapter(packAdapter);
                     }
 
@@ -152,30 +158,75 @@ public class KeyboardService extends InputMethodService {
 
     @Override
     public View onCreateInputView() {
+
         mainBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.main_board_layout, null);
-        packNameLabel = (TextView) mainBoard.findViewById(R.id.packNameLabel);
-        scrollView = (ScrollView) mainBoard.findViewById(R.id.gif_view);
 
-        stickerView = (RecyclerView) getLayoutInflater().inflate(R.layout.recycler_view, null);
-        stickerView.addItemDecoration(new MarginDecoration(this));
-        stickerView.setHasFixedSize(true);
-        stickerView.setLayoutManager(new GridLayoutManager(this, 3));
+        keyboardViewFlipper = (ViewFlipper)mainBoard.findViewById(R.id.keyboard_viewFlipper);
 
-        scrollView.addView(stickerView);
-
-        ImageView btShareLinkGP = (ImageView) mainBoard.findViewById(R.id.btShareLinkGP);
-        btShareLinkGP.setOnClickListener(new View.OnClickListener() {
+        lips = (Button)mainBoard.findViewById(R.id.radio1);
+        lips.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                shareLinkToGP();
+            public void onClick(View v) {
+                Log.e("lips", "lips");
+                keyboardViewFlipper.setDisplayedChild(keyboardViewFlipper.indexOfChild(mainBoard.findViewById(R.id.lips)));
             }
+
+        });
+        speech = (Button)mainBoard.findViewById(R.id.radio2);
+        speech.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("speech", "speech");
+                speechBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.speech_board, null, false);
+                scrollView = (ScrollView) speechBoard.findViewById(R.id.gif_view);
+                stickerView = (RecyclerView) getLayoutInflater().inflate(R.layout.recycler_view, null);
+                stickerView.addItemDecoration(new MarginDecoration(returnThis()));
+                stickerView.setHasFixedSize(true);
+                stickerView.setLayoutManager(new GridLayoutManager(returnThis(), 3));
+                scrollView.addView(stickerView);
+                packView = (RecyclerView) speechBoard.findViewById(R.id.pack_recycler_view);
+                showStickers();
+                keyboardViewFlipper.removeView(speechBoard);
+                keyboardViewFlipper.addView(speechBoard,1);
+//                keyboardViewFlipper.updateViewLayout(speechBoard, keyboardViewFlipper.getLayoutParams());
+                Log.e("IndexFlip", keyboardViewFlipper.indexOfChild(keyboardViewFlipper.findViewById(R.id.speech))+"");
+                Log.e("IndexmainBoard", keyboardViewFlipper.indexOfChild(mainBoard.findViewById(R.id.speech))+"");
+                keyboardViewFlipper.setDisplayedChild(1);
+            }
+
         });
 
-        // packs bar
-        packView = (RecyclerView) mainBoard.findViewById(R.id.pack_recycler_view);
-
-        showStickers();
-        return mainBoard;
+        dance = (Button)mainBoard.findViewById(R.id.radio3);
+        dance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("dance", "dance");
+                keyboardViewFlipper.setDisplayedChild(keyboardViewFlipper.indexOfChild(mainBoard.findViewById(R.id.dance)));
+            }
+        });
+//        packNameLabel = (TextView) mainBoard.findViewById(R.id.packNameLabel);
+//        scrollView = (ScrollView) mainBoard.findViewById(R.id.gif_view);
+//
+//        stickerView = (RecyclerView) getLayoutInflater().inflate(R.layout.recycler_view, null);
+//        stickerView.addItemDecoration(new MarginDecoration(this));
+//        stickerView.setHasFixedSize(true);
+//        stickerView.setLayoutManager(new GridLayoutManager(this, 3));
+//
+//        scrollView.addView(stickerView);
+//
+//        ImageView btShareLinkGP = (ImageView) mainBoard.findViewById(R.id.btShareLinkGP);
+//        btShareLinkGP.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                shareLinkToGP();
+//            }
+//        });
+//
+//        // packs bar
+//        packView = (RecyclerView) mainBoard.findViewById(R.id.pack_recycler_view);
+//
+//        showStickers();
+       return mainBoard;
     }
 
     public void inputContent(@NonNull StickerData stickerData, int position) {
@@ -375,14 +426,8 @@ public class KeyboardService extends InputMethodService {
 
     public void onCreate() {
         super.onCreate();
-
-//        SharedPreferences RokoMobiPreferences = this.getSharedPreferences("_Chippmoji", Context.MODE_PRIVATE);
-//        RokoMobiPreferences.edit().remove("apiUrl").apply();
-//        RokoMobiPreferences.edit().remove("apiToken").apply();
-
         imagesDir = new File(getFilesDir(), "images");
         imagesDir.mkdirs();
-
         tempDir = new File(getFilesDir(), "/images/stickers");
         tempDir.mkdirs();
 
