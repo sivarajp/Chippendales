@@ -35,6 +35,7 @@ import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,7 +80,7 @@ public class KeyboardService extends InputMethodService {
     private boolean contentSupportedGif;
     private RecyclerView packView, stickerView;
     private int lastTab = 0;
-    private String deeplink;
+    private String deeplink = "https://www.chippmoji.com/";
     private String deeplinkContentId;
     private long startTime = 0;
     private EditorInfo editorInfo;
@@ -93,9 +94,7 @@ public class KeyboardService extends InputMethodService {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         List<InputMethodInfo> imList = imm.getEnabledInputMethodList();
         for (InputMethodInfo imi : imList) {
-
             if (activity.getPackageName().equalsIgnoreCase(imi.getPackageName()) && SERVICE_NAME.equalsIgnoreCase(imi.getServiceName())) {
-                //if (SERVICE_NAME.equalsIgnoreCase(imi.getServiceName())) {
                 return true;
             }
         }
@@ -161,9 +160,17 @@ public class KeyboardService extends InputMethodService {
 
         mainBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.main_board_layout, null);
 
-        keyboardViewFlipper = (ViewFlipper)mainBoard.findViewById(R.id.keyboard_viewFlipper);
+        RadioButton switchKeyBoard = (RadioButton) mainBoard.findViewById(R.id.radio0);
+        switchKeyBoard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager inputMethodManager  = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.showInputMethodPicker();
+            }
+        });
 
-        lips = (Button)mainBoard.findViewById(R.id.radio1);
+        keyboardViewFlipper = (ViewFlipper) mainBoard.findViewById(R.id.keyboard_viewFlipper);
+        lips = (Button) mainBoard.findViewById(R.id.radio1);
         lips.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,7 +179,7 @@ public class KeyboardService extends InputMethodService {
             }
 
         });
-        speech = (Button)mainBoard.findViewById(R.id.radio2);
+        speech = (Button) mainBoard.findViewById(R.id.radio2);
         speech.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -187,16 +194,16 @@ public class KeyboardService extends InputMethodService {
                 packView = (RecyclerView) speechBoard.findViewById(R.id.pack_recycler_view);
                 showStickers();
                 keyboardViewFlipper.removeView(speechBoard);
-                keyboardViewFlipper.addView(speechBoard,1);
+                keyboardViewFlipper.addView(speechBoard, 1);
 //                keyboardViewFlipper.updateViewLayout(speechBoard, keyboardViewFlipper.getLayoutParams());
-                Log.e("IndexFlip", keyboardViewFlipper.indexOfChild(keyboardViewFlipper.findViewById(R.id.speech))+"");
-                Log.e("IndexmainBoard", keyboardViewFlipper.indexOfChild(mainBoard.findViewById(R.id.speech))+"");
+                Log.e("IndexFlip", keyboardViewFlipper.indexOfChild(keyboardViewFlipper.findViewById(R.id.speech)) + "");
+                Log.e("IndexmainBoard", keyboardViewFlipper.indexOfChild(mainBoard.findViewById(R.id.speech)) + "");
                 keyboardViewFlipper.setDisplayedChild(1);
             }
 
         });
 
-        dance = (Button)mainBoard.findViewById(R.id.radio3);
+        dance = (Button) mainBoard.findViewById(R.id.radio3);
         dance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -204,29 +211,16 @@ public class KeyboardService extends InputMethodService {
                 keyboardViewFlipper.setDisplayedChild(keyboardViewFlipper.indexOfChild(mainBoard.findViewById(R.id.dance)));
             }
         });
-//        packNameLabel = (TextView) mainBoard.findViewById(R.id.packNameLabel);
-//        scrollView = (ScrollView) mainBoard.findViewById(R.id.gif_view);
-//
-//        stickerView = (RecyclerView) getLayoutInflater().inflate(R.layout.recycler_view, null);
-//        stickerView.addItemDecoration(new MarginDecoration(this));
-//        stickerView.setHasFixedSize(true);
-//        stickerView.setLayoutManager(new GridLayoutManager(this, 3));
-//
-//        scrollView.addView(stickerView);
-//
-//        ImageView btShareLinkGP = (ImageView) mainBoard.findViewById(R.id.btShareLinkGP);
-//        btShareLinkGP.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                shareLinkToGP();
-//            }
-//        });
-//
-//        // packs bar
-//        packView = (RecyclerView) mainBoard.findViewById(R.id.pack_recycler_view);
-//
-//        showStickers();
-       return mainBoard;
+
+        final RadioButton shareLink = (RadioButton) mainBoard.findViewById(R.id.radio4);
+        shareLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final InputConnection inputConnection = getCurrentInputConnection();
+                inputConnection.commitText(DEEPLINK_TEXT + " " + deeplink, 0);
+            }
+        });
+        return mainBoard;
     }
 
     public void inputContent(@NonNull StickerData stickerData, int position) {
@@ -275,10 +269,8 @@ public class KeyboardService extends InputMethodService {
                 //share.setClassName(ai.applicationInfo.packageName, ai.name);
                 share.setType("image/*");
                 share.putExtra(Intent.EXTRA_STREAM, contentUri);
-
                 share.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 share.addFlags(Intent.FLAG_FROM_BACKGROUND);
-
                 share.setPackage(ai.packageName);
                 startActivity(Intent.createChooser(share, "Share Image"));
             } catch (Exception e) {
@@ -300,13 +292,11 @@ public class KeyboardService extends InputMethodService {
     private ActivityInfo getAppForShare(StickerData stickerData) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
-        //intent.setType("image/gif");
         intent.setType(stickerData.mime);
         PackageManager pm = getPackageManager();
         List<ResolveInfo> activities = pm.queryIntentActivities(intent, 0);
         for (ResolveInfo act : activities) {
             ActivityInfo ai = act.activityInfo;
-            //Log.d("###",""+editorInfo.packageName+" :: "+ai.applicationInfo.packageName+" | "+ai.name);
             if (editorInfo.packageName.equalsIgnoreCase(ai.applicationInfo.packageName)) {
                 return ai;
             }
@@ -314,43 +304,12 @@ public class KeyboardService extends InputMethodService {
         return null;
     }
 
-    private void shareLinkToGP() {
-        final InputConnection ic = getCurrentInputConnection();
 
-        if (deeplink != null) {
-            ic.commitText(DEEPLINK_TEXT + " " + deeplink, 0);
-        }
-//        else {
-//            // deeplink
-//            JSONObject params = new JSONObject();
-//            try {
-//                params.put("linkType", "share");
-//                params.put("isAutogenerated", true);
-//                RokoLinks.createLink(params, new RokoLinks.CallbackCreateLink() {
-//                    @Override
-//                    public void success(ResponseCreateLink responseCreateLink) {
-//                        deeplink = responseCreateLink.data.link;
-//                        ic.commitText(DEEPLINK_TEXT + " " + deeplink, 0);
-//                    }
-//
-//                    @Override
-//                    public void failure(String s) {
-//                        Log.e(TAG, s);
-//                        ic.commitText(DEEPLINK_TEXT + " https://www.roko.mobi/", 0);
-//                    }
-//                });
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        RokoLogger.addEvents(new Event("_ROKO.Stickers.Shared").set("contentId", deeplinkContentId));
-    }
 
     public void onStartInputView(EditorInfo info, boolean restarting) {
         contentSupportedGif = isCommitContentSupported(info, MIME_TYPE_GIF);
         startTime = System.currentTimeMillis();
         editorInfo = info;
-        //RokoLogger.addEvents(new Event("_ROKO.Stickers.Entered"));
         getStickers();
 
     }
@@ -358,7 +317,6 @@ public class KeyboardService extends InputMethodService {
     public void onFinishInputView(boolean finishingInput) {
         if (startTime > 0) {
             long timeSpent = (System.currentTimeMillis() - startTime) / 1000;
-            //RokoLogger.addEvents(new Event("_ROKO.Stickers.Close").set("Time spent", timeSpent));
         }
     }
 
@@ -430,39 +388,9 @@ public class KeyboardService extends InputMethodService {
         imagesDir.mkdirs();
         tempDir = new File(getFilesDir(), "/images/stickers");
         tempDir.mkdirs();
-
-//        deeplinkContentId = UUID.randomUUID().toString();
         authority = "com.chippendales.chippmoji";
         stickers = new Stickers(this);
         getStickers();
-//        RokoMobi.start(this, new RokoMobi.CallbackStart() {
-//            @Override
-//            public void start() {
-//                // deeplink
-//                authority = RokoMobi.getInstance().getPackageName() + ".rokomoji";
-//                JSONObject params = new JSONObject();
-//                try {
-//                    params.put("linkType", "share");
-//                    params.put("isAutogenerated", true);
-//                    RokoLinks.createLink(params, new RokoLinks.CallbackCreateLink() {
-//                        @Override
-//                        public void success(ResponseCreateLink responseCreateLink) {
-//                            deeplink = responseCreateLink.data.link;
-//                            Log.d(TAG, "deeplink: " + deeplink);
-//                        }
-//
-//                        @Override
-//                        public void failure(String s) {
-//                            Log.e(TAG, s);
-//                        }
-//                    });
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                // sticker
-//                getStickers();
-//            }
-//        });
     }
 
     private Boolean stickerToShare(@NonNull StickerData stickerData) {
@@ -475,7 +403,6 @@ public class KeyboardService extends InputMethodService {
             return false;
         } else {
             try {
-
                 String imgType = Stickers.getMimeTypeOfFile(stickerData.file.getAbsolutePath());
                 String flType = imgType.substring(6);
                 File tempFile = new File(tempDir.getPath(), "sticker_" + stickerData.objectId + "." + flType);
@@ -521,7 +448,6 @@ public class KeyboardService extends InputMethodService {
                     }
                     intent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(this, authority, tempFile));
                     getApplicationContext().startActivity(intent);
-
                     shared = true;
                 } finally {
                     if (dataWriter != null) {

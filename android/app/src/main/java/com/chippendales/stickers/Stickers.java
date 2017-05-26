@@ -80,27 +80,6 @@ public class Stickers {
 
     public void loadStickers(final CallbackStickersLoaded callback) {
         callback.pack();
-        long timeWaiting = 15 * 60 * 1000; //15 min
-        //long timeWaiting = 10000; //10 sec
-        if ((System.currentTimeMillis() - lastDownload) > timeWaiting) {
-            lastDownload = System.currentTimeMillis();
-            Log.i(TAG, "--- Loading stickers...");
-//            RokoStickers.getStickerpacks(null, "resolve=stickers", new RokoStickers.CallbackRokoStickers() {
-//                @Override
-//                public void success(Response response) {
-//                    stickerpacksResponse = new Gson().fromJson(response.body, StickerpacksResponse.class);
-//                    loadImages(callback);
-//                    Log.i(TAG, "--- Loading stickers complete");
-//                }
-//
-//                @Override
-//                public void failure(Response response) {
-//                    Log.e(TAG, "loadStickers failure, code: " + response.code);
-//                }
-//            });
-        } else {
-
-        }
     }
 
     public void loadImages(final CallbackStickersLoaded callback) {
