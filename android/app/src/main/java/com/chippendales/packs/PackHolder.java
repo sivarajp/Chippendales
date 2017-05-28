@@ -8,10 +8,6 @@ import android.widget.TextView;
 import com.chippendales.R;
 
 
-/**
- * Created by mist on 21.12.16.
- */
-
 public class PackHolder extends RecyclerView.ViewHolder {
     public final View progressBar;
     public final ImageView imageView;

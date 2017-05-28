@@ -6,9 +6,6 @@ import com.chippendales.stickers.StickerData;
 import java.io.File;
 import java.util.List;
 
-/**
- * Created by mist on 21.12.16.
- */
 
 public class PackData {
     public long objectId;

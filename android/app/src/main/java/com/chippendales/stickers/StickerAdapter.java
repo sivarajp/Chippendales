@@ -15,9 +15,6 @@ import com.chippendales.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by mist on 12.12.16.
- */
 
 public class StickerAdapter extends RecyclerView.Adapter<StickerHolder> {
     private final String TAG = "StickerAdapter";
@@ -41,8 +38,6 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerHolder> {
 
         try {
             Bitmap ico = BitmapFactory.decodeFile(sticker.iconKey.getPath());
-            //holder.imageView.setImageBitmap(ico);
-            //GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(holder.imageView);
             if (sticker.mime.equals("image/gif")) {
                 Log.e("Gif file name", sticker.iconKey.getPath());
                 Glide.with(keyboardService.getBaseContext()).load(sticker.iconKey.getPath()).asGif().into(holder.imageView);

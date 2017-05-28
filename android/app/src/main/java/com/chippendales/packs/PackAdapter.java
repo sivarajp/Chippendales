@@ -1,7 +1,5 @@
 package com.chippendales.packs;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +11,6 @@ import com.chippendales.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by mist on 21.12.16.
- */
 
 public class PackAdapter extends RecyclerView.Adapter<PackHolder> {
     private List<PackData> packDataList = new ArrayList<PackData>();
@@ -42,18 +37,18 @@ public class PackAdapter extends RecyclerView.Adapter<PackHolder> {
         }
 
         holder.progressBar.setVisibility(View.GONE);
-        try {
-            Bitmap bm;
-            if (selectedTab == position){
-                bm = BitmapFactory.decodeFile(pack.iconOn.getPath());
-            } else {
-                bm = BitmapFactory.decodeFile(pack.iconOff.getPath());
-            }
-            holder.imageView.setImageBitmap(bm);
-        } catch (Exception e) {
-            e.printStackTrace();
-            holder.textView.setText(pack.name);
-        }
+//        try {
+//            Bitmap bm;
+//            if (selectedTab == position){
+//                bm = BitmapFactory.decodeFile(pack.iconOn.getPath());
+//            } else {
+//                bm = BitmapFactory.decodeFile(pack.iconOff.getPath());
+//            }
+//            holder.imageView.setImageBitmap(bm);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            holder.textView.setText(pack.name);
+//        }
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

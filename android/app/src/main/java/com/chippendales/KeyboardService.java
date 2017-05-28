@@ -34,8 +34,8 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,36 +58,29 @@ import java.util.List;
 
 import static com.facebook.react.bridge.UiThreadUtil.runOnUiThread;
 
-/**
- * Created by mist on 02.12.16.
- */
 
 public class KeyboardService extends InputMethodService {
     private static final String TAG = "KeyboardService";
     private final static String SERVICE_NAME = "com.chippendales.KeyboardService";
-    private static String authority; //"com.chippendales.chippmoji";
     private static final String MIME_TYPE_GIF = "image/gif";
     public static File imagesDir;
     public static File tempDir;
+    private static String authority; //"com.chippendales.chippmoji";
     private static String DEEPLINK_TEXT = "Check out the Chippmoji Keyboard! ";
     public Stickers stickers;
     LinearLayout mainBoard, speechBoard;
     ScrollView scrollView;
     private StickerAdapter stickerAdapter;
-    private List<PackData> packDataList = new ArrayList<PackData>();
+    private List<PackData> packDataList = new ArrayList<>();
     private PackAdapter packAdapter;
     private TextView packNameLabel;
     private boolean contentSupportedGif;
     private RecyclerView packView, stickerView;
-    private int lastTab = 0;
     private String deeplink = "https://www.chippmoji.com/";
-    private String deeplinkContentId;
     private long startTime = 0;
     private EditorInfo editorInfo;
-
-
     private ViewFlipper keyboardViewFlipper;
-    Button lips, speech, dance;
+    private Button lips, speech, dance;
 
     public static boolean rokomojiEnabled(Activity activity) {
 //        requestPermissionIfNeeded(Manifest.permission.READ_EXTERNAL_STORAGE, activity);
@@ -101,7 +94,15 @@ public class KeyboardService extends InputMethodService {
         return false;
     }
 
-    private void showStickers() {
+    private static boolean requestPermissionIfNeeded(String permission, Activity activity) {
+        if (ContextCompat.checkSelfPermission(activity, permission) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, new String[]{permission}, 1);
+            return true;
+        }
+        return false;
+    }
+
+    private void showStickers(final int index) {
 
         packDataList = stickers.packDataListDefault;
         final List<PackData> curDataList = new ArrayList<>(packDataList);
@@ -111,15 +112,9 @@ public class KeyboardService extends InputMethodService {
                 public void run() {
                     packAdapter = new PackAdapter(returnThis(), curDataList);
                     if (packView != null) {
-                        Log.e("inside", "inside");
                         packView.setAdapter(packAdapter);
                     }
-
-                    if (curDataList.size() > lastTab) {
-                        switchBoard(lastTab);
-                    } else {
-                        switchBoard(0);
-                    }
+                    switchBoard(index);
                 }
             });
 
@@ -130,17 +125,17 @@ public class KeyboardService extends InputMethodService {
         return this;
     }
 
-    private void getStickers() {
+    private void getStickers(final int index) {
         stickers.loadStickers(new Stickers.CallbackStickersLoaded() {
             @Override
             public void pack() {
-                showStickers();
+                showStickers(index);
             }
         });
     }
 
     public void switchBoard(int tab) {
-        lastTab = tab;
+
         if (packDataList.get(tab) == null)
             return;
 
@@ -154,28 +149,43 @@ public class KeyboardService extends InputMethodService {
         }
     }
 
-
     @Override
     public View onCreateInputView() {
 
         mainBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.main_board_layout, null);
+        speechBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.speech_board, null, false);
+        scrollView = (ScrollView) speechBoard.findViewById(R.id.gif_view);
+        stickerView = (RecyclerView) getLayoutInflater().inflate(R.layout.recycler_view, null);
+        stickerView.addItemDecoration(new MarginDecoration(returnThis()));
+        stickerView.setHasFixedSize(true);
+        stickerView.setLayoutManager(new GridLayoutManager(returnThis(), 3));
+        scrollView.addView(stickerView);
+        packView = (RecyclerView) speechBoard.findViewById(R.id.pack_recycler_view);
 
-        RadioButton switchKeyBoard = (RadioButton) mainBoard.findViewById(R.id.radio0);
+        ImageButton switchKeyBoard = (ImageButton) mainBoard.findViewById(R.id.radio0);
         switchKeyBoard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager inputMethodManager  = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.showInputMethodPicker();
             }
         });
 
         keyboardViewFlipper = (ViewFlipper) mainBoard.findViewById(R.id.keyboard_viewFlipper);
+        showStickers(0);
+        keyboardViewFlipper.removeView(speechBoard);
+        keyboardViewFlipper.addView(speechBoard, 0);
+        keyboardViewFlipper.setDisplayedChild(0);
+
         lips = (Button) mainBoard.findViewById(R.id.radio1);
         lips.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.e("lips", "lips");
-                keyboardViewFlipper.setDisplayedChild(keyboardViewFlipper.indexOfChild(mainBoard.findViewById(R.id.lips)));
+                showStickers(0);
+                keyboardViewFlipper.removeView(speechBoard);
+                keyboardViewFlipper.addView(speechBoard, 0);
+                keyboardViewFlipper.setDisplayedChild(0);
             }
 
         });
@@ -184,20 +194,9 @@ public class KeyboardService extends InputMethodService {
             @Override
             public void onClick(View v) {
                 Log.e("speech", "speech");
-                speechBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.speech_board, null, false);
-                scrollView = (ScrollView) speechBoard.findViewById(R.id.gif_view);
-                stickerView = (RecyclerView) getLayoutInflater().inflate(R.layout.recycler_view, null);
-                stickerView.addItemDecoration(new MarginDecoration(returnThis()));
-                stickerView.setHasFixedSize(true);
-                stickerView.setLayoutManager(new GridLayoutManager(returnThis(), 3));
-                scrollView.addView(stickerView);
-                packView = (RecyclerView) speechBoard.findViewById(R.id.pack_recycler_view);
-                showStickers();
+                showStickers(1);
                 keyboardViewFlipper.removeView(speechBoard);
                 keyboardViewFlipper.addView(speechBoard, 1);
-//                keyboardViewFlipper.updateViewLayout(speechBoard, keyboardViewFlipper.getLayoutParams());
-                Log.e("IndexFlip", keyboardViewFlipper.indexOfChild(keyboardViewFlipper.findViewById(R.id.speech)) + "");
-                Log.e("IndexmainBoard", keyboardViewFlipper.indexOfChild(mainBoard.findViewById(R.id.speech)) + "");
                 keyboardViewFlipper.setDisplayedChild(1);
             }
 
@@ -208,11 +207,14 @@ public class KeyboardService extends InputMethodService {
             @Override
             public void onClick(View v) {
                 Log.e("dance", "dance");
-                keyboardViewFlipper.setDisplayedChild(keyboardViewFlipper.indexOfChild(mainBoard.findViewById(R.id.dance)));
+                showStickers(2);
+                keyboardViewFlipper.removeView(speechBoard);
+                keyboardViewFlipper.addView(speechBoard, 2);
+                keyboardViewFlipper.setDisplayedChild(2);
             }
         });
 
-        final RadioButton shareLink = (RadioButton) mainBoard.findViewById(R.id.radio4);
+        final ImageButton shareLink = (ImageButton) mainBoard.findViewById(R.id.radio4);
         shareLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -225,9 +227,7 @@ public class KeyboardService extends InputMethodService {
 
     public void inputContent(@NonNull StickerData stickerData, int position) {
         final int flag;
-        //final Uri contentUri = FileProvider.getUriForFile(this, getAuthority(), stickerData.file);
         final Uri contentUri = FileProvider.getUriForFile(this, authority, stickerData.file);
-
         if (Build.VERSION.SDK_INT >= 25) {
             flag = InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION;
         } else {
@@ -256,37 +256,7 @@ public class KeyboardService extends InputMethodService {
                 Toast.makeText(this, "Application does not support stickers", Toast.LENGTH_SHORT).show();
             }
         }
-        getStickers();
-    }
-
-    private Boolean stickerToShare(@NonNull StickerData stickerData, Uri contentUri) {
-        ActivityInfo ai = getAppForShare(stickerData);
-        if (ai == null) {
-            return false;
-        } else {
-            try {
-                Intent share = new Intent(Intent.ACTION_SEND);
-                //share.setClassName(ai.applicationInfo.packageName, ai.name);
-                share.setType("image/*");
-                share.putExtra(Intent.EXTRA_STREAM, contentUri);
-                share.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                share.addFlags(Intent.FLAG_FROM_BACKGROUND);
-                share.setPackage(ai.packageName);
-                startActivity(Intent.createChooser(share, "Share Image"));
-            } catch (Exception e) {
-                e.printStackTrace();
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private static boolean requestPermissionIfNeeded(String permission, Activity activity) {
-        if (ContextCompat.checkSelfPermission(activity, permission) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, new String[]{permission}, 1);
-            return true;
-        }
-        return false;
+        getStickers(0);
     }
 
     private ActivityInfo getAppForShare(StickerData stickerData) {
@@ -305,12 +275,11 @@ public class KeyboardService extends InputMethodService {
     }
 
 
-
     public void onStartInputView(EditorInfo info, boolean restarting) {
         contentSupportedGif = isCommitContentSupported(info, MIME_TYPE_GIF);
         startTime = System.currentTimeMillis();
         editorInfo = info;
-        getStickers();
+        getStickers(0);
 
     }
 
@@ -390,7 +359,7 @@ public class KeyboardService extends InputMethodService {
         tempDir.mkdirs();
         authority = "com.chippendales.chippmoji";
         stickers = new Stickers(this);
-        getStickers();
+        //getStickers(0);
     }
 
     private Boolean stickerToShare(@NonNull StickerData stickerData) {
@@ -466,7 +435,4 @@ public class KeyboardService extends InputMethodService {
         }
     }
 
-    public static void updateDeepLinkText(String text) {
-        DEEPLINK_TEXT = text;
-    }
 }

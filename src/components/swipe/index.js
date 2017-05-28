@@ -461,34 +461,34 @@ export default class extends Component {
     let dots = []
 
     const ActiveDot = [
-      require('../../assets/images/header/LipsIcon.png'),
-      require('../../assets/images/header/DancerIcon.png'),
-      require('../../assets/images/header/SpeechBubbleIcon.png')
+      require('../../assets/images/header/lipsicon_active.png'),
+      require('../../assets/images/header/dancericon_active.png'),
+      require('../../assets/images/header/speechbubbleicon_active.png')
     ]
 
     const Dot = [
-      require('../../assets/images/header/LipsIcon_inactive.png'),
-      require('../../assets/images/header/DancerIcon_inactive.png'),
-      require('../../assets/images/header/SpeechBubbleIcon_inactive.png')
+      require('../../assets/images/header/lipsicon.png'),
+      require('../../assets/images/header/dancericon.png'),
+      require('../../assets/images/header/speechbubbleicon.png')
     ]
 
     for (let i = 0; i < this.state.total; i++) {
       if (i === this.state.index) {
         const activeElement =
-          <View style={{marginLeft: 10, marginRight:10}}>
+          <View style={{ marginLeft: 25, marginRight: 25 }}>
                 <ResponsiveImage
                     source={ActiveDot[i]}
-                    initWidth="75" initHeight="75"
+                    initWidth="60" initHeight="50"
                 />
           </View>
         dots.push(React.cloneElement(activeElement, {key: i}))
       } else {
         const inactiveElement =
         <TouchableOpacity onPress={() => this.scrollBy(i - this.state.index)}>
-          <View style={{marginLeft: 10, marginRight:10}}>
+          <View style={{ marginLeft: 25, marginRight: 25 }}>
                 <ResponsiveImage
                     source={Dot[i]}
-                    initWidth="75" initHeight="75"
+                    initWidth="60" initHeight="50"
                 />
           </View>
         </TouchableOpacity>
@@ -553,7 +553,7 @@ export default class extends Component {
 
   renderButtons = () => {
     return (
-      <View pointerEvents='box-none' style={this.props.buttonWrapperStyle}>
+      <View pointerEvents='auto' style={this.props.buttonWrapperStyle}>
         {this.renderNextButton()}
       </View>
     )
