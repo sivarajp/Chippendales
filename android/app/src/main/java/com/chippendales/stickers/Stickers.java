@@ -211,12 +211,12 @@ public class Stickers {
                         sd.packName = packData.name;
                         sd.file = file;
                         sd.mime = getMimeTypeOfFile(file.getPath());//"image/gif"
-                        if (isGif(file.getPath())) {
-                            sd.iconKey = file;
-                        } else {
-                            sd.iconKey = createIconKey(file, "si" + img);
-                        }
-
+                        sd.iconKey = file;
+//                        if (isGif(file.getPath())) {
+//                            sd.iconKey = file;
+//                        } else {
+//                            sd.iconKey = createIconKey(file, "si" + img);
+//                        }
                         sd.url = null;
                         stickerData.add(sd);
                     }
