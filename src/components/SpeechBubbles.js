@@ -13,7 +13,7 @@ class SpeechBubbles extends Component {
       dataSource: dataSource.cloneWithRows(listofImages)
     };
   }
-  
+
   shareImage(encodedImage) {
     Share.open({
       title: 'Chippmoji',
@@ -38,13 +38,12 @@ class SpeechBubbles extends Component {
   render() {
     return (
        <View style={styles.container}>
-          <View>
              <ListView
+                initialListSize={50}
                 contentContainerStyle={styles.list}
                 dataSource={this.state.dataSource}
                 renderRow={this.renderRow.bind(this)}
              />
-          </View>
        </View>
     );
   }

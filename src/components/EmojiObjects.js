@@ -39,14 +39,12 @@ class EmojiObjects extends Component {
   render() {
     return (
        <View style={styles.container}>
-
-          <View style={{ justifyContent: 'center' }}>
              <ListView
+                initialListSize={50}
                 contentContainerStyle={styles.list}
                 dataSource={this.state.dataSource}
                 renderRow={this.renderRow.bind(this)}
              />
-          </View>
        </View>
     );
   }
@@ -55,12 +53,14 @@ class EmojiObjects extends Component {
 const styles = {
     container: {
       flex: 1,
-      alignItems: 'center'
+      alignItems: 'center',
+      justifyContent: 'center'
     },
     list: {
         justifyContent: 'center',
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        alignItems: 'center'
     },
     item: {
         margin: 3

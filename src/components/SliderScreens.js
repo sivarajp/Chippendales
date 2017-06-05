@@ -63,6 +63,9 @@ const styles = {
     marginTop: 20
   },
   slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#FFFFFF'
   },
   slide2: {

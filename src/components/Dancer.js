@@ -39,13 +39,12 @@ class Dancer extends Component {
   render() {
     return (
        <View style={styles.container}>
-          <View>
              <ListView
+                initialListSize={50}
                 contentContainerStyle={styles.list}
                 dataSource={this.state.dataSource}
                 renderRow={this.renderRow.bind(this)}
              />
-          </View>
        </View>
     );
   }
@@ -59,7 +58,8 @@ const styles = {
     list: {
         justifyContent: 'center',
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        alignItems: 'center'
     },
     item: {
         margin: 3
