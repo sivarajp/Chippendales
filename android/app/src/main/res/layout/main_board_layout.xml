@@ -66,8 +66,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:scaleType="fitCenter"
                 />
 
@@ -83,8 +83,8 @@
                 android:checked="true"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:scaleType="fitCenter"/>
 
             <RadioButton
@@ -98,8 +98,8 @@
                 android:tag="2"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:scaleType="fitCenter"/>
 
             <RadioButton
@@ -113,8 +113,8 @@
                 android:tag="3"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:scaleType="fitCenter"/>
 
             <ImageButton
@@ -127,8 +127,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:scaleType="fitCenter"
                 />
         </RadioGroup>
