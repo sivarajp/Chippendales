@@ -478,7 +478,7 @@ export default class extends Component {
           <View style={{ marginLeft: 25, marginRight: 25 }}>
                 <ResponsiveImage
                     source={ActiveDot[i]}
-                    initWidth="60" initHeight="50"
+                    initWidth="50" initHeight="40"
                 />
           </View>
         dots.push(React.cloneElement(activeElement, {key: i}))
@@ -488,7 +488,7 @@ export default class extends Component {
           <View style={{ marginLeft: 25, marginRight: 25 }}>
                 <ResponsiveImage
                     source={Dot[i]}
-                    initWidth="60" initHeight="50"
+                    initWidth="50" initHeight="40"
                 />
           </View>
         </TouchableOpacity>

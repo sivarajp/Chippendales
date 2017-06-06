@@ -29,7 +29,7 @@ class Dancer extends Component {
         <TouchableOpacity onPress={() => { this.shareImage(rowData.encodedImage); }}>
           <View style={styles.item}>
             <ResponsiveImage
-             source={{ uri: rowData.encodedImage }} initWidth="100" initHeight="100"
+             source={{ uri: rowData.encodedImage }} initWidth="100" initHeight="90"
             />
           </View>
         </TouchableOpacity>

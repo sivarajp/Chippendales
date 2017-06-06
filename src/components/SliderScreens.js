@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   View,
+  Text,
   TouchableHighlight
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
@@ -31,6 +32,10 @@ class SliderScreens extends Component {
            />
          </TouchableHighlight>
       </View>
+      <View>
+        <Text style={styles.text}>SEND CHIPPMOJI</Text>
+      </View>
+
       <Swiper
       style={styles.wrapper} horizontal showsButtons showsPagination index={zindex}
       buttonWrapperStyle={styles.buttonWrapperStyle}
@@ -62,6 +67,9 @@ const styles = {
     alignItems: 'center',
     marginTop: 20
   },
+  wrapper: {
+    flex: 1
+  },
   slide1: {
     flex: 1,
     justifyContent: 'center',
@@ -82,17 +90,18 @@ const styles = {
     backgroundColor: '#FFFFFF'
   },
   text: {
+    marginTop: 10,
     color: '#000',
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 'bold'
   },
   buttonWrapperStyle: {
+    flex: 0.5,
     backgroundColor: 'transparent',
     position: 'relative',
-    paddingHorizontal: 10,
-    paddingVertical: 40,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingBottom: 10
   }
 };
 
