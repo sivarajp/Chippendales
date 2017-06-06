@@ -29,7 +29,7 @@ class Dancer extends Component {
         <TouchableOpacity onPress={() => { this.shareImage(rowData.encodedImage); }}>
           <View style={styles.item}>
             <ResponsiveImage
-             source={{ uri: rowData.encodedImage }} initWidth="100" initHeight="90"
+             source={{ uri: rowData.encodedImage }} initWidth="100" initHeight="100"
             />
           </View>
         </TouchableOpacity>
@@ -62,7 +62,8 @@ const styles = {
         alignItems: 'center'
     },
     item: {
-        margin: 3
+      marginLeft: 1,
+      marginRight: 1
     }
 };
 

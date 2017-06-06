@@ -82,7 +82,6 @@ const styles = {
     alignItems: 'center',
     backgroundColor: '#FFFFFF'
   },
-
   slide3: {
     flex: 1,
     justifyContent: 'center',
@@ -90,7 +89,7 @@ const styles = {
     backgroundColor: '#FFFFFF'
   },
   text: {
-    marginTop: 10,
+    marginTop: 5,
     color: '#000',
     fontSize: 25,
     fontWeight: 'bold'
