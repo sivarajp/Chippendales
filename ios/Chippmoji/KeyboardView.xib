@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KeyboardViewController" customModule="Chippmoji" customModuleProvider="target">
             <connections>
+                <outlet property="deleteButton" destination="7wh-Yh-9dl" id="aaL-8z-KJW"/>
                 <outlet property="keyboardView" destination="iN0-l3-epB" id="Mye-jj-MzG"/>
                 <outlet property="menuView" destination="2FZ-Zx-3FB" id="Yvf-xB-F8K"/>
             </connections>
@@ -23,15 +24,28 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2FZ-Zx-3FB">
                     <rect key="frame" x="0.0" y="170" width="375" height="50"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHa-c3-ljG">
+                        <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHa-c3-ljG">
                             <rect key="frame" x="11" y="5" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="OUB-hG-gtK"/>
                                 <constraint firstAttribute="height" constant="40" id="qO3-Th-zxq"/>
                             </constraints>
                             <state key="normal" title="Button" image="icons_world"/>
+                            <state key="highlighted" image="icons_world_active"/>
                             <connections>
                                 <action selector="changeKeyboard:" destination="iN0-l3-epB" eventType="touchUpInside" id="s0O-kI-Fxy"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ypb-mH-Stp">
+                            <rect key="frame" x="74" y="5" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="ZNo-GT-M40"/>
+                                <constraint firstAttribute="width" constant="40" id="u8E-KC-iQo"/>
+                            </constraints>
+                            <state key="normal" title="Button3" image="lips"/>
+                            <state key="selected" image="lips_active"/>
+                            <connections>
+                                <action selector="lipsEmoji:" destination="iN0-l3-epB" eventType="touchUpInside" id="pW3-oy-QF5"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ej-sl-iSd">
@@ -40,7 +54,8 @@
                                 <constraint firstAttribute="width" constant="40" id="Va6-Zx-WZe"/>
                                 <constraint firstAttribute="height" constant="40" id="bhF-Fw-2j4"/>
                             </constraints>
-                            <state key="normal" title="Button3" image="icons_world"/>
+                            <state key="normal" title="Button3" image="speechbubbleicon"/>
+                            <state key="selected" image="speechbubble_active"/>
                             <connections>
                                 <action selector="speechEmoji:" destination="iN0-l3-epB" eventType="touchUpInside" id="Dq2-8t-2rJ"/>
                             </connections>
@@ -51,7 +66,8 @@
                                 <constraint firstAttribute="width" constant="40" id="Uzz-lr-XwX"/>
                                 <constraint firstAttribute="height" constant="40" id="det-cU-cGt"/>
                             </constraints>
-                            <state key="normal" title="Button3" image="icons_world"/>
+                            <state key="normal" title="Button3" image="dancericon"/>
+                            <state key="selected" image="dancericon_active"/>
                             <connections>
                                 <action selector="danceEmoji:" destination="iN0-l3-epB" eventType="touchUpInside" id="ZN5-rO-wgJ"/>
                             </connections>
@@ -62,9 +78,10 @@
                                 <constraint firstAttribute="width" constant="40" id="0lc-Ol-vdb"/>
                                 <constraint firstAttribute="height" constant="40" id="FvY-hI-qb2"/>
                             </constraints>
-                            <state key="normal" title="Button3" image="icons_world"/>
+                            <state key="normal" title="Button3" image="share"/>
+                            <state key="selected" image="share_active"/>
                             <connections>
-                                <action selector="shareApp:" destination="iN0-l3-epB" eventType="touchUpInside" id="bFT-ks-Zfi"/>
+                                <action selector="shareButtonClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="kOn-II-XM5"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wh-Yh-9dl">
@@ -78,36 +95,25 @@
                                 <action selector="deleteText:" destination="iN0-l3-epB" eventType="touchUpInside" id="dpL-ck-fWN"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ypb-mH-Stp">
-                            <rect key="frame" x="74" y="5" width="40" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="ZNo-GT-M40"/>
-                                <constraint firstAttribute="width" constant="40" id="u8E-KC-iQo"/>
-                            </constraints>
-                            <state key="normal" title="Button3" image="icons_world"/>
-                            <connections>
-                                <action selector="lipsEmoji:" destination="iN0-l3-epB" eventType="touchUpInside" id="pW3-oy-QF5"/>
-                            </connections>
-                        </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="51l-fO-E3n">
                             <rect key="frame" x="62" y="0.0" width="2" height="50"/>
-                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t0n-Y5-7DH">
                             <rect key="frame" x="124" y="0.0" width="2" height="50"/>
-                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAc-hw-iaI">
                             <rect key="frame" x="186" y="0.0" width="2" height="50"/>
-                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dp7-n0-bif">
                             <rect key="frame" x="247" y="0.0" width="2" height="50"/>
-                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqf-bb-1bo">
                             <rect key="frame" x="313" y="0.0" width="2" height="50"/>
-                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -157,10 +163,22 @@
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="currentButton" destination="Ypb-mH-Stp" id="gDz-Wy-K9z"/>
+            </connections>
             <point key="canvasLocation" x="36.5" y="133"/>
         </view>
     </objects>
     <resources>
+        <image name="dancericon" width="33" height="28"/>
+        <image name="dancericon_active" width="33" height="28"/>
         <image name="icons_world" width="100" height="84"/>
+        <image name="icons_world_active" width="100" height="84"/>
+        <image name="lips" width="33" height="28"/>
+        <image name="lips_active" width="33" height="28"/>
+        <image name="share" width="100" height="84"/>
+        <image name="share_active" width="100" height="84"/>
+        <image name="speechbubble_active" width="33" height="28"/>
+        <image name="speechbubbleicon" width="100" height="84"/>
     </resources>
 </document>

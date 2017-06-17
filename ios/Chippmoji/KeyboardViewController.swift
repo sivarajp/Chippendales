@@ -15,12 +15,13 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   
   @IBOutlet var keyboardView: KeyboardView!
   @IBOutlet weak var menuView: UIView!
-
+  @IBOutlet weak var deleteButton: UIButton!
+  
   var collectionView: UICollectionView!
   var toastView: UIView!
   static let kReuseIdentifier: String = "ChippMojiCell"
   var pathDictionary = [IndexPath: Int]()
-  var currentImages = EmojiDefs.danceImages
+  var currentImages = EmojiDefs.lipsImages
   
   func isLandscape() -> Bool {
     return UIScreen.main.bounds.size.width > UIScreen.main.bounds.size.height
@@ -45,7 +46,16 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     menuView.layer.borderWidth = borderWidth
     menuView.frame = menuView.frame.insetBy(dx: -borderWidth, dy: -borderWidth);
     menuView.layer.borderColor = UIColor.lightGray.cgColor
+    let longPress = UILongPressGestureRecognizer(target: self, action: #selector(KeyboardViewController.handleLongPress(_:)))
+    longPress.minimumPressDuration = 0.5
+    longPress.numberOfTouchesRequired = 1
+    longPress.allowableMovement = 0.5
+    deleteButton.addGestureRecognizer(longPress)
+    
+  }
   
+  func handleLongPress(_ gestureRecognizer: UIGestureRecognizer) {
+    textDocumentProxy.deleteBackward()
   }
   
   override func viewDidLayoutSubviews() {
@@ -57,10 +67,9 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     print ("frame", self.view.frame.width, self.view.frame.height)
     let rect = CGRect(origin: CGPoint(x: 15, y: 0), size: CGSize(width: self.view.frame.width - 30, height: 150))
     let flowLayout = UICollectionViewFlowLayout()
-    flowLayout.itemSize = CGSize(width: 80, height: 80)
+    flowLayout.itemSize = CGSize(width: 75, height: 75)
     collectionView = UICollectionView(frame: rect, collectionViewLayout: flowLayout)
     collectionView.backgroundColor = UIColor.white
-    
     collectionView.delegate = self
     collectionView.register(EmojiCell.self, forCellWithReuseIdentifier: KeyboardViewController.kReuseIdentifier)
     collectionView.dataSource = self
@@ -72,7 +81,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     //TODO SIVA
     //self.keyboardView.deleteButton.isHidden = isLandscape()
   }
-
+  
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -80,7 +89,6 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   }
   
   override func textWillChange(_ textInput: UITextInput?) {
-    // The app is about to change the document's contents. Perform any preparation here.
   }
   
   override func textDidChange(_ textInput: UITextInput?) {
@@ -108,10 +116,16 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     currentImages = EmojiDefs.imageForCategory(EmojiDefs.Categories.dance)
     collectionView.reloadData()
   }
-
+  
   
   func nextKeyboardButtonClicked() {
     super.advanceToNextInputMode()
+  }
+  
+  func shareButtonClicked() {
+    let url = "http://www.chippmoji.com"
+    self.textDocumentProxy.insertText("Take a look at Chippmoji! \(url)")
+
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -163,6 +177,6 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   static func hasFullAccess() -> Bool {
     return UIPasteboard.general.isKind(of: UIPasteboard.self)
   }
-
+  
   
 }
