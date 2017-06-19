@@ -92,6 +92,7 @@
                                 <constraint firstAttribute="height" constant="40" id="sLe-bJ-eFN"/>
                             </constraints>
                             <state key="normal" title="Button3" image="icons_world"/>
+                            <state key="highlighted" image="icons_world_active"/>
                             <connections>
                                 <action selector="deleteText:" destination="iN0-l3-epB" eventType="touchUpInside" id="dpL-ck-fWN"/>
                             </connections>
