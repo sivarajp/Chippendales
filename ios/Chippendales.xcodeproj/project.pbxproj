@@ -36,6 +36,8 @@
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* ChippendalesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ChippendalesTests.m */; };
 		5001F47360DC489A8477804D /* VisbyCF-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBCADE7813C8456FB601E5FF /* VisbyCF-Bold.otf */; };
+		5595DC2A1EF7522000B3AC92 /* EmojiGifExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5595DC291EF7522000B3AC92 /* EmojiGifExt.swift */; };
+		5595DC641EF772C000B3AC92 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 5595DC631EF772C000B3AC92 /* images */; };
 		55C48F4D1EF37FD600A1EED9 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C48F4C1EF37FD600A1EED9 /* KeyboardViewController.swift */; };
 		55C48F511EF37FD600A1EED9 /* Chippmoji.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 55C48F4A1EF37FD600A1EED9 /* Chippmoji.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		55C48F711EF3800600A1EED9 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C48F701EF3800600A1EED9 /* KeyboardView.swift */; };
@@ -301,6 +303,8 @@
 		38D7DD0417AC47A48740F03C /* VisbyCF-DemiBoldOblique.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "VisbyCF-DemiBoldOblique.otf"; path = "../src/assets/fonts/VisbyCF-DemiBoldOblique.otf"; sourceTree = "<group>"; };
 		451D20AE4B414D24BF57B479 /* CircularStd-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Bold.otf"; path = "../src/assets/fonts/CircularStd-Bold.otf"; sourceTree = "<group>"; };
 		4FDF5E87623048E198441960 /* libRNShare.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNShare.a; sourceTree = "<group>"; };
+		5595DC291EF7522000B3AC92 /* EmojiGifExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiGifExt.swift; sourceTree = "<group>"; };
+		5595DC631EF772C000B3AC92 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		55C48F4A1EF37FD600A1EED9 /* Chippmoji.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Chippmoji.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C48F4C1EF37FD600A1EED9 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		55C48F4E1EF37FD600A1EED9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -519,11 +523,13 @@
 				55C48F4C1EF37FD600A1EED9 /* KeyboardViewController.swift */,
 				55C48F4E1EF37FD600A1EED9 /* Info.plist */,
 				55C48F701EF3800600A1EED9 /* KeyboardView.swift */,
+				5595DC631EF772C000B3AC92 /* images */,
 				55C48F721EF3802000A1EED9 /* KeyboardView.xib */,
 				55C48F741EF38CE500A1EED9 /* EmojiDef.swift */,
 				55C48F7A1EF38EC700A1EED9 /* images.xcassets */,
 				55C48F7C1EF3914E00A1EED9 /* EmojiCell.swift */,
 				55C48F7E1EF393DD00A1EED9 /* Toast.swift */,
+				5595DC291EF7522000B3AC92 /* EmojiGifExt.swift */,
 			);
 			path = Chippmoji;
 			sourceTree = "<group>";
@@ -1025,6 +1031,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5595DC641EF772C000B3AC92 /* images in Resources */,
 				55C48F731EF3802000A1EED9 /* KeyboardView.xib in Resources */,
 				55C48F7B1EF38EC700A1EED9 /* images.xcassets in Resources */,
 			);
@@ -1103,6 +1110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55C48F4D1EF37FD600A1EED9 /* KeyboardViewController.swift in Sources */,
+				5595DC2A1EF7522000B3AC92 /* EmojiGifExt.swift in Sources */,
 				55C48F711EF3800600A1EED9 /* KeyboardView.swift in Sources */,
 				55C48F7F1EF393DD00A1EED9 /* Toast.swift in Sources */,
 				55C48F7D1EF3914E00A1EED9 /* EmojiCell.swift in Sources */,

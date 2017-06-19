@@ -85,7 +85,6 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated
   }
   
   override func textWillChange(_ textInput: UITextInput?) {
@@ -125,7 +124,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   func shareButtonClicked() {
     let url = "http://www.chippmoji.com"
     self.textDocumentProxy.insertText("Take a look at Chippmoji! \(url)")
-
+    
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -137,8 +136,19 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
       withReuseIdentifier: KeyboardViewController.kReuseIdentifier, for: indexPath)
     let image = UIImageView(frame: cell.frame)
     let name = self.currentImages[indexPath.row + indexPath.section]
-    let uiimage = UIImage(named: "\(name)")
-    image.image = uiimage
+    if name.components(separatedBy: ".").last == "gif" {
+      if let localGifURL = Bundle.main.url(forResource: name.components(separatedBy: ".").first, withExtension: "gif", subdirectory: "images") {
+        let gifFile = UIImage.gif(url:localGifURL)
+        image.image = gifFile
+        //cell.backgroundView = image
+      }
+    } else {
+      if let filePath = Bundle.main.path(forResource: name, ofType: "png", inDirectory: "images") {
+        let uiimage = UIImage(contentsOfFile: filePath)!
+        image.image = uiimage
+        //cell.backgroundView = image
+      }
+    }
     cell.backgroundView = image
     return cell
   }
@@ -156,9 +166,23 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     //        UIPasteboard.general.isPersistent = true
     let imageName = currentImages[indexPath.row + indexPath.section]
-    let image = UIImage(named: imageName)!
-    self.toastView.makeToast("Chippmoji copied. Now paste it!")
-    UIPasteboard.general.image = scaleImageDown(image, scale: 0.5)
+    
+    var uiimage : UIImage!
+    if imageName.components(separatedBy: ".").last == "gif" {
+      if let filePath = Bundle.main.path(forResource: imageName.components(separatedBy: ".").first, ofType: "gif", inDirectory: "images") {
+        let gifData = try? Data(contentsOf: URL(fileURLWithPath: filePath))
+        UIPasteboard.general.setData(gifData!, forPasteboardType: "com.compuserve.gif")
+        self.toastView.makeToast("Chippmoji gif copied. Now paste it!")
+      }
+    } else {
+      if let filePath = Bundle.main.path(forResource: imageName, ofType: "png", inDirectory: "images") {
+        uiimage = UIImage(contentsOfFile: filePath)!
+        UIPasteboard.general.image = scaleImageDown(uiimage, scale: 0.5)
+        self.toastView.makeToast("Chippmoji copied. Now paste it!")
+      }
+    }
+    
+    
   }
   
   func scaleImageDown(_ image: UIImage, scale: CGFloat) -> UIImage {
