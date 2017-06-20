@@ -8,7 +8,10 @@ import { COMPANY_NAME, LEGAL, SUPPORT, HOWTO, VIEWEMOJI } from './Constants';
 
 class HomeScreen extends Component {
 
-
+  componentDidMount() {
+    SplashScreen.hide();
+  }
+  
   handleClick = (url) => {
       Linking.canOpenURL(url).then(supported => {
         if (supported) {
@@ -20,10 +23,7 @@ class HomeScreen extends Component {
       });
     };
 
-  componentDidMount() {
-    SplashScreen.hide();
-  }
-  
+
   render() {
     const { containerStyle, imageStyle, howtoButtonStyle, howtoButtontextStyle,
             viewEmojiButtonStyle, viewEmojiButtontextStyle,
