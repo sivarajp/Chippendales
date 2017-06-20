@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Platform, Linking, TouchableWithoutFeedback } from 'react-native';
 import ResponsiveImage from 'react-native-responsive-image';
 import { Actions } from 'react-native-router-flux';
+import SplashScreen from 'rn-splash-screen';
 import { Button } from './';
 import { COMPANY_NAME, LEGAL, SUPPORT, HOWTO, VIEWEMOJI } from './Constants';
 
@@ -19,6 +20,10 @@ class HomeScreen extends Component {
       });
     };
 
+  componentDidMount() {
+    SplashScreen.hide();
+  }
+  
   render() {
     const { containerStyle, imageStyle, howtoButtonStyle, howtoButtontextStyle,
             viewEmojiButtonStyle, viewEmojiButtontextStyle,

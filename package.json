@@ -12,7 +12,8 @@
     "react-native-button": "^1.8.2",
     "react-native-responsive-image": "^2.1.0",
     "react-native-router-flux": "^3.39.1",
-    "react-native-share": "^1.0.20"
+    "react-native-share": "^1.0.20",
+    "rn-splash-screen": "^4.0.0"
   },
   "devDependencies": {
     "babel-jest": "19.0.0",
