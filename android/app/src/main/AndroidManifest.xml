@@ -15,10 +15,9 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:icon="@mipmap/ic_launcher"
-        android:theme="@style/AppTheme"
         >
         <activity
-            android:name=".SplashActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:configChanges="keyboard|keyboardHidden|screenSize"
             android:windowSoftInputMode="adjustResize"
@@ -29,7 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:exported="true" android:screenOrientation="portrait"/>
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
 
         <provider

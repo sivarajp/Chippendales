@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, TouchableOpacity, ListView } from 'react-native';
 import ResponsiveImage from 'react-native-responsive-image';
 import Share from 'react-native-share';
-import { listofImages } from './SpeechBubblesConst';
+import { listofImages } from './DancerConst';
 
 
 class Dancer extends Component {
