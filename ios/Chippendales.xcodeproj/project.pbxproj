@@ -1267,7 +1267,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.Chippendales;
+				PRODUCT_BUNDLE_IDENTIFIER = org.singlewingcreative.chippmoji;
 				PRODUCT_NAME = Chippendales;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1297,7 +1297,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.Chippendales;
+				PRODUCT_BUNDLE_IDENTIFIER = org.singlewingcreative.chippmoji;
 				PRODUCT_NAME = Chippendales;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1335,7 +1335,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.Chippendales-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.singlewingcreative.chippmoji-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -1375,7 +1375,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.Chippendales-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.singlewingcreative.chippmoji-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -1462,7 +1462,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.Chippendales.Chippmoji;
+				PRODUCT_BUNDLE_IDENTIFIER = org.singlewingcreative.chippmoji.keyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1492,7 +1492,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.Chippendales.Chippmoji;
+				PRODUCT_BUNDLE_IDENTIFIER = org.singlewingcreative.chippmoji.keyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
