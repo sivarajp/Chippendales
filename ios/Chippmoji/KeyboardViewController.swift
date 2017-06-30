@@ -52,6 +52,10 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     longPress.allowableMovement = 0.5
     deleteButton.addGestureRecognizer(longPress)
     
+//    if KeyboardViewController.hasFullAccess() {
+//      self.toastView.makeToast("Keyboard has full access")
+//    }
+    
   }
   
   func handleLongPress(_ gestureRecognizer: UIGestureRecognizer) {
