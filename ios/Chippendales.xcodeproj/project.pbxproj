@@ -732,11 +732,11 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 2P6X9DXR4J;
+						DevelopmentTeam = 6G8P5X7J68;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 2P6X9DXR4J;
+						DevelopmentTeam = 6G8P5X7J68;
 						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -750,7 +750,7 @@
 					};
 					55C48F491EF37FD600A1EED9 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 2P6X9DXR4J;
+						DevelopmentTeam = 6G8P5X7J68;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1180,7 +1180,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 2P6X9DXR4J;
+				DEVELOPMENT_TEAM = 6G8P5X7J68;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1216,7 +1216,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 2P6X9DXR4J;
+				DEVELOPMENT_TEAM = 6G8P5X7J68;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
@@ -1252,7 +1252,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 2P6X9DXR4J;
+				DEVELOPMENT_TEAM = 6G8P5X7J68;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
@@ -1282,7 +1282,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2P6X9DXR4J;
+				DEVELOPMENT_TEAM = 6G8P5X7J68;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
@@ -1452,7 +1452,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 2P6X9DXR4J;
+				DEVELOPMENT_TEAM = 6G8P5X7J68;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = Chippmoji/Info.plist;
@@ -1483,7 +1483,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 2P6X9DXR4J;
+				DEVELOPMENT_TEAM = 6G8P5X7J68;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = Chippmoji/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
