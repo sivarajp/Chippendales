@@ -67,24 +67,20 @@ struct EmojiDefs {
   ]
   
   static let danceImages: [String] = [
-    "DealWithItNEW.gif",
     "HardMenSign",
     "popsicle",
     "CherryMouth",
     "VitaminD",
     "Banana",
-    "BlingRing",
-    "man.gif"
+    "BlingRing"
   ]
   
   static let lipsImages: [String] = [
-    "DealWithItNEW.gif",
     "HardMenSign",
     "popsicle",
     "CherryMouth",
     "VitaminD",
     "Banana",
-    "BlingRing",
-    "man.gif"
+    "BlingRing"
   ]
 }
