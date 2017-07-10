@@ -52,6 +52,10 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     longPress.allowableMovement = 0.5
     deleteButton.addGestureRecognizer(longPress)
     
+//    if KeyboardViewController.hasFullAccess() {
+//      self.toastView.makeToast("Keyboard has full access")
+//    }
+    
   }
   
   func handleLongPress(_ gestureRecognizer: UIGestureRecognizer) {
@@ -137,9 +141,11 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     let image = UIImageView(frame: cell.frame)
     let name = self.currentImages[indexPath.row + indexPath.section]
     if name.components(separatedBy: ".").last == "gif" {
+      print ("Gif section ")
       if let localGifURL = Bundle.main.url(forResource: name.components(separatedBy: ".").first, withExtension: "gif", subdirectory: "images") {
-        let gifFile = UIImage.gif(url:localGifURL)
-        image.image = gifFile
+        print ("Inside before Gif image")
+        image.loadGif(url: localGifURL)
+         print ("Inside after Gif image")
         //cell.backgroundView = image
       }
     } else {

@@ -22,7 +22,7 @@ struct EmojiDefs {
     }
   }
   
-  static let lipsImages: [String] = [
+  static let speechImages: [String] = [
     "basic480",
     "cheers480",
     "extra480",
@@ -67,14 +67,20 @@ struct EmojiDefs {
   ]
   
   static let danceImages: [String] = [
-    "cheers480",
-    "man.gif",
-    "truthdare480x480.gif"
+    "HardMenSign",
+    "popsicle",
+    "CherryMouth",
+    "VitaminD",
+    "Banana",
+    "BlingRing"
   ]
   
-  static let speechImages: [String] = [
-    "datd480",
-    "man.gif",
-    "toolit480x480.gif"
+  static let lipsImages: [String] = [
+    "HardMenSign",
+    "popsicle",
+    "CherryMouth",
+    "VitaminD",
+    "Banana",
+    "BlingRing"
   ]
 }
