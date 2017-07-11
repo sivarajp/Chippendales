@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct EmojiDefs {
   enum Categories { case lips, speech, dance }
@@ -21,6 +22,18 @@ struct EmojiDefs {
       return danceImages
     }
   }
+  
+  static func loadGif(name: String) -> UIImage? {
+    if let localGifURL = Bundle.main.url(forResource: name.components(separatedBy: ".").first, withExtension: "gif", subdirectory: "images"){
+      print ("Inside before Gif image")
+      return UIImage.gif(url: localGifURL)
+    }
+    return nil
+  }
+  
+  static let someDict:[String : UIImage] = [
+              "dealwithit.gif" : loadGif(name: "dealwithit.gif")!,
+              "man.gif": loadGif(name: "man.gif")!]
   
   static let speechImages: [String] = [
     "basic480",
@@ -72,7 +85,9 @@ struct EmojiDefs {
     "CherryMouth",
     "VitaminD",
     "Banana",
-    "BlingRing"
+    "BlingRing",
+    "man.gif",
+    "dealwithit.gif"
   ]
   
   static let lipsImages: [String] = [
@@ -81,6 +96,7 @@ struct EmojiDefs {
     "CherryMouth",
     "VitaminD",
     "Banana",
-    "BlingRing"
+    "BlingRing",
+    "man.gif"
   ]
 }
