@@ -144,7 +144,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
       image.image = EmojiDefs.someDict[name]
     } else {
       if let filePath = Bundle.main.path(forResource: name, ofType: "png", inDirectory: "images") {
-        let uiimage = UIImage(contentsOfFile: filePath)!
+        let uiimage = scaleImageDown(UIImage(contentsOfFile: filePath)!, scale: 0.5)
         image.image = uiimage
       }
     }
