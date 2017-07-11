@@ -42,7 +42,7 @@
 		55C48F511EF37FD600A1EED9 /* Chippmoji.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 55C48F4A1EF37FD600A1EED9 /* Chippmoji.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		55C48F711EF3800600A1EED9 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C48F701EF3800600A1EED9 /* KeyboardView.swift */; };
 		55C48F731EF3802000A1EED9 /* KeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55C48F721EF3802000A1EED9 /* KeyboardView.xib */; };
-		55C48F751EF38CE500A1EED9 /* EmojiDef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C48F741EF38CE500A1EED9 /* EmojiDef.swift */; };
+		55C48F751EF38CE500A1EED9 /* EmojiDefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C48F741EF38CE500A1EED9 /* EmojiDefs.swift */; };
 		55C48F7B1EF38EC700A1EED9 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55C48F7A1EF38EC700A1EED9 /* images.xcassets */; };
 		55C48F7D1EF3914E00A1EED9 /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C48F7C1EF3914E00A1EED9 /* EmojiCell.swift */; };
 		55C48F7F1EF393DD00A1EED9 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C48F7E1EF393DD00A1EED9 /* Toast.swift */; };
@@ -318,7 +318,7 @@
 		55C48F4E1EF37FD600A1EED9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55C48F701EF3800600A1EED9 /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		55C48F721EF3802000A1EED9 /* KeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyboardView.xib; sourceTree = "<group>"; };
-		55C48F741EF38CE500A1EED9 /* EmojiDef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiDef.swift; sourceTree = "<group>"; };
+		55C48F741EF38CE500A1EED9 /* EmojiDefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiDefs.swift; sourceTree = "<group>"; };
 		55C48F7A1EF38EC700A1EED9 /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
 		55C48F7C1EF3914E00A1EED9 /* EmojiCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
 		55C48F7E1EF393DD00A1EED9 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
@@ -544,7 +544,7 @@
 				55C48F701EF3800600A1EED9 /* KeyboardView.swift */,
 				5595DC631EF772C000B3AC92 /* images */,
 				55C48F721EF3802000A1EED9 /* KeyboardView.xib */,
-				55C48F741EF38CE500A1EED9 /* EmojiDef.swift */,
+				55C48F741EF38CE500A1EED9 /* EmojiDefs.swift */,
 				55C48F7A1EF38EC700A1EED9 /* images.xcassets */,
 				55C48F7C1EF3914E00A1EED9 /* EmojiCell.swift */,
 				55C48F7E1EF393DD00A1EED9 /* Toast.swift */,
@@ -1151,7 +1151,7 @@
 				55C48F711EF3800600A1EED9 /* KeyboardView.swift in Sources */,
 				55C48F7F1EF393DD00A1EED9 /* Toast.swift in Sources */,
 				55C48F7D1EF3914E00A1EED9 /* EmojiCell.swift in Sources */,
-				55C48F751EF38CE500A1EED9 /* EmojiDef.swift in Sources */,
+				55C48F751EF38CE500A1EED9 /* EmojiDefs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

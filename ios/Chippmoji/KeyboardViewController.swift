@@ -141,18 +141,11 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     let image = UIImageView(frame: cell.frame)
     let name = self.currentImages[indexPath.row + indexPath.section]
     if name.components(separatedBy: ".").last == "gif" {
-      print ("Gif section ")
-      if let localGifURL = Bundle.main.url(forResource: name.components(separatedBy: ".").first, withExtension: "gif", subdirectory: "images") {
-        print ("Inside before Gif image")
-        image.loadGif(url: localGifURL)
-         print ("Inside after Gif image")
-        //cell.backgroundView = image
-      }
+      image.image = EmojiDefs.someDict[name]
     } else {
       if let filePath = Bundle.main.path(forResource: name, ofType: "png", inDirectory: "images") {
         let uiimage = UIImage(contentsOfFile: filePath)!
         image.image = uiimage
-        //cell.backgroundView = image
       }
     }
     cell.backgroundView = image
