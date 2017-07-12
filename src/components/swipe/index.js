@@ -210,7 +210,7 @@ export default class extends Component {
     // Default: horizontal
     initState.dir = props.horizontal === false ? 'y' : 'x'
     initState.width = props.width || width
-    initState.height = props.height || height
+    initState.height = props.height || height - 250
     newInternals.offset = {}
 
     if (initState.total > 1) {
