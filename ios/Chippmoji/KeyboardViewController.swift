@@ -101,12 +101,18 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   
   func lipsEmojiButtonClicked() {
     currentImages = EmojiDefs.imageForCategory(EmojiDefs.Categories.lips)
+    collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
+                                 at: .top,
+                                 animated: true)
     imageDir = "images/lips"
     collectionView.reloadData()
   }
   
   func speechEmojiButtonClicked() {
     currentImages = EmojiDefs.imageForCategory(EmojiDefs.Categories.speech)
+    collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
+                                at: .top,
+                                animated: true)
     imageDir = "images/speeches"
     collectionView.reloadData()
   }
@@ -120,6 +126,9 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   
   func danceEmojiButtonClicked() {
     currentImages = EmojiDefs.imageForCategory(EmojiDefs.Categories.dance)
+    collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
+                                at: .top,
+                                animated: true)
     imageDir = "images/dancers"
     collectionView.reloadData()
   }
