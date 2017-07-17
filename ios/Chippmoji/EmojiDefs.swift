@@ -38,6 +38,10 @@ struct EmojiDefs {
               "Cheers.gif" : loadGif(name: "Cheers.gif", imageDir: "images/dancers")!,
               "IHeartU.gif" : loadGif(name: "IHeartU.gif", imageDir: "images/dancers")!,
               "Recoverymode.gif" : loadGif(name: "Recoverymode.gif", imageDir: "images/dancers")!,
+              "StraightChillin.gif" : loadGif(name: "StraightChillin.gif", imageDir: "images/dancers")!,
+              "ThanksNew.gif" : loadGif(name: "ThanksNew.gif", imageDir: "images/dancers")!,
+              "TurnUp1.gif" : loadGif(name: "TurnUp1.gif", imageDir: "images/dancers")!,
+              "SmokinHot.gif" : loadGif(name: "SmokinHot.gif", imageDir: "images/dancers")!
               ]
   
   static let speechImages: [String] = [
@@ -100,14 +104,18 @@ struct EmojiDefs {
     "Dirty30",
     "Handcuffs",
     "HardMenSign",
-    "Handcuffs",
-    "HardMenSign",
+    "HellaFine",
     "IHeartU.gif",
     "Mushroom",
     "popsicle",
     "Recoverymode.gif",
+    "SaddleUp",
+    "SmokinHot.gif",
     "snake",
+    "StraightChillin.gif",
     "Sucker",
+    "ThanksNew.gif",
+    "TurnUp1.gif",
     "VitaminD",
     "Wine"
   ]
