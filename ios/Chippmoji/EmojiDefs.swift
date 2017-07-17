@@ -23,8 +23,8 @@ struct EmojiDefs {
     }
   }
   
-  static func loadGif(name: String) -> UIImage? {
-    if let localGifURL = Bundle.main.url(forResource: name.components(separatedBy: ".").first, withExtension: "gif", subdirectory: "images"){
+  static func loadGif(name: String, imageDir: String) -> UIImage? {
+    if let localGifURL = Bundle.main.url(forResource: name.components(separatedBy: ".").first, withExtension: "gif", subdirectory: imageDir){
       print ("Inside before Gif image")
       return UIImage.gif(url: localGifURL)
     }
@@ -32,71 +32,95 @@ struct EmojiDefs {
   }
   
   static let someDict:[String : UIImage] = [
-              "dealwithit.gif" : loadGif(name: "dealwithit.gif")!,
-              "man.gif": loadGif(name: "man.gif")!]
+              "toolit480x480.gif" : loadGif(name: "toolit480x480.gif", imageDir: "images/speeches")!,
+              "truthdare480x480.gif" : loadGif(name: "truthdare480x480.gif", imageDir: "images/speeches")!,
+              "Champagne.gif" : loadGif(name: "Champagne.gif", imageDir: "images/dancers")!,
+              "Cheers.gif" : loadGif(name: "Cheers.gif", imageDir: "images/dancers")!,
+              "IHeartU.gif" : loadGif(name: "IHeartU.gif", imageDir: "images/dancers")!,
+              "Recoverymode.gif" : loadGif(name: "Recoverymode.gif", imageDir: "images/dancers")!,
+              "StraightChillin.gif" : loadGif(name: "StraightChillin.gif", imageDir: "images/dancers")!,
+              "ThanksNew.gif" : loadGif(name: "ThanksNew.gif", imageDir: "images/dancers")!,
+              "TurnUp1.gif" : loadGif(name: "TurnUp1.gif", imageDir: "images/dancers")!,
+              "SmokinHot.gif" : loadGif(name: "SmokinHot.gif", imageDir: "images/dancers")!
+              ]
   
   static let speechImages: [String] = [
     "basic480",
-    "cheers480",
-    "extra480",
-    "gucci480",
-    "lastfling480",
-    "onpoint480",
-    "slay480",
-    "thot480",
-    "wifematerial480",
     "bestnightever",
-    "datd480",
-    "faded480",
-    "hecouldgetit480",
-    "lit480",
-    "racthet480",
-    "squad480",
-    "woke480",
     "boujee480",
-    "dbrain480",
-    "fam480",
-    "hubbymaterial480",
-    "live480",
-    "redick480",
-    "sus480",
-    "trolling480",
-    "zerochill480",
     "bridindirty480",
-    "dmind480",
-    "getlitdietrying",
-    "hundop480",
-    "obvi480",
-    "salty480",
-    "talkdirty480",
     "cancelled480",
+    "cheers480",
+    "datd480",
+    "dbrain480",
+    "dmind480",
     "done480",
+    "extra480",
+    "faded480",
+    "fam480",
+    "getlitdietrying",
     "ghosting480",
+    "gucci480",
+    "hecouldgetit480",
+    "hubbymaterial480",
+    "hundop480",
     "icanteven480",
+    "lastfling480",
+    "lit480",
+    "live480",
+    "obvi480",
     "onfleek480",
+    "onpoint480",
+    "racthet480",
+    "redick480",
+    "salty480",
     "savage480",
+    "slay480",
+    "squad480",
+    "sus480",
+    "talkdirty480",
     "thirsty480",
-    "turnt480"
+    "thot480",
+    "toolit480x480.gif",
+    "trolling480",
+    "truthdare480x480.gif",
+    "turnt480",
+    "wifematerial480",
+    "woke480",
+    "zerochill480",
   ]
   
   static let danceImages: [String] = [
-    "HardMenSign",
-    "popsicle",
-    "CherryMouth",
-    "VitaminD",
     "Banana",
+    "BirthdayTiara",
     "BlingRing",
-    "man.gif",
-    "dealwithit.gif"
+    "BrideSash",
+    "Cactus",
+    "Champagne.gif",
+    "Cheers.gif",
+    "CherryMouth",
+    "Condom",
+    "CornDog",
+    "Dirty30",
+    "Handcuffs",
+    "HardMenSign",
+    "HellaFine",
+    "IHeartU.gif",
+    "Mushroom",
+    "popsicle",
+    "Recoverymode.gif",
+    "SaddleUp",
+    "SmokinHot.gif",
+    "snake",
+    "StraightChillin.gif",
+    "Sucker",
+    "ThanksNew.gif",
+    "TurnUp1.gif",
+    "VitaminD",
+    "Wine"
   ]
   
   static let lipsImages: [String] = [
-    "HardMenSign",
-    "popsicle",
-    "CherryMouth",
-    "VitaminD",
-    "Banana",
-    "BlingRing",
-    "man.gif"
-  ]
+    "Banana"
+      ]
 }

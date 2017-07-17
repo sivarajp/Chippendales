@@ -22,6 +22,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   static let kReuseIdentifier: String = "ChippMojiCell"
   var pathDictionary = [IndexPath: Int]()
   var currentImages = EmojiDefs.lipsImages
+  var imageDir = "images/dancers"
   
   func isLandscape() -> Bool {
     return UIScreen.main.bounds.size.width > UIScreen.main.bounds.size.height
@@ -69,7 +70,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
       return
     }
     print ("frame", self.view.frame.width, self.view.frame.height)
-    let rect = CGRect(origin: CGPoint(x: 15, y: 0), size: CGSize(width: self.view.frame.width - 30, height: 150))
+    let rect = CGRect(origin: CGPoint(x: 10, y: 0), size: CGSize(width: self.view.frame.width - 30, height: 150))
     let flowLayout = UICollectionViewFlowLayout()
     flowLayout.itemSize = CGSize(width: 75, height: 75)
     collectionView = UICollectionView(frame: rect, collectionViewLayout: flowLayout)
@@ -100,11 +101,19 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   
   func lipsEmojiButtonClicked() {
     currentImages = EmojiDefs.imageForCategory(EmojiDefs.Categories.lips)
+    collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
+                                 at: .top,
+                                 animated: true)
+    imageDir = "images/lips"
     collectionView.reloadData()
   }
   
   func speechEmojiButtonClicked() {
     currentImages = EmojiDefs.imageForCategory(EmojiDefs.Categories.speech)
+    collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
+                                at: .top,
+                                animated: true)
+    imageDir = "images/speeches"
     collectionView.reloadData()
   }
   
@@ -117,6 +126,10 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   
   func danceEmojiButtonClicked() {
     currentImages = EmojiDefs.imageForCategory(EmojiDefs.Categories.dance)
+    collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
+                                at: .top,
+                                animated: true)
+    imageDir = "images/dancers"
     collectionView.reloadData()
   }
   
@@ -143,7 +156,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     if name.components(separatedBy: ".").last == "gif" {
       image.image = EmojiDefs.someDict[name]
     } else {
-      if let filePath = Bundle.main.path(forResource: name, ofType: "png", inDirectory: "images") {
+      if let filePath = Bundle.main.path(forResource: name, ofType: "png", inDirectory: imageDir) {
         let uiimage = scaleImageDown(UIImage(contentsOfFile: filePath)!, scale: 0.5)
         image.image = uiimage
       }
@@ -168,13 +181,13 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     
     var uiimage : UIImage!
     if imageName.components(separatedBy: ".").last == "gif" {
-      if let filePath = Bundle.main.path(forResource: imageName.components(separatedBy: ".").first, ofType: "gif", inDirectory: "images") {
+      if let filePath = Bundle.main.path(forResource: imageName.components(separatedBy: ".").first, ofType: "gif", inDirectory: imageDir) {
         let gifData = try? Data(contentsOf: URL(fileURLWithPath: filePath))
         UIPasteboard.general.setData(gifData!, forPasteboardType: "com.compuserve.gif")
         self.toastView.makeToast("Chippmoji gif copied. Now paste it!")
       }
     } else {
-      if let filePath = Bundle.main.path(forResource: imageName, ofType: "png", inDirectory: "images") {
+      if let filePath = Bundle.main.path(forResource: imageName, ofType: "png", inDirectory: imageDir) {
         uiimage = UIImage(contentsOfFile: filePath)!
         UIPasteboard.general.image = scaleImageDown(uiimage, scale: 0.5)
         self.toastView.makeToast("Chippmoji copied. Now paste it!")

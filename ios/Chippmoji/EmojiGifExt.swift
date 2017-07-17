@@ -187,6 +187,9 @@ extension UIImage {
     var frameCount: Int
     for i in 0..<count {
       frame = UIImage(cgImage: images[Int(i)])
+      
+      frame = scaleImageDown(frame, scale: 0.25)
+      
       frameCount = Int(delays[Int(i)] / gcd)
       
       for _ in 0..<frameCount {
@@ -199,6 +202,20 @@ extension UIImage {
                                           duration: Double(duration) / 1000.0)
     
     return animation
+  }
+  
+  
+  internal class func scaleImageDown(_ image: UIImage, scale: CGFloat) -> UIImage {
+    let size = image.size.applying(CGAffineTransform(scaleX: scale, y: scale))
+    let hasAlpha = true
+    let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
+    
+    UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
+    image.draw(in: CGRect(origin: CGPoint.zero, size: size))
+    
+    let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return scaledImage!
   }
   
 }
