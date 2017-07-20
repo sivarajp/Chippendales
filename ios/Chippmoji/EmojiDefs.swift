@@ -102,7 +102,6 @@ struct EmojiDefs {
     "Blessed.gif",
     "BlockingOut.gif",
     "DealWithIt.gif",
-    "DropIt.gif",
     "HellaFine",
     "HellYeah.gif",
     "HeyGirl.gif",

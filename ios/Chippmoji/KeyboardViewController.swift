@@ -171,20 +171,17 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
         cell.imageView?.image = val
       } else {
         if let localGifURL = Bundle.main.url(forResource: name.components(separatedBy: ".").first, withExtension: "gif", subdirectory: self.imageDir){
-          DispatchQueue.global().async {
+          DispatchQueue.main.async {
             let image = UIImage.gif(url: localGifURL)
-            DispatchQueue.main.async {
               cell.imageView?.image = image
               self.imageCache.setObject(image!, forKey: name as NSString)
-
-            }
           }
         }
     }
     } else {
       if let filePath = Bundle.main.path(forResource: name, ofType: "png", inDirectory: imageDir) {
          DispatchQueue.main.async {
-          let uiimage = self.scaleImageDown(UIImage(contentsOfFile: filePath)!, scale: 0.2)
+          let uiimage = self.scaleImageDown(UIImage(contentsOfFile: filePath)!, scale: 0.5)
           cell.imageView?.image = uiimage
         }
        
