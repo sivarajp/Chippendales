@@ -10,6 +10,9 @@ import UIKit
 
 class EmojiCell: UICollectionViewCell {
   
+  
+  @IBOutlet weak var imageView: UIImageView!
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
   }
@@ -28,5 +31,10 @@ class EmojiCell: UICollectionViewCell {
     willSet {
       self.selectedBackgroundView?.backgroundColor = isSelected ? UIColor.black : UIColor.white
     }
+  }
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
   }
 }

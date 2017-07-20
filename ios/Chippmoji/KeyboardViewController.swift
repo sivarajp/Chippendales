@@ -76,7 +76,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     collectionView = UICollectionView(frame: rect, collectionViewLayout: flowLayout)
     collectionView.backgroundColor = UIColor.white
     collectionView.delegate = self
-    collectionView.register(EmojiCell.self, forCellWithReuseIdentifier: KeyboardViewController.kReuseIdentifier)
+    collectionView.register(UINib(nibName: "EmojiCell", bundle: nil), forCellWithReuseIdentifier: KeyboardViewController.kReuseIdentifier)
     collectionView.dataSource = self
     self.view.addSubview(collectionView)
     toastView = UIView(frame: collectionView.frame)
@@ -150,30 +150,52 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(
-      withReuseIdentifier: KeyboardViewController.kReuseIdentifier, for: indexPath)
-    let image = UIImageView(frame: cell.frame)
+      withReuseIdentifier: KeyboardViewController.kReuseIdentifier, for: indexPath)as! EmojiCell
+
+    cell.imageView?.image = nil
+    //let image = UIImageView(frame: cell.frame)
     let name = self.currentImages[indexPath.row + indexPath.section]
     if name.components(separatedBy: ".").last == "gif" {
-      //image.image = EmojiDefs.someDict[name]
-     image.image = EmojiDefs.loadGif(name: name, imageDir: imageDir)
+      
+     /* DispatchQueue.main.async {
+          DispatchQueue.global().async {
+            DispatchQueue.main.async {
+              cell.imageView?.image = EmojiDefs.someDict[name]
+            }
+          }      
+      } */
+     //cell.imageView?.image = EmojiDefs.someDict[name]
+      DispatchQueue.main.async {
+        if let localGifURL = Bundle.main.url(forResource: name.components(separatedBy: ".").first, withExtension: "gif", subdirectory: self.imageDir){
+          DispatchQueue.global().async {
+            let image = UIImage.gif(url: localGifURL)
+            DispatchQueue.main.async {
+              cell.imageView?.image = image
+            }
+          }
+        }
+      }
     } else {
       if let filePath = Bundle.main.path(forResource: name, ofType: "png", inDirectory: imageDir) {
-        let uiimage = scaleImageDown(UIImage(contentsOfFile: filePath)!, scale: 0.2)
-        image.image = uiimage
+         DispatchQueue.main.async {
+          let uiimage = self.scaleImageDown(UIImage(contentsOfFile: filePath)!, scale: 0.2)
+          cell.imageView?.image = uiimage
+        }
+       
       }
     }
-    cell.backgroundView = image
+    //cell.backgroundView = imageView
     return cell
   }
   
   func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-    let cell = collectionView.cellForItem(at: indexPath) as UICollectionViewCell!
-    cell?.backgroundColor = UIColor.gray
+    let cell = collectionView.cellForItem(at: indexPath) as! EmojiCell
+    cell.backgroundColor = UIColor.gray
   }
   
   func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
-    let cell = collectionView.cellForItem(at: indexPath) as UICollectionViewCell!
-    cell?.backgroundColor = UIColor.white
+    let cell = collectionView.cellForItem(at: indexPath) as! EmojiCell
+    cell.backgroundColor = UIColor.white
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

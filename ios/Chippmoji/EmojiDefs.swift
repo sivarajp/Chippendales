@@ -51,8 +51,7 @@ struct EmojiDefs {
               "IHeartU.gif" : loadGif(name: "IHeartU.gif", imageDir: "images/lips")!,
               "Recoverymode.gif" : loadGif(name: "Recoverymode.gif", imageDir: "images/lips")!,
               ]
- */
-  
+  */
   static let speechImages: [String] = [
     "basic480",
     "bestnightever",
