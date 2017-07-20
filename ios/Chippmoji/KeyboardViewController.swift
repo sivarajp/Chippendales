@@ -154,8 +154,8 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     let image = UIImageView(frame: cell.frame)
     let name = self.currentImages[indexPath.row + indexPath.section]
     if name.components(separatedBy: ".").last == "gif" {
-      image.image = EmojiDefs.someDict[name]
-     // image.image = EmojiDefs.loadGif(name: name, imageDir: imageDir)
+      //image.image = EmojiDefs.someDict[name]
+     image.image = EmojiDefs.loadGif(name: name, imageDir: imageDir)
     } else {
       if let filePath = Bundle.main.path(forResource: name, ofType: "png", inDirectory: imageDir) {
         let uiimage = scaleImageDown(UIImage(contentsOfFile: filePath)!, scale: 0.2)

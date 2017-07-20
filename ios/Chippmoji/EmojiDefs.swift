@@ -31,7 +31,7 @@ struct EmojiDefs {
     return nil
   }
   //Converting during runtime slows the perf. Did static
-  static let someDict:[String : UIImage] = [
+  /*static let someDict:[String : UIImage] = [
               "toolit480x480.gif" : loadGif(name: "toolit480x480.gif", imageDir: "images/speeches")!,
               "truthdare480x480.gif" : loadGif(name: "truthdare480x480.gif", imageDir: "images/speeches")!,
               "Blessed.gif" : loadGif(name: "Blessed.gif", imageDir: "images/dancers")!,
@@ -51,6 +51,7 @@ struct EmojiDefs {
               "IHeartU.gif" : loadGif(name: "IHeartU.gif", imageDir: "images/lips")!,
               "Recoverymode.gif" : loadGif(name: "Recoverymode.gif", imageDir: "images/lips")!,
               ]
+ */
   
   static let speechImages: [String] = [
     "basic480",
