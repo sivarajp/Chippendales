@@ -21,7 +21,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   var toastView: UIView!
   static let kReuseIdentifier: String = "ChippMojiCell"
   var pathDictionary = [IndexPath: Int]()
-  var currentImages = EmojiDefs.lipsImages
+  var currentImages = EmojiDefs.danceImages
   var imageDir = "images/dancers"
   
   func isLandscape() -> Bool {
@@ -155,9 +155,10 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     let name = self.currentImages[indexPath.row + indexPath.section]
     if name.components(separatedBy: ".").last == "gif" {
       image.image = EmojiDefs.someDict[name]
+     // image.image = EmojiDefs.loadGif(name: name, imageDir: imageDir)
     } else {
       if let filePath = Bundle.main.path(forResource: name, ofType: "png", inDirectory: imageDir) {
-        let uiimage = scaleImageDown(UIImage(contentsOfFile: filePath)!, scale: 0.5)
+        let uiimage = scaleImageDown(UIImage(contentsOfFile: filePath)!, scale: 0.2)
         image.image = uiimage
       }
     }
@@ -189,7 +190,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     } else {
       if let filePath = Bundle.main.path(forResource: imageName, ofType: "png", inDirectory: imageDir) {
         uiimage = UIImage(contentsOfFile: filePath)!
-        UIPasteboard.general.image = scaleImageDown(uiimage, scale: 0.5)
+        UIPasteboard.general.image = scaleImageDown(uiimage, scale: 0.2)
         self.toastView.makeToast("Chippmoji copied. Now paste it!")
       }
     }
