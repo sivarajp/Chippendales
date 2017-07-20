@@ -16,7 +16,8 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   @IBOutlet var keyboardView: KeyboardView!
   @IBOutlet weak var menuView: UIView!
   @IBOutlet weak var deleteButton: UIButton!
-  var cacheGifs:[String : UIImage?] = [:]
+  let imageCache = NSCache<NSString, AnyObject>()
+  //var cacheGifs:[String : UIImage?] = [:]
   var collectionView: UICollectionView!
   var toastView: UIView!
   static let kReuseIdentifier: String = "ChippMojiCell"
@@ -166,20 +167,19 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
       } */
      //cell.imageView?.image = EmojiDefs.someDict[name]
       
-      if let val = cacheGifs[name] {
+      if let val = imageCache.object(forKey: name as NSString) as? UIImage {
         cell.imageView?.image = val
       } else {
-      DispatchQueue.main.async {
         if let localGifURL = Bundle.main.url(forResource: name.components(separatedBy: ".").first, withExtension: "gif", subdirectory: self.imageDir){
           DispatchQueue.global().async {
             let image = UIImage.gif(url: localGifURL)
             DispatchQueue.main.async {
               cell.imageView?.image = image
-              self.cacheGifs[name]  =  image!
+              self.imageCache.setObject(image!, forKey: name as NSString)
+
             }
           }
         }
-      }
     }
     } else {
       if let filePath = Bundle.main.path(forResource: name, ofType: "png", inDirectory: imageDir) {
@@ -218,7 +218,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     } else {
       if let filePath = Bundle.main.path(forResource: imageName, ofType: "png", inDirectory: imageDir) {
         uiimage = UIImage(contentsOfFile: filePath)!
-        UIPasteboard.general.image = scaleImageDown(uiimage, scale: 0.2)
+        UIPasteboard.general.image = scaleImageDown(uiimage, scale: 0.5)
         self.toastView.makeToast("Chippmoji copied. Now paste it!")
       }
     }
