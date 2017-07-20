@@ -16,7 +16,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   @IBOutlet var keyboardView: KeyboardView!
   @IBOutlet weak var menuView: UIView!
   @IBOutlet weak var deleteButton: UIButton!
-  
+  var cacheGifs:[String : UIImage?] = [:]
   var collectionView: UICollectionView!
   var toastView: UIView!
   static let kReuseIdentifier: String = "ChippMojiCell"
@@ -165,16 +165,22 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
           }      
       } */
      //cell.imageView?.image = EmojiDefs.someDict[name]
+      
+      if let val = cacheGifs[name] {
+        cell.imageView?.image = val
+      } else {
       DispatchQueue.main.async {
         if let localGifURL = Bundle.main.url(forResource: name.components(separatedBy: ".").first, withExtension: "gif", subdirectory: self.imageDir){
           DispatchQueue.global().async {
             let image = UIImage.gif(url: localGifURL)
             DispatchQueue.main.async {
               cell.imageView?.image = image
+              self.cacheGifs[name]  =  image!
             }
           }
         }
       }
+    }
     } else {
       if let filePath = Bundle.main.path(forResource: name, ofType: "png", inDirectory: imageDir) {
          DispatchQueue.main.async {
