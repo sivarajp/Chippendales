@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, TouchableOpacity, ListView } from 'react-native';
 import ResponsiveImage from 'react-native-responsive-image';
 import Share from 'react-native-share';
-import { listofImages } from './DancerConst.js';
+import { listofImages } from './LipsConst';
 
 
 class EmojiObjects extends Component {

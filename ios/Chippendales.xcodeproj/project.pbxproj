@@ -46,6 +46,7 @@
 		55C48F7B1EF38EC700A1EED9 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55C48F7A1EF38EC700A1EED9 /* images.xcassets */; };
 		55C48F7D1EF3914E00A1EED9 /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C48F7C1EF3914E00A1EED9 /* EmojiCell.swift */; };
 		55C48F7F1EF393DD00A1EED9 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C48F7E1EF393DD00A1EED9 /* Toast.swift */; };
+		55E084C81F20838E00D2F3F2 /* EmojiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E084C71F20838E00D2F3F2 /* EmojiCell.xib */; };
 		5D19AFCF6C5E45F8B6DCCC04 /* CircularStd-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = BBF055B091D645C5B552667E /* CircularStd-Black.otf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		5FF310A299EF40C8AC120743 /* VisbyCF-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = A01CA762A7F94A9F8D9D0B2B /* VisbyCF-Heavy.otf */; };
@@ -322,6 +323,7 @@
 		55C48F7A1EF38EC700A1EED9 /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
 		55C48F7C1EF3914E00A1EED9 /* EmojiCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
 		55C48F7E1EF393DD00A1EED9 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		55E084C71F20838E00D2F3F2 /* EmojiCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmojiCell.xib; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 				55C48F7C1EF3914E00A1EED9 /* EmojiCell.swift */,
 				55C48F7E1EF393DD00A1EED9 /* Toast.swift */,
 				5595DC291EF7522000B3AC92 /* EmojiGifExt.swift */,
+				55E084C71F20838E00D2F3F2 /* EmojiCell.xib */,
 			);
 			path = Chippmoji;
 			sourceTree = "<group>";
@@ -1070,6 +1073,7 @@
 			files = (
 				5595DC641EF772C000B3AC92 /* images in Resources */,
 				55C48F731EF3802000A1EED9 /* KeyboardView.xib in Resources */,
+				55E084C81F20838E00D2F3F2 /* EmojiCell.xib in Resources */,
 				55C48F7B1EF38EC700A1EED9 /* images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

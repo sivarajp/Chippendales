@@ -461,14 +461,14 @@ export default class extends Component {
     let dots = []
 
     const ActiveDot = [
-      require('../../assets/images/header/lipsicon_active.png'),
       require('../../assets/images/header/dancericon_active.png'),
+      require('../../assets/images/header/lipsicon_active.png'),
       require('../../assets/images/header/speechbubbleicon_active.png')
     ]
 
     const Dot = [
-      require('../../assets/images/header/lipsicon.png'),
       require('../../assets/images/header/dancericon.png'),
+      require('../../assets/images/header/lipsicon.png'),
       require('../../assets/images/header/speechbubbleicon.png')
     ]
 

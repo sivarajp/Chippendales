@@ -155,13 +155,12 @@ extension UIImage {
     var images = [CGImage]()
     var delays = [Int]()
     
-    // Fill arrays
+    //Fill arrays
     for i in 0..<count {
       // Add image
       if let image = CGImageSourceCreateImageAtIndex(source, i, nil) {
         images.append(image)
       }
-      
       // At it's delay in cs
       let delaySeconds = UIImage.delayForImageAtIndex(Int(i),
                                                       source: source)
@@ -178,7 +177,6 @@ extension UIImage {
       
       return sum
     }()
-    
     // Get frames
     let gcd = gcdForArray(delays)
     var frames = [UIImage]()
@@ -188,7 +186,7 @@ extension UIImage {
     for i in 0..<count {
       frame = UIImage(cgImage: images[Int(i)])
       
-      frame = scaleImageDown(frame, scale: 0.25)
+      frame = scaleImageDown(frame, scale: 0.20)
       
       frameCount = Int(delays[Int(i)] / gcd)
       
@@ -196,11 +194,8 @@ extension UIImage {
         frames.append(frame)
       }
     }
-    
-    // Heyhey
     let animation = UIImage.animatedImage(with: frames,
                                           duration: Double(duration) / 1000.0)
-    
     return animation
   }
   

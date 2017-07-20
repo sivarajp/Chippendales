@@ -46,11 +46,11 @@ class SliderScreens extends Component {
       />}
       paginationStyle={{ alignItems: 'flex-end' }}
       >
-            <View style={styles.slide3}>
-                 <EmojiObjects />
-            </View>
             <View style={styles.slide2}>
                  <Dancer />
+            </View>
+            <View style={styles.slide3}>
+                 <EmojiObjects />
             </View>
             <View style={styles.slide3}>
                  <SpeechBubbles />
