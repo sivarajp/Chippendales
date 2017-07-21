@@ -29,7 +29,7 @@ class EmojiCell: UICollectionViewCell {
   
   override var isSelected: Bool {
     willSet {
-      self.selectedBackgroundView?.backgroundColor = isSelected ? UIColor.black : UIColor.white
+      self.imageView?.backgroundColor = isSelected ? UIColor.black : UIColor.white
     }
   }
   

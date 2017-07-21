@@ -152,6 +152,7 @@ extension UIImage {
   
   internal class func animatedImageWithSource(_ source: CGImageSource) -> UIImage? {
     let count = CGImageSourceGetCount(source)
+    print ("frame count", count)
     var images = [CGImage]()
     var delays = [Int]()
     
@@ -186,7 +187,7 @@ extension UIImage {
     for i in 0..<count {
       frame = UIImage(cgImage: images[Int(i)])
       
-      frame = scaleImageDown(frame, scale: 0.15)
+      frame = scaleImageDown(frame, scale: 0.2)
       
       frameCount = Int(delays[Int(i)] / gcd)
       

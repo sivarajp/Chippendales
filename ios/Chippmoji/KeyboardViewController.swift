@@ -34,13 +34,12 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   }
   
   override func viewDidLoad() {
-    
     super.viewDidLoad()
     print("test")
     Bundle.main.loadNibNamed("KeyboardView", owner: self, options: nil)
     self.view.addSubview(keyboardView)
     self.keyboardView.delegate = self
-    print ("frame", self.view.frame.width, self.view.frame.height)
+    print ("frame in view load", self.view.frame.width, self.view.frame.height)
     let borderWidth: CGFloat = 1.0
     self.view.layer.borderWidth = borderWidth
     self.view.layer.cornerRadius = 0.5
@@ -54,9 +53,9 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     longPress.allowableMovement = 0.5
     deleteButton.addGestureRecognizer(longPress)
     
-//    if KeyboardViewController.hasFullAccess() {
-//      self.toastView.makeToast("Keyboard has full access")
-//    }
+    //    if KeyboardViewController.hasFullAccess() {
+    //      self.toastView.makeToast("Keyboard has full access")
+    //    }
     
   }
   
@@ -70,24 +69,26 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     if keyboardView == nil {
       return
     }
-    print ("frame", self.view.frame.width, self.view.frame.height)
-    let rect = CGRect(origin: CGPoint(x: 10, y: 0), size: CGSize(width: self.view.frame.width - 30, height: 150))
-    let flowLayout = UICollectionViewFlowLayout()
-    flowLayout.itemSize = CGSize(width: 75, height: 75)
-    collectionView = UICollectionView(frame: rect, collectionViewLayout: flowLayout)
-    collectionView.backgroundColor = UIColor.white
-    collectionView.delegate = self
-    collectionView.register(UINib(nibName: "EmojiCell", bundle: nil), forCellWithReuseIdentifier: KeyboardViewController.kReuseIdentifier)
-    collectionView.dataSource = self
-    self.view.addSubview(collectionView)
-    toastView = UIView(frame: collectionView.frame)
-    toastView.backgroundColor = UIColor.clear
-    toastView.isUserInteractionEnabled = false
-    self.view.addSubview(toastView)
-    //TODO SIVA
-    //self.keyboardView.deleteButton.isHidden = isLandscape()
+    if collectionView == nil {
+      print ("frame in subviews", self.view.frame.width, self.view.frame.height)
+      let rect = CGRect(origin: CGPoint(x: 10, y: 0), size: CGSize(width: self.view.frame.width - 30, height: 150))
+      let flowLayout = UICollectionViewFlowLayout()
+      flowLayout.itemSize = CGSize(width: 75, height: 75)
+      collectionView = UICollectionView(frame: rect, collectionViewLayout: flowLayout)
+      collectionView.backgroundColor = UIColor.white
+      collectionView.delegate = self
+      collectionView.register(UINib(nibName: "EmojiCell", bundle: nil), forCellWithReuseIdentifier: KeyboardViewController.kReuseIdentifier)
+      collectionView.dataSource = self
+      collectionView.isPagingEnabled = true
+      self.view.addSubview(collectionView)
+      toastView = UIView(frame: collectionView.frame)
+      toastView.backgroundColor = UIColor.clear
+      toastView.isUserInteractionEnabled = false
+      self.view.addSubview(toastView)
+      //TODO SIVA
+      //self.keyboardView.deleteButton.isHidden = isLandscape()
+    }
   }
-  
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -103,8 +104,8 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   func lipsEmojiButtonClicked() {
     currentImages = EmojiDefs.imageForCategory(EmojiDefs.Categories.lips)
     collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
-                                 at: .top,
-                                 animated: true)
+                                at: .top,
+                                animated: false)
     imageDir = "images/lips"
     collectionView.reloadData()
   }
@@ -113,7 +114,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     currentImages = EmojiDefs.imageForCategory(EmojiDefs.Categories.speech)
     collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
                                 at: .top,
-                                animated: true)
+                                animated: false)
     imageDir = "images/speeches"
     collectionView.reloadData()
   }
@@ -129,7 +130,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     currentImages = EmojiDefs.imageForCategory(EmojiDefs.Categories.dance)
     collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
                                 at: .top,
-                                animated: true)
+                                animated: false)
     imageDir = "images/dancers"
     collectionView.reloadData()
   }
@@ -152,39 +153,42 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(
       withReuseIdentifier: KeyboardViewController.kReuseIdentifier, for: indexPath)as! EmojiCell
-
+    
     cell.imageView?.image = nil
     //let image = UIImageView(frame: cell.frame)
     let name = self.currentImages[indexPath.row + indexPath.section]
+    print ("images ", name)
     if name.components(separatedBy: ".").last == "gif" {
       
-     /* DispatchQueue.main.async {
-          DispatchQueue.global().async {
-            DispatchQueue.main.async {
-              cell.imageView?.image = EmojiDefs.someDict[name]
-            }
-          }      
-      } */
-     //cell.imageView?.image = EmojiDefs.someDict[name]
+      /* DispatchQueue.main.async {
+       DispatchQueue.global().async {
+       DispatchQueue.main.async {
+       cell.imageView?.image = EmojiDefs.someDict[name]
+       }
+       }
+       } */
+      //cell.imageView?.image = EmojiDefs.someDict[name]
       
       if let val = imageCache.object(forKey: name as NSString) as? UIImage {
         cell.imageView?.image = val
       } else {
         if let localGifURL = Bundle.main.url(forResource: name.components(separatedBy: ".").first, withExtension: "gif", subdirectory: self.imageDir){
-          DispatchQueue.main.async {
+          DispatchQueue.global(qos: .userInteractive).async(execute: { () -> Void in
             let image = UIImage.gif(url: localGifURL)
+            DispatchQueue.main.async(execute: { () -> Void in
               cell.imageView?.image = image
               self.imageCache.setObject(image!, forKey: name as NSString)
-          }
+            })
+          })
         }
-    }
+      }
     } else {
       if let filePath = Bundle.main.path(forResource: name, ofType: "png", inDirectory: imageDir) {
-         DispatchQueue.main.async {
+        DispatchQueue.main.async {
           let uiimage = self.scaleImageDown(UIImage(contentsOfFile: filePath)!, scale: 0.5)
           cell.imageView?.image = uiimage
         }
-       
+        
       }
     }
     //cell.backgroundView = imageView
@@ -202,9 +206,8 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    //        UIPasteboard.general.isPersistent = true
+
     let imageName = currentImages[indexPath.row + indexPath.section]
-    
     var uiimage : UIImage!
     if imageName.components(separatedBy: ".").last == "gif" {
       if let filePath = Bundle.main.path(forResource: imageName.components(separatedBy: ".").first, ofType: "gif", inDirectory: imageDir) {

@@ -48,7 +48,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Button3" image="lips"/>
                             <state key="selected" image="lips_active"/>
-                            <state key="highlighted" image="speechbubble_active"/>
+                            <state key="highlighted" image="lips_active"/>
                             <connections>
                                 <action selector="lipsEmoji:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ylc-hD-olv"/>
                             </connections>
