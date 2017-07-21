@@ -206,7 +206,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+    
     let imageName = currentImages[indexPath.row + indexPath.section]
     var uiimage : UIImage!
     if imageName.components(separatedBy: ".").last == "gif" {
