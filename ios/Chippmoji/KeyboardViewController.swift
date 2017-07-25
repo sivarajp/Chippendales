@@ -73,7 +73,8 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
       print ("frame in subviews", self.view.frame.width, self.view.frame.height)
       let rect = CGRect(origin: CGPoint(x: 10, y: 0), size: CGSize(width: self.view.frame.width - 30, height: 150))
       let flowLayout = UICollectionViewFlowLayout()
-      flowLayout.itemSize = CGSize(width: 75, height: 75)
+      flowLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
+      flowLayout.itemSize = CGSize(width: 120, height: 125)
       collectionView = UICollectionView(frame: rect, collectionViewLayout: flowLayout)
       collectionView.backgroundColor = UIColor.white
       collectionView.delegate = self
