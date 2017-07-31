@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -11,9 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KeyboardViewController" customModule="Chippmoji" customModuleProvider="target">
             <connections>
-                <outlet property="deleteButton" destination="7wh-Yh-9dl" id="aaL-8z-KJW"/>
                 <outlet property="keyboardView" destination="iN0-l3-epB" id="Mye-jj-MzG"/>
                 <outlet property="menuView" destination="2FZ-Zx-3FB" id="Yvf-xB-F8K"/>
+                <outlet property="segmentControlOut" destination="M8k-GH-hOo" id="zYX-0f-p75"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -25,113 +25,41 @@
                     <rect key="frame" x="0.0" y="170" width="375" height="50"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHa-c3-ljG">
-                            <rect key="frame" x="11" y="5" width="45" height="40"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button" image="icons_world"/>
-                            <state key="highlighted" image="icons_world_active"/>
+                        <segmentedControl opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M8k-GH-hOo" userLabel="Segment">
+                            <rect key="frame" x="0.0" y="1" width="0.0" height="50"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                            <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                            <segments>
+                                <segment title="" image="icons_world"/>
+                                <segment title="" image="dancericon"/>
+                                <segment title="" image="lips"/>
+                                <segment title="" image="speechbubble"/>
+                                <segment title="" image="share"/>
+                                <segment title="" image="backspace-light"/>
+                            </segments>
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="changeKeyboard:" destination="iN0-l3-epB" eventType="touchUpInside" id="s0O-kI-Fxy"/>
+                                <action selector="segmentControl:" destination="-1" eventType="valueChanged" id="1dN-CS-RIQ"/>
                             </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ypb-mH-Stp">
-                            <rect key="frame" x="74" y="5" width="40" height="40"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button3" image="dancericon"/>
-                            <state key="selected" image="dancericon_active"/>
-                            <connections>
-                                <action selector="danceEmoji:" destination="iN0-l3-epB" eventType="touchUpInside" id="KIv-UN-Tbt"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ej-sl-iSd">
-                            <rect key="frame" x="136" y="5" width="40" height="40"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button3" image="lips"/>
-                            <state key="selected" image="lips_active"/>
-                            <state key="highlighted" image="lips_active"/>
-                            <connections>
-                                <action selector="lipsEmoji:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ylc-hD-olv"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ad2-LB-zzf">
-                            <rect key="frame" x="199" y="5" width="40" height="40"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button3" image="speechbubble"/>
-                            <state key="selected" image="speechbubble_active"/>
-                            <connections>
-                                <action selector="speechEmoji:" destination="iN0-l3-epB" eventType="touchUpInside" id="Sny-to-3yJ"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yji-jf-imr">
-                            <rect key="frame" x="262" y="5" width="40" height="40"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button3" image="share"/>
-                            <state key="selected" image="share_active"/>
-                            <connections>
-                                <action selector="shareButtonClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="kOn-II-XM5"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wh-Yh-9dl">
-                            <rect key="frame" x="326" y="5" width="40" height="40"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button3" image="backspace-light"/>
-                            <state key="selected" image="backspace-dark"/>
-                            <state key="highlighted" image="backspace-dark"/>
-                            <connections>
-                                <action selector="deleteText:" destination="iN0-l3-epB" eventType="touchUpInside" id="dpL-ck-fWN"/>
-                            </connections>
-                        </button>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="51l-fO-E3n">
-                            <rect key="frame" x="62" y="0.0" width="2" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t0n-Y5-7DH">
-                            <rect key="frame" x="124" y="0.0" width="2" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RAc-hw-iaI">
-                            <rect key="frame" x="186" y="0.0" width="2" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dp7-n0-bif">
-                            <rect key="frame" x="247" y="0.0" width="2" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gqf-bb-1bo">
-                            <rect key="frame" x="313" y="0.0" width="2" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
+                        </segmentedControl>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="currentButton" destination="Ypb-mH-Stp" id="gDz-Wy-K9z"/>
-            </connections>
             <point key="canvasLocation" x="36.5" y="133"/>
         </view>
     </objects>
     <resources>
-        <image name="backspace-dark" width="100" height="100"/>
         <image name="backspace-light" width="100" height="100"/>
         <image name="dancericon" width="100" height="84"/>
-        <image name="dancericon_active" width="100" height="84"/>
         <image name="icons_world" width="100" height="84"/>
-        <image name="icons_world_active" width="100" height="84"/>
-        <image name="lips" width="33" height="28"/>
-        <image name="lips_active" width="33" height="28"/>
+        <image name="lips" width="100" height="84"/>
         <image name="share" width="100" height="84"/>
-        <image name="share_active" width="100" height="84"/>
         <image name="speechbubble" width="100" height="84"/>
-        <image name="speechbubble_active" width="100" height="84"/>
     </resources>
 </document>

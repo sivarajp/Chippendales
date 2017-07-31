@@ -30,28 +30,7 @@ struct EmojiDefs {
     }
     return nil
   }
-  //Converting during runtime slows the perf. Did static
-  /*static let someDict:[String : UIImage] = [
-   "toolit480x480.gif" : loadGif(name: "toolit480x480.gif", imageDir: "images/speeches")!,
-   "truthdare480x480.gif" : loadGif(name: "truthdare480x480.gif", imageDir: "images/speeches")!,
-   "Blessed.gif" : loadGif(name: "Blessed.gif", imageDir: "images/dancers")!,
-   "BlockingOut.gif" : loadGif(name: "BlockingOut.gif", imageDir: "images/dancers")!,
-   "DealWithIt.gif" : loadGif(name: "DealWithIt.gif", imageDir: "images/dancers")!,
-   "DropIt.gif" : loadGif(name: "DropIt.gif", imageDir: "images/dancers")!,
-   "HellYeah.gif" : loadGif(name: "HellYeah.gif", imageDir: "images/dancers")!,
-   "HeyGirl.gif" : loadGif(name: "HeyGirl.gif", imageDir: "images/dancers")!,
-   "KissMyAss.gif" : loadGif(name: "KissMyAss.gif", imageDir: "images/dancers")!,
-   "SayWhat.gif" : loadGif(name: "SayWhat.gif", imageDir: "images/dancers")!,
-   "SmokinHot.gif" : loadGif(name: "SmokinHot.gif", imageDir: "images/dancers")!,
-   "StraightChillin.gif" : loadGif(name: "StraightChillin.gif", imageDir: "images/dancers")!,
-   "ThanksNew.gif" : loadGif(name: "ThanksNew.gif", imageDir: "images/dancers")!,
-   "TurnUp1.gif" : loadGif(name: "TurnUp1.gif", imageDir: "images/dancers")!,
-   "Champagne.gif" : loadGif(name: "Champagne.gif", imageDir: "images/lips")!,
-   "Cheers.gif" : loadGif(name: "Cheers.gif", imageDir: "images/lips")!,
-   "IHeartU.gif" : loadGif(name: "IHeartU.gif", imageDir: "images/lips")!,
-   "Recoverymode.gif" : loadGif(name: "Recoverymode.gif", imageDir: "images/lips")!,
-   ]
-   */
+  
   static let speechImages: [String] = [
     "basic480",
     "bestnightever",
@@ -99,13 +78,20 @@ struct EmojiDefs {
     ]
   
   static let danceImages: [String] = [
+    "beachplease.gif",
+    "birthday.gif",
     "Blessed.gif",
     "BlockingOut.gif",
-    "DealWithIt.gif",
+    "DealWithIT.gif",
+    "DropIt.gif",
+    "ExtraAf.gif",
     "HellaFine",
     "HellYeah.gif",
     "HeyGirl.gif",
+    "HumpDay.gif",
     "KissMyAss.gif",
+    "LookingGood.gif",
+    "Nah",
     "SaddleUp",
     "SayWhat.gif",
     "SmokinHot.gif",

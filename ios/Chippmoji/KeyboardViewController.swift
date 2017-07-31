@@ -12,7 +12,48 @@ import QuartzCore
 
 class KeyboardViewController: UIInputViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, KeyboardActionHandler {
   
+    @IBOutlet weak var segmentControlOut: UISegmentedControl!
   
+    @IBAction func segmentControl(_ sender: Any) {
+      
+      self.segmentControlOut.setImage(UIImage(named:"icons_world"), forSegmentAt: 0)
+      self.segmentControlOut.setImage(UIImage(named:"dancericon"), forSegmentAt: 1)
+      self.segmentControlOut.setImage(UIImage(named:"lips"), forSegmentAt: 2)
+      self.segmentControlOut.setImage(UIImage(named:"speechbubble"), forSegmentAt: 3)
+      self.segmentControlOut.setImage(UIImage(named:"share"), forSegmentAt: 4)
+      self.segmentControlOut.setImage(UIImage(named:"backspace-light"), forSegmentAt: 5)
+
+      
+      switch segmentControlOut.selectedSegmentIndex
+      {
+      case 0:
+        self.segmentControlOut.setImage(UIImage(named:"icons_world_active"), forSegmentAt: 0)
+        self.segmentControlOut.setEnabled(true, forSegmentAt: 0)
+        nextKeyboardButtonClicked()
+      case 1:
+        self.segmentControlOut.setImage(UIImage(named:"dancericon_active"), forSegmentAt: 1)
+        self.segmentControlOut.setEnabled(true, forSegmentAt: 1)
+        danceEmojiButtonClicked()
+      case 2:
+        self.segmentControlOut.setImage(UIImage(named:"lips_active"), forSegmentAt: 2)
+        self.segmentControlOut.setEnabled(true, forSegmentAt: 2)
+        lipsEmojiButtonClicked()
+      case 3:
+        self.segmentControlOut.setEnabled(true, forSegmentAt: 3)
+        self.segmentControlOut.setImage(UIImage(named:"speechbubble_active"), forSegmentAt: 3)
+        speechEmojiButtonClicked()
+      case 4:
+        self.segmentControlOut.setEnabled(true, forSegmentAt: 4)
+        self.segmentControlOut.setImage(UIImage(named:"share_active"), forSegmentAt: 4)
+        shareButtonClicked()
+      case 5:
+        self.segmentControlOut.setEnabled(true, forSegmentAt: 5)
+        self.segmentControlOut.setImage(UIImage(named:"backspace-dark"), forSegmentAt: 5)
+        deleteButtonClicked()
+      default:
+        break
+      }
+    }
   @IBOutlet var keyboardView: KeyboardView!
   @IBOutlet weak var menuView: UIView!
   @IBOutlet weak var deleteButton: UIButton!
@@ -44,14 +85,24 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     self.view.layer.borderWidth = borderWidth
     self.view.layer.cornerRadius = 0.5
     self.view.layer.borderColor = UIColor.lightGray.cgColor
-    menuView.layer.borderWidth = borderWidth
-    menuView.frame = menuView.frame.insetBy(dx: -borderWidth, dy: -borderWidth);
-    menuView.layer.borderColor = UIColor.lightGray.cgColor
+    
+    self.segmentControlOut.layer.cornerRadius = -1.0
+    self.segmentControlOut.layer.masksToBounds = true
+    self.segmentControlOut.tintColor = UIColor.white
+    self.segmentControlOut.layer.borderWidth = 1.0
+    self.segmentControlOut.layer.borderColor = UIColor.lightGray.cgColor
+    self.segmentControlOut.setDividerImage(imageWithColor(color: UIColor.lightGray), forLeftSegmentState: [], rightSegmentState: [], barMetrics: .default)
+    self.segmentControlOut.frame = CGRect(x: self.segmentControlOut.frame.origin.x, y: self.segmentControlOut.frame.origin.y, width: self.segmentControlOut.frame.size.width, height: 50);
+
     let longPress = UILongPressGestureRecognizer(target: self, action: #selector(KeyboardViewController.handleLongPress(_:)))
     longPress.minimumPressDuration = 0.5
     longPress.numberOfTouchesRequired = 1
     longPress.allowableMovement = 0.5
-    deleteButton.addGestureRecognizer(longPress)
+    self.segmentControlOut.addGestureRecognizer(longPress)
+    //menuView.layer.borderWidth = borderWidth
+    //menuView.frame = menuView.frame.insetBy(dx: -borderWidth, dy: -borderWidth);
+    //menuView.layer.borderColor = UIColor.lightGray.cgColor
+       //deleteButton.addGestureRecognizer(longPress)
     
     //    if KeyboardViewController.hasFullAccess() {
     //      self.toastView.makeToast("Keyboard has full access")
@@ -60,6 +111,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   }
   
   func handleLongPress(_ gestureRecognizer: UIGestureRecognizer) {
+    print ("long pressed", segmentControlOut.selectedSegmentIndex)
     textDocumentProxy.deleteBackward()
   }
   
@@ -244,5 +296,15 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     return UIPasteboard.general.isKind(of: UIPasteboard.self)
   }
   
+  func imageWithColor(color: UIColor) -> UIImage {
+    let rect = CGRect(origin: CGPoint(x: 0, y:0), size: CGSize(width: 1, height: 1))
+    UIGraphicsBeginImageContext(rect.size)
+    let context = UIGraphicsGetCurrentContext()!
+    context.setFillColor(color.cgColor)
+    context.fill(rect)
+    let image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return image!
+  }
   
 }
