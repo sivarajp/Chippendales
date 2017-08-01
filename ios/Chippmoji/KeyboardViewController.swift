@@ -15,40 +15,27 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     @IBOutlet weak var segmentControlOut: UISegmentedControl!
   
     @IBAction func segmentControl(_ sender: Any) {
-      
-      self.segmentControlOut.setImage(UIImage(named:"icons_world"), forSegmentAt: 0)
-      self.segmentControlOut.setImage(UIImage(named:"dancericon"), forSegmentAt: 1)
-      self.segmentControlOut.setImage(UIImage(named:"lips"), forSegmentAt: 2)
-      self.segmentControlOut.setImage(UIImage(named:"speechbubble"), forSegmentAt: 3)
-      self.segmentControlOut.setImage(UIImage(named:"share"), forSegmentAt: 4)
-      self.segmentControlOut.setImage(UIImage(named:"backspace-light"), forSegmentAt: 5)
-
-      
-      switch segmentControlOut.selectedSegmentIndex
+    
+    switch segmentControlOut.selectedSegmentIndex
       {
       case 0:
         self.segmentControlOut.setImage(UIImage(named:"icons_world_active"), forSegmentAt: 0)
-        self.segmentControlOut.setEnabled(true, forSegmentAt: 0)
         nextKeyboardButtonClicked()
       case 1:
+        segmentControlResetImages()
         self.segmentControlOut.setImage(UIImage(named:"dancericon_active"), forSegmentAt: 1)
-        self.segmentControlOut.setEnabled(true, forSegmentAt: 1)
         danceEmojiButtonClicked()
       case 2:
+        segmentControlResetImages()
         self.segmentControlOut.setImage(UIImage(named:"lips_active"), forSegmentAt: 2)
-        self.segmentControlOut.setEnabled(true, forSegmentAt: 2)
         lipsEmojiButtonClicked()
       case 3:
-        self.segmentControlOut.setEnabled(true, forSegmentAt: 3)
+        segmentControlResetImages()
         self.segmentControlOut.setImage(UIImage(named:"speechbubble_active"), forSegmentAt: 3)
         speechEmojiButtonClicked()
       case 4:
-        self.segmentControlOut.setEnabled(true, forSegmentAt: 4)
-        self.segmentControlOut.setImage(UIImage(named:"share_active"), forSegmentAt: 4)
         shareButtonClicked()
       case 5:
-        self.segmentControlOut.setEnabled(true, forSegmentAt: 5)
-        self.segmentControlOut.setImage(UIImage(named:"backspace-dark"), forSegmentAt: 5)
         deleteButtonClicked()
       default:
         break
@@ -65,6 +52,17 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   var pathDictionary = [IndexPath: Int]()
   var currentImages = EmojiDefs.danceImages
   var imageDir = "images/dancers"
+  
+  func segmentControlResetImages() {
+    self.segmentControlOut.setImage(UIImage(named:"icons_world"), forSegmentAt: 0)
+    self.segmentControlOut.setImage(UIImage(named:"dancericon"), forSegmentAt: 1)
+    self.segmentControlOut.setImage(UIImage(named:"lips"), forSegmentAt: 2)
+    self.segmentControlOut.setImage(UIImage(named:"speechbubble"), forSegmentAt: 3)
+    self.segmentControlOut.setImage(UIImage(named:"share"), forSegmentAt: 4)
+    self.segmentControlOut.setImage(UIImage(named:"backspace-light"), forSegmentAt: 5)
+  }
+
+  
   
   func isLandscape() -> Bool {
     return UIScreen.main.bounds.size.width > UIScreen.main.bounds.size.height
@@ -86,23 +84,18 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     self.view.layer.cornerRadius = 0.5
     self.view.layer.borderColor = UIColor.lightGray.cgColor
     
+    self.segmentControlOut.frame = CGRect(x: self.segmentControlOut.frame.origin.x, y: self.segmentControlOut.frame.origin.y, width: self.segmentControlOut.frame.size.width, height: 50);
     self.segmentControlOut.layer.cornerRadius = -1.0
     self.segmentControlOut.layer.masksToBounds = true
     self.segmentControlOut.tintColor = UIColor.white
     self.segmentControlOut.layer.borderWidth = 1.0
     self.segmentControlOut.layer.borderColor = UIColor.lightGray.cgColor
     self.segmentControlOut.setDividerImage(imageWithColor(color: UIColor.lightGray), forLeftSegmentState: [], rightSegmentState: [], barMetrics: .default)
-    self.segmentControlOut.frame = CGRect(x: self.segmentControlOut.frame.origin.x, y: self.segmentControlOut.frame.origin.y, width: self.segmentControlOut.frame.size.width, height: 50);
-
-    let longPress = UILongPressGestureRecognizer(target: self, action: #selector(KeyboardViewController.handleLongPress(_:)))
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(KeyboardViewController.handleLongPress(_:)))
     longPress.minimumPressDuration = 0.5
     longPress.numberOfTouchesRequired = 1
     longPress.allowableMovement = 0.5
     self.segmentControlOut.addGestureRecognizer(longPress)
-    //menuView.layer.borderWidth = borderWidth
-    //menuView.frame = menuView.frame.insetBy(dx: -borderWidth, dy: -borderWidth);
-    //menuView.layer.borderColor = UIColor.lightGray.cgColor
-       //deleteButton.addGestureRecognizer(longPress)
     
     //    if KeyboardViewController.hasFullAccess() {
     //      self.toastView.makeToast("Keyboard has full access")
@@ -123,10 +116,10 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     }
     if collectionView == nil {
       print ("frame in subviews", self.view.frame.width, self.view.frame.height)
-      let rect = CGRect(origin: CGPoint(x: 10, y: 0), size: CGSize(width: self.view.frame.width - 30, height: 150))
+      let rect = CGRect(origin: CGPoint(x: 10, y: 0), size: CGSize(width: self.view.frame.width - 30, height: 170))
       let flowLayout = UICollectionViewFlowLayout()
       flowLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
-      flowLayout.itemSize = CGSize(width: 120, height: 125)
+      flowLayout.itemSize = CGSize(width: 70, height: 70)
       collectionView = UICollectionView(frame: rect, collectionViewLayout: flowLayout)
       collectionView.backgroundColor = UIColor.white
       collectionView.delegate = self
@@ -138,8 +131,6 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
       toastView.backgroundColor = UIColor.clear
       toastView.isUserInteractionEnabled = false
       self.view.addSubview(toastView)
-      //TODO SIVA
-      //self.keyboardView.deleteButton.isHidden = isLandscape()
     }
   }
   
@@ -157,7 +148,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   func lipsEmojiButtonClicked() {
     currentImages = EmojiDefs.imageForCategory(EmojiDefs.Categories.lips)
     collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
-                                at: .top,
+                                at: .left,
                                 animated: false)
     imageDir = "images/lips"
     collectionView.reloadData()
@@ -166,7 +157,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   func speechEmojiButtonClicked() {
     currentImages = EmojiDefs.imageForCategory(EmojiDefs.Categories.speech)
     collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
-                                at: .top,
+                                at: .left,
                                 animated: false)
     imageDir = "images/speeches"
     collectionView.reloadData()
@@ -182,7 +173,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   func danceEmojiButtonClicked() {
     currentImages = EmojiDefs.imageForCategory(EmojiDefs.Categories.dance)
     collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
-                                at: .top,
+                                at: .left,
                                 animated: false)
     imageDir = "images/dancers"
     collectionView.reloadData()
@@ -212,16 +203,6 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     let name = self.currentImages[indexPath.row + indexPath.section]
     print ("images ", name)
     if name.components(separatedBy: ".").last == "gif" {
-      
-      /* DispatchQueue.main.async {
-       DispatchQueue.global().async {
-       DispatchQueue.main.async {
-       cell.imageView?.image = EmojiDefs.someDict[name]
-       }
-       }
-       } */
-      //cell.imageView?.image = EmojiDefs.someDict[name]
-      
       if let val = imageCache.object(forKey: name as NSString) as? UIImage {
         cell.imageView?.image = val
       } else {
@@ -244,7 +225,6 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
         
       }
     }
-    //cell.backgroundView = imageView
     return cell
   }
   
@@ -305,6 +285,15 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     let image = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     return image!
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+    if imageDir == "images/dancers" {
+      return CGSize(width: 125, height: 125)
+    } else {
+      return CGSize(width: 75, height: 75)
+    }
   }
   
 }
