@@ -104,8 +104,12 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   }
   
   func handleLongPress(_ gestureRecognizer: UIGestureRecognizer) {
-    print ("long pressed", segmentControlOut.selectedSegmentIndex)
-    textDocumentProxy.deleteBackward()
+    let point = gestureRecognizer.location(in: segmentControlOut)
+    let segmentSize = segmentControlOut.bounds.size.width / CGFloat(segmentControlOut.numberOfSegments)
+    let touchedSegment = Int(point.x / segmentSize)
+    if touchedSegment == 5 {
+      textDocumentProxy.deleteBackward()
+    }
   }
   
   override func viewDidLayoutSubviews() {
