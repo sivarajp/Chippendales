@@ -45,7 +45,6 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   @IBOutlet weak var menuView: UIView!
   @IBOutlet weak var deleteButton: UIButton!
   let imageCache = NSCache<NSString, AnyObject>()
-  //var cacheGifs:[String : UIImage?] = [:]
   var collectionView: UICollectionView!
   var toastView: UIView!
   static let kReuseIdentifier: String = "ChippMojiCell"
@@ -74,11 +73,9 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    print("test")
     Bundle.main.loadNibNamed("KeyboardView", owner: self, options: nil)
     self.view.addSubview(keyboardView)
     self.keyboardView.delegate = self
-    print ("frame in view load", self.view.frame.width, self.view.frame.height)
     let borderWidth: CGFloat = 1.0
     self.view.layer.borderWidth = borderWidth
     self.view.layer.cornerRadius = 0.5
@@ -91,7 +88,8 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     self.segmentControlOut.layer.borderWidth = 1.0
     self.segmentControlOut.layer.borderColor = UIColor.lightGray.cgColor
     self.segmentControlOut.setDividerImage(imageWithColor(color: UIColor.lightGray), forLeftSegmentState: [], rightSegmentState: [], barMetrics: .default)
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(KeyboardViewController.handleLongPress(_:)))
+    
+    let longPress = UILongPressGestureRecognizer(target: self, action: #selector(KeyboardViewController.handleLongPress(_:)))
     longPress.minimumPressDuration = 0.5
     longPress.numberOfTouchesRequired = 1
     longPress.allowableMovement = 0.5
@@ -101,6 +99,25 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     //      self.toastView.makeToast("Keyboard has full access")
     //    }
     
+  }
+  
+  func didDoubleTapCollectionView(_ gestureRecognizer: UITapGestureRecognizer) {
+
+//    let tapLocation = gestureRecognizer.location(in: collectionView)
+//    let indexPath : IndexPath = collectionView.indexPathForItem(at: tapLocation)!
+//    let imageName = currentImages[indexPath.row + indexPath.section]
+    let url = URL(string: "https://www.chippmoji.com")!
+    openUrl(url: url)
+
+  }
+  
+  func openUrl(url: URL?) {
+    let selector = sel_registerName("openURL:")
+    var responder = self as UIResponder?
+    while let r = responder, !r.responds(to: selector) {
+      responder = r.next
+    }
+    _ = responder?.perform(selector, with: url)
   }
   
   func handleLongPress(_ gestureRecognizer: UIGestureRecognizer) {
@@ -119,7 +136,6 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
       return
     }
     if collectionView == nil {
-      print ("frame in subviews", self.view.frame.width, self.view.frame.height)
       let rect = CGRect(origin: CGPoint(x: 10, y: 0), size: CGSize(width: self.view.frame.width - 30, height: 170))
       let flowLayout = UICollectionViewFlowLayout()
       flowLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
@@ -130,6 +146,11 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
       collectionView.register(UINib(nibName: "EmojiCell", bundle: nil), forCellWithReuseIdentifier: KeyboardViewController.kReuseIdentifier)
       collectionView.dataSource = self
       collectionView.isPagingEnabled = true
+      
+      let doubleTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(KeyboardViewController.didDoubleTapCollectionView(_:)))
+      doubleTapGesture.numberOfTapsRequired = 2  // add double tap
+      self.collectionView.addGestureRecognizer(doubleTapGesture)
+      
       self.view.addSubview(collectionView)
       toastView = UIView(frame: collectionView.frame)
       toastView.backgroundColor = UIColor.clear
@@ -199,13 +220,11 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
     let cell = collectionView.dequeueReusableCell(
       withReuseIdentifier: KeyboardViewController.kReuseIdentifier, for: indexPath)as! EmojiCell
-    
     cell.imageView?.image = nil
-    //let image = UIImageView(frame: cell.frame)
     let name = self.currentImages[indexPath.row + indexPath.section]
-    print ("images ", name)
     if name.components(separatedBy: ".").last == "gif" {
       if let val = imageCache.object(forKey: name as NSString) as? UIImage {
         cell.imageView?.image = val
@@ -292,7 +311,6 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
     if imageDir == "images/dancers" {
       return CGSize(width: 125, height: 125)
     } else {
