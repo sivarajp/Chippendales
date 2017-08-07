@@ -8,6 +8,7 @@
 
 import UIKit
 import QuartzCore
+import MobileCoreServices
 
 
 class KeyboardViewController: UIInputViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, KeyboardActionHandler {
@@ -147,9 +148,9 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
       collectionView.dataSource = self
       collectionView.isPagingEnabled = true
       
-      let doubleTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(KeyboardViewController.didDoubleTapCollectionView(_:)))
-      doubleTapGesture.numberOfTapsRequired = 2  // add double tap
-      self.collectionView.addGestureRecognizer(doubleTapGesture)
+//      let doubleTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(KeyboardViewController.didDoubleTapCollectionView(_:)))
+//      doubleTapGesture.numberOfTapsRequired = 2  // add double tap
+//      self.collectionView.addGestureRecognizer(doubleTapGesture)
       
       self.view.addSubview(collectionView)
       toastView = UIView(frame: collectionView.frame)
@@ -240,7 +241,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
         }
       }
     } else {
-      if let filePath = Bundle.main.path(forResource: name, ofType: "png", inDirectory: imageDir) {
+      if let filePath = Bundle.main.path(forResource: name.components(separatedBy: ".").first, ofType: "png", inDirectory: imageDir) {
         DispatchQueue.main.async {
           let uiimage = self.scaleImageDown(UIImage(contentsOfFile: filePath)!, scale: 0.5)
           cell.imageView?.image = uiimage
@@ -262,19 +263,22 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
     let imageName = currentImages[indexPath.row + indexPath.section]
     var uiimage : UIImage!
     if imageName.components(separatedBy: ".").last == "gif" {
       if let filePath = Bundle.main.path(forResource: imageName.components(separatedBy: ".").first, ofType: "gif", inDirectory: imageDir) {
         let gifData = try? Data(contentsOf: URL(fileURLWithPath: filePath))
-        UIPasteboard.general.setData(gifData!, forPasteboardType: "com.compuserve.gif")
+        //UIPasteboard.general.setData(gifData!, forPasteboardType: "com.compuserve.gif")
+        //UIPasteboard.general.items = ([[kUTTypeGIF as String : gifData!], [kUTTypeURL as String : url]])
+        UIPasteboard.general.items = [[kUTTypeGIF as String : gifData!]]
         self.toastView.makeToast("Chippmoji gif copied. Now paste it!")
       }
     } else {
-      if let filePath = Bundle.main.path(forResource: imageName, ofType: "png", inDirectory: imageDir) {
+      if let filePath = Bundle.main.path(forResource: imageName.components(separatedBy: ".").first, ofType: "png", inDirectory: imageDir) {
         uiimage = UIImage(contentsOfFile: filePath)!
-        UIPasteboard.general.image = scaleImageDown(uiimage, scale: 0.5)
+        //UIPasteboard.general.image = scaleImageDown(uiimage, scale: 0.5)
+//         UIPasteboard.general.items = [[kUTTypePNG as String : scaleImageDown(uiimage, scale: 0.5)], [kUTTypeURL as String : url]]
+         UIPasteboard.general.items = [[kUTTypePNG as String : scaleImageDown(uiimage, scale: 0.7)]]
         self.toastView.makeToast("Chippmoji copied. Now paste it!")
       }
     }
@@ -314,7 +318,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     if imageDir == "images/dancers" {
       return CGSize(width: 125, height: 125)
     } else {
-      return CGSize(width: 75, height: 75)
+      return CGSize(width: 90, height: 75)
     }
   }
   

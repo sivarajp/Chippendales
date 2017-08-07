@@ -31,101 +31,21 @@ struct EmojiDefs {
     return nil
   }
   
-  static let speechImages: [String] = [
-    "basic480",
-    "bestnightever",
-    "boujee480",
-    "bridindirty480",
-    "cancelled480",
-    "cheers480",
-    "datd480",
-    "dbrain480",
-    "dmind480",
-    "done480",
-    "extra480",
-    "faded480",
-    "fam480",
-    "getlitdietrying",
-    "ghosting480",
-    "hecouldgetit480",
-    "hubbymaterial480",
-    "hundop480",
-    "icanteven480",
-    "lastfling480",
-    "lit480",
-    "live480",
-    "obvi480",
-    "onfleek480",
-    "onpoint480",
-    "racthet480",
-    "redick480",
-    "salty480",
-    "savage480",
-    "slay480",
-    "squad480",
-    "sus480",
-    "talkdirty480",
-    "thirsty480",
-    "thot480",
-    "toolit480x480.gif",
-    "trolling480",
-    "truthdare480x480.gif",
-    "turnt480",
-    "wifematerial480",
-    "woke480",
-    "zerochill480",
-    ]
+  static let speechImages: [String] = listFilesFromDocumentsFolder(folderPath: "images/speeches")!
   
-  static let danceImages: [String] = [
-    "beachplease.gif",
-    "birthday.gif",
-    "Blessed.gif",
-    "BlockingOut.gif",
-    "DealWithIT.gif",
-    "DropIt.gif",
-    "ExtraAf.gif",
-    "HellaFine",
-    "HellYeah.gif",
-    "HeyGirl.gif",
-    "HumpDay.gif",
-    "KissMyAss.gif",
-    "LookingGood.gif",
-    "Nah",
-    "SaddleUp",
-    "SayWhat.gif",
-    "SmokinHot.gif",
-    "StraightChillin.gif",
-    "ThanksNew.gif",
-    "TurnUp1.gif",  ]
+  static let danceImages: [String] = listFilesFromDocumentsFolder(folderPath: "images/dancers")!
   
-  static let lipsImages: [String] = [
-    "Banana",
-    "BirthdayTiara",
-    "BlingRing",
-    "BrideSash",
-    "Cactus",
-    "censored",
-    "Champagne.gif",
-    "Cheers.gif",
-    "CherryMouth",
-    "Condom",
-    "CornDog",
-    "DayDrinks",
-    "Dice",
-    "Dirty30",
-    "Fire",
-    "GirlsNight.gif",
-    "GoodMorning.gif",
-    "Handcuffs",
-    "HardMenSign",
-    "IHeartU.gif",
-    "lips",
-    "popsicle",
-    "Recoverymode.gif",
-    "snake",
-    "SquirtGun",
-    "Sucker",
-    "VitaminD",
-    "Wine",
-    ]
+  static let lipsImages: [String] = listFilesFromDocumentsFolder(folderPath: "images/lips")!
+  
+  static func listFilesFromDocumentsFolder(folderPath: String)->[String]?{
+    var imageNames = [String]()
+    let docsPath = Bundle.main.resourcePath! + "/" + folderPath
+    let fileManager = FileManager.default
+    do {
+       imageNames = try fileManager.contentsOfDirectory(atPath: docsPath)
+    } catch {
+      print(error)
+    }
+    return imageNames
+  }
 }
