@@ -138,7 +138,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     }
     if collectionView == nil {
       let rect = CGRect(origin: CGPoint(x: 10, y: 0), size: CGSize(width: self.view.frame.width - 30, height: 170))
-      let flowLayout = UICollectionViewFlowLayout()
+      let flowLayout = EmojiCollectionViewFlowLayout()
       flowLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
       flowLayout.itemSize = CGSize(width: 70, height: 70)
       collectionView = UICollectionView(frame: rect, collectionViewLayout: flowLayout)
@@ -146,7 +146,8 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
       collectionView.delegate = self
       collectionView.register(UINib(nibName: "EmojiCell", bundle: nil), forCellWithReuseIdentifier: KeyboardViewController.kReuseIdentifier)
       collectionView.dataSource = self
-      collectionView.isPagingEnabled = true
+      collectionView.isPagingEnabled = false
+      collectionView.bounces = false
       
 //      let doubleTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(KeyboardViewController.didDoubleTapCollectionView(_:)))
 //      doubleTapGesture.numberOfTapsRequired = 2  // add double tap
@@ -215,6 +216,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     self.textDocumentProxy.insertText("Take a look at Chippmoji! \(url)")
     
   }
+  
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return currentImages.count
@@ -316,9 +318,16 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     if imageDir == "images/dancers" {
-      return CGSize(width: 125, height: 125)
+      let itemsPerRow:CGFloat = 2.5
+      let hardCodedPadding:CGFloat = 5
+      let itemWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
+      return CGSize(width: itemWidth, height: 125)
+      //return CGSize(width: 125, height: 125)
     } else {
-      return CGSize(width: 90, height: 75)
+      let itemsPerRow:CGFloat = 3.5
+      let hardCodedPadding:CGFloat = 5
+      let itemWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
+      return CGSize(width: itemWidth, height: 75)
     }
   }
   
