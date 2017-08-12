@@ -27,11 +27,11 @@ class EmojiCell: UICollectionViewCell {
     }
   }
   
-  override var isSelected: Bool {
-    willSet {
-      self.selectedBackgroundView?.backgroundColor = isSelected ? UIColor.black : UIColor.white
-    }
-  }
+//  override var isSelected: Bool {
+//    willSet {
+//      self.imageView?.backgroundColor = isSelected ? UIColor.black : UIColor.white
+//    }
+//  }
   
   override func awakeFromNib() {
     super.awakeFromNib()

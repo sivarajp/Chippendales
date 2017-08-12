@@ -186,7 +186,7 @@ extension UIImage {
     for i in 0..<count {
       frame = UIImage(cgImage: images[Int(i)])
       
-      frame = scaleImageDown(frame, scale: 0.20)
+      frame = scaleImageDown(frame, scale: 0.5)
       
       frameCount = Int(delays[Int(i)] / gcd)
       

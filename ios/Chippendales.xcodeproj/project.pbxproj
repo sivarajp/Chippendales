@@ -38,6 +38,7 @@
 		5001F47360DC489A8477804D /* VisbyCF-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBCADE7813C8456FB601E5FF /* VisbyCF-Bold.otf */; };
 		5595DC2A1EF7522000B3AC92 /* EmojiGifExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5595DC291EF7522000B3AC92 /* EmojiGifExt.swift */; };
 		5595DC641EF772C000B3AC92 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 5595DC631EF772C000B3AC92 /* images */; };
+		55A43AA31F3A987A00571EBA /* EmojiCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A43AA21F3A987A00571EBA /* EmojiCollectionViewFlowLayout.swift */; };
 		55C48F4D1EF37FD600A1EED9 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C48F4C1EF37FD600A1EED9 /* KeyboardViewController.swift */; };
 		55C48F511EF37FD600A1EED9 /* Chippmoji.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 55C48F4A1EF37FD600A1EED9 /* Chippmoji.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		55C48F711EF3800600A1EED9 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C48F701EF3800600A1EED9 /* KeyboardView.swift */; };
@@ -314,6 +315,7 @@
 		4FDF5E87623048E198441960 /* libRNShare.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNShare.a; sourceTree = "<group>"; };
 		5595DC291EF7522000B3AC92 /* EmojiGifExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiGifExt.swift; sourceTree = "<group>"; };
 		5595DC631EF772C000B3AC92 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		55A43AA21F3A987A00571EBA /* EmojiCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		55C48F4A1EF37FD600A1EED9 /* Chippmoji.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Chippmoji.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C48F4C1EF37FD600A1EED9 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		55C48F4E1EF37FD600A1EED9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -552,6 +554,7 @@
 				55C48F7E1EF393DD00A1EED9 /* Toast.swift */,
 				5595DC291EF7522000B3AC92 /* EmojiGifExt.swift */,
 				55E084C71F20838E00D2F3F2 /* EmojiCell.xib */,
+				55A43AA21F3A987A00571EBA /* EmojiCollectionViewFlowLayout.swift */,
 			);
 			path = Chippmoji;
 			sourceTree = "<group>";
@@ -1152,6 +1155,7 @@
 			files = (
 				55C48F4D1EF37FD600A1EED9 /* KeyboardViewController.swift in Sources */,
 				5595DC2A1EF7522000B3AC92 /* EmojiGifExt.swift in Sources */,
+				55A43AA31F3A987A00571EBA /* EmojiCollectionViewFlowLayout.swift in Sources */,
 				55C48F711EF3800600A1EED9 /* KeyboardView.swift in Sources */,
 				55C48F7F1EF393DD00A1EED9 /* Toast.swift in Sources */,
 				55C48F7D1EF3914E00A1EED9 /* EmojiCell.swift in Sources */,
@@ -1528,6 +1532,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = HG4DX5SBU2;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1575,6 +1580,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = HG4DX5SBU2;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
