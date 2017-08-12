@@ -318,16 +318,9 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     if imageDir == "images/dancers" {
-      let itemsPerRow:CGFloat = 2.5
-      let hardCodedPadding:CGFloat = 5
-      let itemWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
-      return CGSize(width: itemWidth, height: 125)
-      //return CGSize(width: 125, height: 125)
+      return CGSize(width: 125, height: 125)
     } else {
-      let itemsPerRow:CGFloat = 3.5
-      let hardCodedPadding:CGFloat = 5
-      let itemWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
-      return CGSize(width: itemWidth, height: 75)
+      return CGSize(width: 90, height: 75)
     }
   }
   
