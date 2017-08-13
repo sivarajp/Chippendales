@@ -96,7 +96,8 @@ const styles = {
     position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 10
+    paddingBottom: 10,
+    paddingTop: 10
   }
 };
 
