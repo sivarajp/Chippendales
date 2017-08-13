@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import { View, TouchableOpacity, ListView } from 'react-native';
 import ResponsiveImage from 'react-native-responsive-image';
 import Share from 'react-native-share';
-import { listofImages } from './SpeechBubblesConst';
 
-class SpeechBubbles extends Component {
+class EmojiListView extends Component {
 
   constructor(props) {
     super(props);
     const dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.guid !== r2.guid });
     this.state = {
-      dataSource: dataSource.cloneWithRows(listofImages)
+      dataSource: dataSource.cloneWithRows(this.props.emojis)
     };
   }
 
@@ -67,4 +66,4 @@ const styles = {
     }
 };
 
-export { SpeechBubbles };
+export { EmojiListView };

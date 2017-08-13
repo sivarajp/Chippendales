@@ -7,7 +7,10 @@ import {
 import { Actions } from 'react-native-router-flux';
 import ResponsiveImage from 'react-native-responsive-image';
 import Swiper from './swipe/';
-import { SpeechBubbles, EmojiObjects, Dancer } from './';
+import { EmojiListView } from './';
+import { speechconst } from './SpeechBubblesConst';
+import { dancerconst } from './DancerConst';
+import { lipsconst } from './LipsConst';
 
 class SliderScreens extends Component {
  constructor(props) {
@@ -43,14 +46,14 @@ class SliderScreens extends Component {
           source={{ uri: 'rightarrows' }} initWidth="35" initHeight="35"
       />}
       >
-            <View style={styles.slide2}>
-                 <Dancer />
+            <View style={styles.slide}>
+                 <EmojiListView emojis={dancerconst} />
             </View>
-            <View style={styles.slide3}>
-                 <EmojiObjects />
+            <View style={styles.slide}>
+                 <EmojiListView emojis={lipsconst} />
             </View>
-            <View style={styles.slide3}>
-                 <SpeechBubbles />
+            <View style={styles.slide}>
+                 <EmojiListView emojis={speechconst} />
             </View>
       </Swiper>
     </View>
@@ -67,19 +70,7 @@ const styles = {
   wrapper: {
     flex: 1
   },
-  slide1: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF'
-  },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF'
-  },
-  slide3: {
+  slide: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
