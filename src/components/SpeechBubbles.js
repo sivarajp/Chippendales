@@ -62,7 +62,8 @@ const styles = {
     },
     item: {
         marginLeft: 1,
-        marginRight: 1
+        marginRight: 1,
+        paddingBottom: 10
     }
 };
 

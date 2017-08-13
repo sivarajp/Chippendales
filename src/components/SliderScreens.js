@@ -37,14 +37,11 @@ class SliderScreens extends Component {
       </View>
 
       <Swiper
-      style={styles.wrapper} horizontal showsButtons showsPagination index={zindex}
-      buttonWrapperStyle={styles.buttonWrapperStyle}
-      loadMinimal
-      loadMinimalSize={2}
-      nextButton={<ResponsiveImage
+       horizontal showsButtons showsPagination index={zindex} bounces={false}
+       buttonWrapperStyle={styles.buttonWrapperStyle}
+       nextButton={<ResponsiveImage
           source={{ uri: 'rightarrows' }} initWidth="35" initHeight="35"
       />}
-      paginationStyle={{ alignItems: 'flex-end' }}
       >
             <View style={styles.slide2}>
                  <Dancer />
@@ -95,7 +92,6 @@ const styles = {
     fontWeight: 'bold'
   },
   buttonWrapperStyle: {
-    flex: 0.5,
     backgroundColor: 'transparent',
     position: 'relative',
     justifyContent: 'center',
