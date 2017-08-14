@@ -31,6 +31,11 @@ struct EmojiDefs {
     return nil
   }
   
+  static let emojilinks = ["Tourticket": "http://www.chippendales.com/touring-show" ,
+                      "Treat" : "https://boutique.chippendales.com",
+                      "Vegas" : "http://www.chippendales.com/tickets"
+                      ]
+
   static let speechImages: [String] = listFilesFromDocumentsFolder(folderPath: "images/speeches")!
   
   static let danceImages: [String] = listFilesFromDocumentsFolder(folderPath: "images/dancers")!

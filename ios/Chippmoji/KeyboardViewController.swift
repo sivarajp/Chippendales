@@ -267,25 +267,28 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let imageName = currentImages[indexPath.row + indexPath.section]
     var uiimage : UIImage!
+    let firstName = imageName.components(separatedBy: ".").first
     if imageName.components(separatedBy: ".").last == "gif" {
-      if let filePath = Bundle.main.path(forResource: imageName.components(separatedBy: ".").first, ofType: "gif", inDirectory: imageDir) {
+      if let filePath = Bundle.main.path(forResource: firstName, ofType: "gif", inDirectory: imageDir) {
         let gifData = try? Data(contentsOf: URL(fileURLWithPath: filePath))
-        //UIPasteboard.general.setData(gifData!, forPasteboardType: "com.compuserve.gif")
-        //UIPasteboard.general.items = ([[kUTTypeGIF as String : gifData!], [kUTTypeURL as String : url]])
-        UIPasteboard.general.items = [[kUTTypeGIF as String : gifData!]]
+        if let url = EmojiDefs.emojilinks[firstName!] {
+          UIPasteboard.general.items = ([[kUTTypeGIF as String : gifData!], [kUTTypeURL as String : URL(string: url)!]])
+        } else {
+          UIPasteboard.general.items = [[kUTTypeGIF as String : gifData!]]
+        }
         self.toastView.makeToast("Chippmoji gif copied. Now paste it!")
       }
     } else {
-      if let filePath = Bundle.main.path(forResource: imageName.components(separatedBy: ".").first, ofType: "png", inDirectory: imageDir) {
+      if let filePath = Bundle.main.path(forResource: firstName, ofType: "png", inDirectory: imageDir) {
         uiimage = UIImage(contentsOfFile: filePath)!
-        //UIPasteboard.general.image = scaleImageDown(uiimage, scale: 0.5)
-//         UIPasteboard.general.items = [[kUTTypePNG as String : scaleImageDown(uiimage, scale: 0.5)], [kUTTypeURL as String : url]]
-         UIPasteboard.general.items = [[kUTTypePNG as String : scaleImageDown(uiimage, scale: 0.7)]]
+        if let url = EmojiDefs.emojilinks[firstName!] {
+          UIPasteboard.general.items = [[kUTTypePNG as String : scaleImageDown(uiimage, scale: 0.5)], [kUTTypeURL as String : URL(string: url)!]]
+        } else {
+          UIPasteboard.general.items = [[kUTTypePNG as String : scaleImageDown(uiimage, scale: 0.7)]]
+        }
         self.toastView.makeToast("Chippmoji copied. Now paste it!")
       }
     }
-    
-    
   }
   
   func scaleImageDown(_ image: UIImage, scale: CGFloat) -> UIImage {
@@ -316,7 +319,20 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     return image!
   }
   
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {    
+//    if imageDir == "images/dancers" {
+//      let itemsPerRow:CGFloat = 2.5
+//      let hardCodedPadding:CGFloat = 5
+//      let itemWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
+//      return CGSize(width: itemWidth, height: 125)
+//      //return CGSize(width: 125, height: 125)
+//    } else {
+//      let itemsPerRow:CGFloat = 3.5
+//      let hardCodedPadding:CGFloat = 5
+//      let itemWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
+//      return CGSize(width: itemWidth, height: 75)
+//    }
+    
     if imageDir == "images/dancers" {
       return CGSize(width: 125, height: 125)
     } else {
