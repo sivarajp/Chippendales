@@ -25,12 +25,16 @@ struct EmojiDefs {
   
   static func loadGif(name: String, imageDir: String) -> UIImage? {
     if let localGifURL = Bundle.main.url(forResource: name.components(separatedBy: ".").first, withExtension: "gif", subdirectory: imageDir){
-      print ("Inside before Gif image")
       return UIImage.gif(url: localGifURL)
     }
     return nil
   }
   
+  static let emojilinks = ["116_Tourticket": "http://www.chippendales.com/touring-show" ,
+                      "106_Treat" : "https://boutique.chippendales.com",
+                      "101_Vegas" : "http://www.chippendales.com/tickets"
+                      ]
+
   static let speechImages: [String] = listFilesFromDocumentsFolder(folderPath: "images/speeches")!
   
   static let danceImages: [String] = listFilesFromDocumentsFolder(folderPath: "images/dancers")!

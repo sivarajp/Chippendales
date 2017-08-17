@@ -132,6 +132,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-fs')
     compile project(':rn-splash-screen')
     compile project(':react-native-share')
     compile fileTree(dir: "libs", include: ["*.jar"])

@@ -3,9 +3,7 @@ export * from './CardSection';
 export * from './Button';
 export * from './Legal';
 export * from './HomeScreen';
-export * from './SpeechBubbles';
 export * from './SliderScreens';
 export * from './Howto';
-export * from './EmojiObjects';
-export * from './Dancer';
+export * from './EmojiListView'
 export * from './RouterComponent';

@@ -10,10 +10,10 @@ class RouterComponent extends Component {
         <Scene key="root">
           <Scene
               key="HomeScreen" component={HomeScreen}
-              initial hideNavBar type={ActionConst.RESET}
+                initial hideNavBar type={ActionConst.RESET}
           />
           <Scene key="Howto" component={Howto} />
-          <Scene key="SliderScreens" component={SliderScreens} />
+          <Scene key="SliderScreens" component={SliderScreens}  hideNavBar/>
           <Scene key="Legal" component={Legal} />
         </Scene>
       </Router>

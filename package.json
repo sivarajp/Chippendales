@@ -10,6 +10,7 @@
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.0",
     "react-native-button": "^1.8.2",
+    "react-native-fs": "^2.5.1",
     "react-native-responsive-image": "^2.1.0",
     "react-native-router-flux": "^3.39.1",
     "react-native-share": "^1.0.20",

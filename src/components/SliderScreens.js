@@ -7,7 +7,10 @@ import {
 import { Actions } from 'react-native-router-flux';
 import ResponsiveImage from 'react-native-responsive-image';
 import Swiper from './swipe/';
-import { SpeechBubbles, EmojiObjects, Dancer } from './';
+import { EmojiListView } from './';
+import { speechconst } from './SpeechBubblesConst';
+import { dancerconst } from './DancerConst';
+import { lipsconst } from './LipsConst';
 
 class SliderScreens extends Component {
  constructor(props) {
@@ -37,23 +40,20 @@ class SliderScreens extends Component {
       </View>
 
       <Swiper
-      style={styles.wrapper} horizontal showsButtons showsPagination index={zindex}
-      buttonWrapperStyle={styles.buttonWrapperStyle}
-      loadMinimal
-      loadMinimalSize={2}
-      nextButton={<ResponsiveImage
+       horizontal showsButtons showsPagination index={zindex} bounces={false}
+       buttonWrapperStyle={styles.buttonWrapperStyle}
+       nextButton={<ResponsiveImage
           source={{ uri: 'rightarrows' }} initWidth="35" initHeight="35"
       />}
-      paginationStyle={{ alignItems: 'flex-end' }}
       >
-            <View style={styles.slide2}>
-                 <Dancer />
+            <View style={styles.slide}>
+                 <EmojiListView emojis={dancerconst} />
             </View>
-            <View style={styles.slide3}>
-                 <EmojiObjects />
+            <View style={styles.slide}>
+                 <EmojiListView emojis={lipsconst} />
             </View>
-            <View style={styles.slide3}>
-                 <SpeechBubbles />
+            <View style={styles.slide}>
+                 <EmojiListView emojis={speechconst} />
             </View>
       </Swiper>
     </View>
@@ -70,19 +70,7 @@ const styles = {
   wrapper: {
     flex: 1
   },
-  slide1: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF'
-  },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF'
-  },
-  slide3: {
+  slide: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -95,12 +83,12 @@ const styles = {
     fontWeight: 'bold'
   },
   buttonWrapperStyle: {
-    flex: 0.5,
     backgroundColor: 'transparent',
     position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 10
+    paddingBottom: 10,
+    paddingTop: 10
   }
 };
 
