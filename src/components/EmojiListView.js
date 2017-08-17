@@ -17,6 +17,7 @@ class EmojiListView extends Component {
       return new Promise((resolve, reject) => {
         let startIndex = (page - 1) * 20
         let endIndex = startIndex + 20
+        console.log("onfetch")
         if (startIndex < this.state.emojis.length) {
           if (endIndex > this.state.emojis.length) {
             resolve(this.state.emojis.slice(startIndex, this.state.emojis.length))
@@ -39,8 +40,8 @@ class EmojiListView extends Component {
 
   renderRow(rowData) {
     return (
-        <TouchableOpacity onPress={() => { this.shareImage(rowData.encodedImage); }}>
-          <View style={styles.item}>
+        <TouchableOpacity key={rowData.img} onPress={() => { this.shareImage(rowData.encodedImage); }}>
+          <View key={rowData.img} style={styles.item}>
             <ResponsiveImage
              source={{ uri: rowData.encodedImage }} initWidth="100" initHeight="100"
             />
@@ -58,6 +59,7 @@ class EmojiListView extends Component {
             initialListSize={20}
             onFetch={this.onFetch}
             contentContainerStyle={styles.list}
+            removeClippedSubviews
          />
        </View>
     );
