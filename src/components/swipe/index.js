@@ -13,7 +13,7 @@ import {
   ViewPagerAndroid,
   Platform,
   ActivityIndicator,
-  StyleSheet
+  StyleSheet,
 } from 'react-native'
 import ResponsiveImage from 'react-native-responsive-image';
 
@@ -29,7 +29,11 @@ const styles = {
     paddingTop: 0,
     backgroundColor: 'transparent',
     position: 'relative',
-    height: height - 225,
+    ...Platform.select({
+      ios: {
+        height: height - 225,
+      }
+    })
   },
 
   wrapperIOS: {
@@ -40,10 +44,12 @@ const styles = {
   },
 
   wrapperAndroid: {
+    paddingTop: 0,
+    flex: 0,
+    position: 'relative',
     backgroundColor: 'transparent',
-    flex: 1
+    height: height - 275
   },
-
   slide: {
     backgroundColor: 'transparent',
   },
@@ -678,8 +684,8 @@ export default class extends Component {
     }
 
     return (
-      <View style={[styles.container, StyleSheet.relativeFill]} onLayout={this.onLayout}>
 
+      <View style={[styles.container, StyleSheet.relativeFill]} onLayout={this.onLayout}>
         {showsPagination && (renderPagination
         ? renderPagination(index, total, this)
         : this.renderPagination())}
