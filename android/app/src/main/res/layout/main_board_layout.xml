@@ -14,26 +14,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <ViewFlipper
-        android:id="@+id/keyboard_viewFlipper"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:padding="2dp"
-        >
 
-        <include
-            android:id="@+id/lips"
-            layout="@layout/speech_board"/>
+        <ViewFlipper
+            android:id="@+id/keyboard_viewFlipper"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_weight="1"
+            android:padding="2dp"
+            android:layout_gravity="center_horizontal"
+            >
 
-        <include
-            android:id="@+id/speech"
-            layout="@layout/speech_board"/>
+            <include
+                android:id="@+id/lips"
+                layout="@layout/speech_board"/>
 
-        <include
-            android:id="@+id/dance"
-            layout="@layout/speech_board"/>
-    </ViewFlipper>
+            <include
+                android:id="@+id/speech"
+                layout="@layout/speech_board"/>
+
+            <include
+                android:id="@+id/dance"
+                layout="@layout/speech_board"/>
+        </ViewFlipper>
 
 
     <LinearLayout
@@ -72,6 +74,22 @@
                 />
 
             <RadioButton
+                android:id="@+id/radio3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/dancer_picker"
+                android:button="@null"
+                android:tag="3"
+                android:checked="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:scaleType="fitCenter"/>
+
+            <RadioButton
                 android:id="@+id/radio1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -80,7 +98,7 @@
                 android:background="@drawable/lipsicon_picker"
                 android:button="@null"
                 android:tag="1"
-                android:checked="true"
+                android:checked="false"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="20dp"
@@ -102,21 +120,6 @@
                 android:layout_marginRight="20dp"
                 android:scaleType="fitCenter"/>
 
-            <RadioButton
-                android:id="@+id/radio3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:background="@drawable/dancer_picker"
-                android:button="@null"
-                android:tag="3"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:scaleType="fitCenter"/>
-
             <ImageButton
                 android:id="@+id/radio4"
                 android:layout_width="0dp"
@@ -124,6 +127,21 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:src="@drawable/send_picker"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:scaleType="fitCenter"
+                />
+
+            <ImageButton
+                android:id="@+id/radio5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/delete_picker"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
