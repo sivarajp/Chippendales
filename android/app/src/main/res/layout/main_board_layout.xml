@@ -74,7 +74,7 @@
                 />
 
             <RadioButton
-                android:id="@+id/radio3"
+                android:id="@+id/radio1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -90,7 +90,7 @@
                 android:scaleType="fitCenter"/>
 
             <RadioButton
-                android:id="@+id/radio1"
+                android:id="@+id/radio2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -106,7 +106,7 @@
                 android:scaleType="fitCenter"/>
 
             <RadioButton
-                android:id="@+id/radio2"
+                android:id="@+id/radio3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"

@@ -56,7 +56,7 @@ public class Stickers {
 
         String packList[]=new String[0];
         final String PACK_LIB="pack/";
-        final String[] emojiList= new String[] {"lips", "speechbubbles", "dancers"};
+        final String[] emojiList= new String[] { "dancers", "lips", "speechbubbles",};
         for(String emojiName : emojiList) {
             String curAssets = "";
             try {

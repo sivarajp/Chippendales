@@ -27,7 +27,7 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerHolder> {
     public StickerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         parent.invalidate();
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item, parent, false);
-        if (keyboardService.selectedTab == 2) {
+        if (keyboardService.selectedTab == 0) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dancer_recycler_item, parent, false);
         }
         return new StickerHolder(view);
@@ -50,10 +50,6 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerHolder> {
         });
     }
 
-//    @Override
-//    public void onViewDetachedFromWindow(StickerHolder holder) {
-//        super.onViewDetachedFromWindow(holder);
-//    }
 
     @Override
     public int getItemCount() {

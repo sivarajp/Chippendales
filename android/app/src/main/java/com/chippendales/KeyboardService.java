@@ -86,7 +86,8 @@ public class KeyboardService extends InputMethodService {
     private EditorInfo editorInfo;
     private ViewFlipper keyboardViewFlipper;
     private Button lips, speech, dance;
-    public int selectedTab = 2;
+    private HorizontalScrollView scrollView;
+    public int selectedTab = 0;
     Map<String, String> UrlMap = new HashMap<String, String>()
     {{
         put("116_Tourticket" , "http://www.chippendales.com/touring-show");
@@ -165,8 +166,9 @@ public class KeyboardService extends InputMethodService {
     public View onCreateInputView() {
 
         mainBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.main_board_layout, null);
+        keyboardViewFlipper = (ViewFlipper) mainBoard.findViewById(R.id.keyboard_viewFlipper);
         speechBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.speech_board, null, false);
-        final HorizontalScrollView scrollView = (HorizontalScrollView) speechBoard.findViewById(R.id.speech_board_scroll);
+        scrollView = (HorizontalScrollView) speechBoard.findViewById(R.id.speech_board_scroll);
         stickerView = (RecyclerView) getLayoutInflater().inflate(R.layout.recycler_view, null);
         stickerView.addItemDecoration(new MarginDecoration(returnThis()));
         stickerView.setHasFixedSize(false);
@@ -183,58 +185,34 @@ public class KeyboardService extends InputMethodService {
             }
         });
 
-        keyboardViewFlipper = (ViewFlipper) mainBoard.findViewById(R.id.keyboard_viewFlipper);
-        keyboardViewFlipper.removeView(speechBoard);
-        showStickers(selectedTab);
-        keyboardViewFlipper.addView(speechBoard, selectedTab);
-        keyboardViewFlipper.setDisplayedChild(selectedTab);
+        createEmojiDisplayLayout(0, 1);
 
-        lips = (Button) mainBoard.findViewById(R.id.radio1);
-        lips.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scrollView.scrollTo(0,0);
-                selectedTab = 0;
-                keyboardViewFlipper.removeView(speechBoard);
-                showStickers(0);
-                keyboardViewFlipper.addView(speechBoard, 0);
-                final GridLayoutManager gridLayoutManager = new GridLayoutManager(returnThis(), 2, LinearLayoutManager.HORIZONTAL, false);
-                gridLayoutManager.scrollToPositionWithOffset(0, 0);
-                stickerView.setLayoutManager(gridLayoutManager);
-                keyboardViewFlipper.setDisplayedChild(0);
-            }
-
-        });
-        speech = (Button) mainBoard.findViewById(R.id.radio2);
-        speech.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scrollView.scrollTo(0,0);
-                selectedTab = 1;
-                keyboardViewFlipper.removeView(speechBoard);
-                showStickers(1);
-                keyboardViewFlipper.addView(speechBoard, 1);
-                final GridLayoutManager gridLayoutManager = new GridLayoutManager(returnThis(), 2, LinearLayoutManager.HORIZONTAL, false);
-                stickerView.setLayoutManager(gridLayoutManager);
-                keyboardViewFlipper.setDisplayedChild(1);
-            }
-
-        });
-
-        dance = (Button) mainBoard.findViewById(R.id.radio3);
+        dance = (Button) mainBoard.findViewById(R.id.radio1);
         dance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scrollView.scrollTo(0,0);
-                selectedTab = 2;
-                keyboardViewFlipper.removeView(speechBoard);
-                showStickers(2);
-                keyboardViewFlipper.addView(speechBoard, 2);
-                final GridLayoutManager gridLayoutManager = new GridLayoutManager(returnThis(), 1, LinearLayoutManager.HORIZONTAL, false);
-                stickerView.setLayoutManager(gridLayoutManager);
-                keyboardViewFlipper.setDisplayedChild(2);
+                createEmojiDisplayLayout(0, 1);
             }
         });
+
+        lips = (Button) mainBoard.findViewById(R.id.radio2);
+        lips.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createEmojiDisplayLayout(1, 2);
+            }
+
+        });
+        speech = (Button) mainBoard.findViewById(R.id.radio3);
+        speech.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createEmojiDisplayLayout(2, 2);
+            }
+
+        });
+
+
 
         final ImageButton shareLink = (ImageButton) mainBoard.findViewById(R.id.radio4);
         shareLink.setOnClickListener(new View.OnClickListener() {
@@ -259,6 +237,18 @@ public class KeyboardService extends InputMethodService {
 
         return mainBoard;
     }
+
+    private void createEmojiDisplayLayout(int selectedTab, int GridColumns) {
+        this.selectedTab = selectedTab;
+        scrollView.scrollTo(0,0);
+        keyboardViewFlipper.removeView(speechBoard);
+        showStickers(selectedTab);
+        keyboardViewFlipper.addView(speechBoard, selectedTab);
+        final GridLayoutManager gridLayoutManager = new GridLayoutManager(returnThis(), GridColumns, LinearLayoutManager.HORIZONTAL, false);
+        stickerView.setLayoutManager(gridLayoutManager);
+        keyboardViewFlipper.setDisplayedChild(selectedTab);
+    }
+
 
     public void inputContent(@NonNull StickerData stickerData, int position) {
         final int flag;
