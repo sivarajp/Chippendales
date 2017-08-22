@@ -15,6 +15,7 @@ public class StickerData {
     public String url;
     public long packId;
     public String packName;
+    public String imageName;
 
     @Override
     public String toString() {
@@ -27,6 +28,7 @@ public class StickerData {
                 ", url='" + url + '\'' +
                 ", packId=" + packId +
                 ", packName='" + packName + '\'' +
+                ", imageName='" + imageName + '\'' +
                 '}';
     }
 }

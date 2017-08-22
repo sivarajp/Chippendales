@@ -1,9 +1,6 @@
 package com.chippendales.stickers;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +25,7 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerHolder> {
 
     @Override
     public StickerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        parent.invalidate();
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item, parent, false);
         if (keyboardService.selectedTab == 2) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dancer_recycler_item, parent, false);
@@ -38,16 +36,8 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerHolder> {
     @Override
     public void onBindViewHolder(final StickerHolder holder, final int position) {
         final StickerData sticker = stickerDataList.get(position);
-
         try {
-            Bitmap ico = BitmapFactory.decodeFile(sticker.iconKey.getPath());
-            if (sticker.mime.equals("image/gif")) {
-                Log.e("Gif file name", sticker.iconKey.getPath());
-                Glide.with(keyboardService.getBaseContext()).load(sticker.iconKey.getPath()).into(holder.imageView);
-            } else {
-                holder.imageView.setImageBitmap(ico);
-            }
-
+            Glide.with(keyboardService.getBaseContext()).load(sticker.iconKey.getPath()).thumbnail( 0.5f ).into(holder.imageView);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,6 +49,11 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerHolder> {
             }
         });
     }
+
+//    @Override
+//    public void onViewDetachedFromWindow(StickerHolder holder) {
+//        super.onViewDetachedFromWindow(holder);
+//    }
 
     @Override
     public int getItemCount() {
