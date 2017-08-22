@@ -291,7 +291,6 @@ public class KeyboardService extends InputMethodService {
                 Toast.makeText(this, "Application does not support stickers", Toast.LENGTH_SHORT).show();
             }
         }
-        //getStickers(selectedTab);
     }
 
     private ActivityInfo getAppForShare(StickerData stickerData) {

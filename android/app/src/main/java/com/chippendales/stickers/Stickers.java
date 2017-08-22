@@ -22,9 +22,7 @@ public class Stickers {
     private static final String TAG = "Stickers";
     private static final String SAVE_VERSION = "SAVE_VERSION";
     public List<PackData> packDataListDefault = new ArrayList<>();
-
     private SharedPreferences sharedPreferences;
-    private long lastDownload = 0;
     private Context lContext;
 
     public Stickers(Context context) {
@@ -137,7 +135,6 @@ public class Stickers {
     }
 
     private void checkVersion(Boolean del) {
-        //BuildConfig.VERSION_CODE;
         int saveVersion = sharedPreferences.getInt(SAVE_VERSION, 0);
         Log.i(TAG, "Check version: old: "+saveVersion+" current: "+BuildConfig.VERSION_CODE);
         if ((saveVersion != BuildConfig.VERSION_CODE) || del) {
