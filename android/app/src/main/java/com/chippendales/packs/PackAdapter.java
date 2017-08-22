@@ -31,12 +31,12 @@ public class PackAdapter extends RecyclerView.Adapter<PackHolder> {
     @Override
     public void onBindViewHolder(final PackHolder holder, final int position) {
         final PackData pack = packDataList.get(position);
-        if(pack == null) {
+/*        if(pack == null) {
             holder.progressBar.setVisibility(View.VISIBLE);
             return;
         }
 
-        holder.progressBar.setVisibility(View.GONE);
+        holder.progressBar.setVisibility(View.GONE);*/
 //        try {
 //            Bitmap bm;
 //            if (selectedTab == position){

@@ -45,6 +45,8 @@ class SliderScreens extends Component {
        nextButton={<ResponsiveImage
           source={{ uri: 'rightarrows' }} initWidth="35" initHeight="35"
       />}
+      loadMinimal
+      loadMinimalSize={1}
       >
             <View style={styles.slide}>
                  <EmojiListView emojis={dancerconst} />

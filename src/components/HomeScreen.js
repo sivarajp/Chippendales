@@ -11,7 +11,7 @@ class HomeScreen extends Component {
   componentDidMount() {
     SplashScreen.hide();
   }
-  
+
   handleClick = (url) => {
       Linking.canOpenURL(url).then(supported => {
         if (supported) {
@@ -28,7 +28,7 @@ class HomeScreen extends Component {
     const { containerStyle, imageStyle, howtoButtonStyle, howtoButtontextStyle,
             viewEmojiButtonStyle, viewEmojiButtontextStyle,
             footerStyle, companyStyle, companyNameStyle,
-            legalContainerStyle, legalTextStyle, supportTextStyle } = styles;
+            legalContainerStyle, textStyle } = styles;
     let companyName = COMPANY_NAME;
     let legalText = LEGAL;
     let legalSupport = SUPPORT;
@@ -74,11 +74,11 @@ class HomeScreen extends Component {
           <View style={legalContainerStyle}>
              <TouchableWithoutFeedback onPress={() => Actions.Legal()}>
              <View>
-              <Text style={legalTextStyle}>{legalText}</Text>
+              <Text style={textStyle}>{legalText}</Text>
              </View>
              </TouchableWithoutFeedback>
-             <Text>|</Text>
-             <Text style={supportTextStyle}>{legalSupport}</Text>
+             <Text style={textStyle}>|</Text>
+             <Text style={textStyle}>{legalSupport}</Text>
           </View>
         </View>
       </View>
@@ -139,15 +139,11 @@ const styles = {
     paddingLeft: 50,
     flexDirection: 'row'
   },
-  legalTextStyle: {
+  textStyle: {
     letterSpacing: 2,
     paddingRight: 10,
-    fontFamily: 'CircularStd-Book'
-  },
-  supportTextStyle: {
-    letterSpacing: 2,
-    paddingLeft: 10,
-    fontFamily: 'CircularStd-Book'
+    fontFamily: 'CircularStd-Book',
+    color: '#000000'
   },
   footerStyle: {
     height: 75,
