@@ -7,7 +7,7 @@ import { Actions } from 'react-native-router-flux';
 const listOfInstructions = [
   '1. Go to Settings.',
   '2. General > Keyboard > Keyboards.',
-  '3. Select Add New Keybaord.',
+  '3. Select Add New Keyboard.',
   '4. Choose Chippmoji.',
   '5. Chippmoji > Allow Full Access.'
 ];
