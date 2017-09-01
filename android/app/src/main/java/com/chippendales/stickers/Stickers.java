@@ -34,6 +34,7 @@ public class Stickers {
     }
 
     public static String getMimeTypeOfFile(String pathName) {
+        Log.e("BitmappathName",pathName);
         BitmapFactory.Options opt = new BitmapFactory.Options();
         opt.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(pathName, opt);
@@ -88,10 +89,13 @@ public class Stickers {
                         sd.packId = packId;
                         sd.packName = packData.name;
                         sd.file = file;
-                        sd.mime = getMimeTypeOfFile(file.getPath());
+                        final BitmapFactory.Options bitmapOptions = getBitmapOptions(file.getPath());
+                        sd.mime = bitmapOptions.outMimeType;
                         sd.iconKey = file;
                         sd.url = null;
-                        sd.imageName = img.replaceFirst("[.][^.]+$", "");;
+                        sd.imageName = img.replaceFirst("[.][^.]+$", "");
+                        sd.height = bitmapOptions.outHeight;
+                        sd.width = bitmapOptions.outWidth;
                         stickerData.add(sd);
                     }
                 }

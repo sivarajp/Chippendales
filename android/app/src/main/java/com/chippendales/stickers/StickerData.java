@@ -16,6 +16,8 @@ public class StickerData {
     public long packId;
     public String packName;
     public String imageName;
+    public int height;
+    public int width;
 
     @Override
     public String toString() {
@@ -29,6 +31,8 @@ public class StickerData {
                 ", packId=" + packId +
                 ", packName='" + packName + '\'' +
                 ", imageName='" + imageName + '\'' +
+                ", width='" + width + '\'' +
+                ", height='" + height + '\'' +
                 '}';
     }
 }
