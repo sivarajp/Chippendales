@@ -395,7 +395,7 @@ public class KeyboardService extends InputMethodService {
             return false;
         } else {
             try {
-                String imgType = Stickers.getMimeTypeOfFile(stickerData.file.getAbsolutePath());
+                String imgType = stickerData.mime;
                 String flType = imgType.substring(6);
                 File tempFile = new File(tempDir.getPath(), "sticker_" + stickerData.objectId + "." + flType);
                 final byte[] buffer = new byte[4096];
@@ -407,8 +407,7 @@ public class KeyboardService extends InputMethodService {
                     if ("com.whatsapp".equals(ai.packageName)) {
                         tempFile = new File(tempDir.getPath(), "sticker_" + stickerData.objectId + ".jpg");
                         dataWriter = new FileOutputStream(tempFile);
-                        BitmapFactory.Options options = Stickers.getBitmapOptions(stickerData.file.getAbsolutePath());
-                        Bitmap bitmap = Bitmap.createBitmap(options.outWidth, options.outHeight, Bitmap.Config.ARGB_8888);
+                        Bitmap bitmap = Bitmap.createBitmap(stickerData.width, stickerData.height, Bitmap.Config.ARGB_8888);
                         bitmap.eraseColor(Color.WHITE);
                         Canvas canvas = new Canvas(bitmap);
                         canvas.drawBitmap(BitmapFactory.decodeFile(stickerData.file.getAbsolutePath()), 0, 0, null);
