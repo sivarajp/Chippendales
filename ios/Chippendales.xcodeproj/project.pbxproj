@@ -36,6 +36,8 @@
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* ChippendalesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ChippendalesTests.m */; };
 		5001F47360DC489A8477804D /* VisbyCF-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBCADE7813C8456FB601E5FF /* VisbyCF-Bold.otf */; };
+		5557776C1F7B371E00284C4D /* Stickers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5557776B1F7B371E00284C4D /* Stickers.xcassets */; };
+		555777701F7B371E00284C4D /* Chippmojistickers.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 555777691F7B371E00284C4D /* Chippmojistickers.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5595DC2A1EF7522000B3AC92 /* EmojiGifExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5595DC291EF7522000B3AC92 /* EmojiGifExt.swift */; };
 		5595DC641EF772C000B3AC92 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 5595DC631EF772C000B3AC92 /* images */; };
 		55A43AA31F3A987A00571EBA /* EmojiCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A43AA21F3A987A00571EBA /* EmojiCollectionViewFlowLayout.swift */; };
@@ -47,7 +49,6 @@
 		55C48F7B1EF38EC700A1EED9 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55C48F7A1EF38EC700A1EED9 /* images.xcassets */; };
 		55C48F7D1EF3914E00A1EED9 /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C48F7C1EF3914E00A1EED9 /* EmojiCell.swift */; };
 		55C48F7F1EF393DD00A1EED9 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C48F7E1EF393DD00A1EED9 /* Toast.swift */; };
-		55DCDF3E1F412ED4009CECD8 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 55DCDF3D1F412ED4009CECD8 /* images */; };
 		55E084C81F20838E00D2F3F2 /* EmojiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E084C71F20838E00D2F3F2 /* EmojiCell.xib */; };
 		5D19AFCF6C5E45F8B6DCCC04 /* CircularStd-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = BBF055B091D645C5B552667E /* CircularStd-Black.otf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
@@ -239,6 +240,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNShare;
 		};
+		5557776E1F7B371E00284C4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 555777681F7B371E00284C4D;
+			remoteInfo = Chippmojistickers;
+		};
 		55C48F4F1EF37FD600A1EED9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
@@ -297,6 +305,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				555777701F7B371E00284C4D /* Chippmojistickers.appex in Embed App Extensions */,
 				55C48F511EF37FD600A1EED9 /* Chippmoji.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -329,6 +338,9 @@
 		38D7DD0417AC47A48740F03C /* VisbyCF-DemiBoldOblique.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "VisbyCF-DemiBoldOblique.otf"; path = "../src/assets/fonts/VisbyCF-DemiBoldOblique.otf"; sourceTree = "<group>"; };
 		451D20AE4B414D24BF57B479 /* CircularStd-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Bold.otf"; path = "../src/assets/fonts/CircularStd-Bold.otf"; sourceTree = "<group>"; };
 		4FDF5E87623048E198441960 /* libRNShare.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNShare.a; sourceTree = "<group>"; };
+		555777691F7B371E00284C4D /* Chippmojistickers.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Chippmojistickers.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5557776B1F7B371E00284C4D /* Stickers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Stickers.xcassets; sourceTree = "<group>"; };
+		5557776D1F7B371E00284C4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5595DC291EF7522000B3AC92 /* EmojiGifExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiGifExt.swift; sourceTree = "<group>"; };
 		5595DC631EF772C000B3AC92 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		55A43AA21F3A987A00571EBA /* EmojiCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -341,7 +353,6 @@
 		55C48F7A1EF38EC700A1EED9 /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
 		55C48F7C1EF3914E00A1EED9 /* EmojiCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
 		55C48F7E1EF393DD00A1EED9 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
-		55DCDF3D1F412ED4009CECD8 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		55E084C71F20838E00D2F3F2 /* EmojiCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmojiCell.xib; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -505,7 +516,6 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				55DCDF3D1F412ED4009CECD8 /* images */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -559,6 +569,15 @@
 				552A7D661EEF5DCA00A3F15A /* libRNShare.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5557776A1F7B371E00284C4D /* Chippmojistickers */ = {
+			isa = PBXGroup;
+			children = (
+				5557776B1F7B371E00284C4D /* Stickers.xcassets */,
+				5557776D1F7B371E00284C4D /* Info.plist */,
+			);
+			path = Chippmojistickers;
 			sourceTree = "<group>";
 		};
 		55C48F4B1EF37FD600A1EED9 /* Chippmoji */ = {
@@ -644,6 +663,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ChippendalesTests */,
 				55C48F4B1EF37FD600A1EED9 /* Chippmoji */,
+				5557776A1F7B371E00284C4D /* Chippmojistickers */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				354BC1CC2E28403782CFFD82 /* Resources */,
 			);
@@ -659,6 +679,7 @@
 				2D02E47B1E0B4A5D006451C7 /* Chippendales-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* Chippendales-tvOSTests.xctest */,
 				55C48F4A1EF37FD600A1EED9 /* Chippmoji.appex */,
+				555777691F7B371E00284C4D /* Chippmojistickers.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -698,6 +719,7 @@
 			);
 			dependencies = (
 				55C48F501EF37FD600A1EED9 /* PBXTargetDependency */,
+				5557776F1F7B371E00284C4D /* PBXTargetDependency */,
 			);
 			name = Chippendales;
 			productName = "Hello World";
@@ -739,6 +761,21 @@
 			productName = "Chippendales-tvOSTests";
 			productReference = 2D02E4901E0B4A5D006451C7 /* Chippendales-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		555777681F7B371E00284C4D /* Chippmojistickers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 555777711F7B371E00284C4D /* Build configuration list for PBXNativeTarget "Chippmojistickers" */;
+			buildPhases = (
+				555777671F7B371E00284C4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Chippmojistickers;
+			productName = Chippmojistickers;
+			productReference = 555777691F7B371E00284C4D /* Chippmojistickers.appex */;
+			productType = "com.apple.product-type.app-extension.messages-sticker-pack";
 		};
 		55C48F491EF37FD600A1EED9 /* Chippmoji */ = {
 			isa = PBXNativeTarget;
@@ -784,6 +821,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
+					};
+					555777681F7B371E00284C4D = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 6G8P5X7J68;
+						ProvisioningStyle = Automatic;
 					};
 					55C48F491EF37FD600A1EED9 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -868,6 +910,7 @@
 				2D02E47A1E0B4A5D006451C7 /* Chippendales-tvOS */,
 				2D02E48F1E0B4A5D006451C7 /* Chippendales-tvOSTests */,
 				55C48F491EF37FD600A1EED9 /* Chippmoji */,
+				555777681F7B371E00284C4D /* Chippmojistickers */,
 			);
 		};
 /* End PBXProject section */
@@ -1090,7 +1133,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55DCDF3E1F412ED4009CECD8 /* images in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				5D19AFCF6C5E45F8B6DCCC04 /* CircularStd-Black.otf in Resources */,
 				F78A9543F51A4D4FB5C17E1A /* CircularStd-Bold.otf in Resources */,
@@ -1117,6 +1159,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		555777671F7B371E00284C4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5557776C1F7B371E00284C4D /* Stickers.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1225,6 +1275,11 @@
 			isa = PBXTargetDependency;
 			target = 2D02E47A1E0B4A5D006451C7 /* Chippendales-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
+		};
+		5557776F1F7B371E00284C4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 555777681F7B371E00284C4D /* Chippmojistickers */;
+			targetProxy = 5557776E1F7B371E00284C4D /* PBXContainerItemProxy */;
 		};
 		55C48F501EF37FD600A1EED9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1512,6 +1567,41 @@
 			};
 			name = Release;
 		};
+		555777721F7B371E00284C4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 6G8P5X7J68;
+				INFOPLIST_FILE = Chippmojistickers/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				PRODUCT_BUNDLE_IDENTIFIER = org.singlewingcreative.chippmoji.Chippmojistickers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		555777731F7B371E00284C4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6G8P5X7J68;
+				INFOPLIST_FILE = Chippmojistickers/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				PRODUCT_BUNDLE_IDENTIFIER = org.singlewingcreative.chippmoji.Chippmojistickers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		55C48F521EF37FD600A1EED9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1698,6 +1788,15 @@
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
 				2D02E49A1E0B4A5E006451C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		555777711F7B371E00284C4D /* Build configuration list for PBXNativeTarget "Chippmojistickers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				555777721F7B371E00284C4D /* Debug */,
+				555777731F7B371E00284C4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
