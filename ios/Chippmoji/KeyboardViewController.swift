@@ -9,6 +9,9 @@
 import UIKit
 import QuartzCore
 import MobileCoreServices
+import Firebase
+
+
 
 
 class KeyboardViewController: UIInputViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, KeyboardActionHandler {
@@ -108,6 +111,9 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     //      self.toastView.makeToast("Keyboard has full access")
     //    }
     
+    if FirebaseApp.app() == nil {
+      FirebaseApp.configure()
+    }
   }
   
   func handleTouchPress(_ gesture: UIGestureRecognizer) {
@@ -300,6 +306,11 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
         self.toastView.makeToast("Chippmoji copied. Now paste it!")
       }
     }
+    
+    Analytics.logEvent("EmojiShare", parameters: [
+      "name": imageName as NSObject
+      ])
+    
   }
   
   func scaleImageDown(_ image: UIImage, scale: CGFloat) -> UIImage {

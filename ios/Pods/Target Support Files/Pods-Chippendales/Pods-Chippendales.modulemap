@@ -1,0 +1,6 @@
+framework module Pods_Chippendales {
+  umbrella header "Pods-Chippendales-umbrella.h"
+
+  export *
+  module * { export * }
+}
