@@ -13,7 +13,6 @@ import Firebase
 
 
 
-
 class KeyboardViewController: UIInputViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, KeyboardActionHandler {
   
   @IBOutlet weak var segmentControlOut: UISegmentedControl!
@@ -82,6 +81,9 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    if FirebaseApp.app() == nil {
+      FirebaseApp.configure()
+    }
     Bundle.main.loadNibNamed("KeyboardView", owner: self, options: nil)
     self.view.addSubview(keyboardView)
     self.keyboardView.delegate = self
@@ -111,9 +113,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     //      self.toastView.makeToast("Keyboard has full access")
     //    }
     
-    if FirebaseApp.app() == nil {
-      FirebaseApp.configure()
-    }
+    
   }
   
   func handleTouchPress(_ gesture: UIGestureRecognizer) {
@@ -175,6 +175,9 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
       toastView.backgroundColor = UIColor.clear
       toastView.isUserInteractionEnabled = false
       self.view.addSubview(toastView)
+    }
+    if FirebaseApp.app() == nil {
+      FirebaseApp.configure()
     }
   }
   

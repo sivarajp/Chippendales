@@ -25,7 +25,6 @@
 		2552019DF1444514A944384B /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDF5E87623048E198441960 /* libRNShare.a */; };
 		5001F47360DC489A8477804D /* VisbyCF-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBCADE7813C8456FB601E5FF /* VisbyCF-Bold.otf */; };
 		52B904543DC52B1C8E9A9D11 /* Pods_Chippmoji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D27E2CA1C3B9D0BED0DBBA1 /* Pods_Chippmoji.framework */; };
-		55524BF71FA6A38900FBCFCF /* GoogleService-Info_old.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55524BF61FA6A38900FBCFCF /* GoogleService-Info_old.plist */; };
 		5557776C1F7B371E00284C4D /* Stickers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5557776B1F7B371E00284C4D /* Stickers.xcassets */; };
 		555777701F7B371E00284C4D /* Chippmojistickers.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 555777691F7B371E00284C4D /* Chippmojistickers.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5595DC2A1EF7522000B3AC92 /* EmojiGifExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5595DC291EF7522000B3AC92 /* EmojiGifExt.swift */; };
@@ -326,7 +325,6 @@
 		412FB73020A1ACD65FD181B1 /* Pods-Chippmojistickers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chippmojistickers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chippmojistickers/Pods-Chippmojistickers.debug.xcconfig"; sourceTree = "<group>"; };
 		451D20AE4B414D24BF57B479 /* CircularStd-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Bold.otf"; path = "../src/assets/fonts/CircularStd-Bold.otf"; sourceTree = "<group>"; };
 		4FDF5E87623048E198441960 /* libRNShare.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNShare.a; sourceTree = "<group>"; };
-		55524BF61FA6A38900FBCFCF /* GoogleService-Info_old.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_old.plist"; sourceTree = "<group>"; };
 		555777691F7B371E00284C4D /* Chippmojistickers.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Chippmojistickers.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5557776B1F7B371E00284C4D /* Stickers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Stickers.xcassets; sourceTree = "<group>"; };
 		5557776D1F7B371E00284C4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -572,7 +570,6 @@
 			isa = PBXGroup;
 			children = (
 				55FFF2101FBD3F9A00C96E58 /* GoogleService-Info.plist */,
-				55524BF61FA6A38900FBCFCF /* GoogleService-Info_old.plist */,
 				55C48F4C1EF37FD600A1EED9 /* KeyboardViewController.swift */,
 				55C48F4E1EF37FD600A1EED9 /* Info.plist */,
 				55C48F701EF3800600A1EED9 /* KeyboardView.swift */,
@@ -1142,7 +1139,6 @@
 				5595DC641EF772C000B3AC92 /* images in Resources */,
 				55FFF2111FBD3F9A00C96E58 /* GoogleService-Info.plist in Resources */,
 				55C48F731EF3802000A1EED9 /* KeyboardView.xib in Resources */,
-				55524BF71FA6A38900FBCFCF /* GoogleService-Info_old.plist in Resources */,
 				55E084C81F20838E00D2F3F2 /* EmojiCell.xib in Resources */,
 				55C48F7B1EF38EC700A1EED9 /* images.xcassets in Resources */,
 			);
