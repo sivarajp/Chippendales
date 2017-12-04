@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Chippmoji™ - Sexy Emojis by Chippendales®</string>
+    <string name="facebook_app_id">2021330937923987</string>
+    <string name="fb_login_protocol_scheme">fb2021330937923987</string>
 </resources>
