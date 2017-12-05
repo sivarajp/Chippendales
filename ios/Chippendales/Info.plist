@@ -75,13 +75,13 @@
     <dict>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>fb2021330937923987</string>
+        <string>fb401807430171269</string>
       </array>
     </dict>
   </array>
   <key>FacebookAppID</key>
-  <string>2021330937923987</string>
+  <string>401807430171269</string>
   <key>FacebookDisplayName</key>
-  <string>Sivaraj</string>
+  <string>Chippendales</string>
 </dict>
 </plist>
