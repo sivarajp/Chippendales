@@ -25,6 +25,10 @@
 		2552019DF1444514A944384B /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDF5E87623048E198441960 /* libRNShare.a */; };
 		5001F47360DC489A8477804D /* VisbyCF-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBCADE7813C8456FB601E5FF /* VisbyCF-Bold.otf */; };
 		52B904543DC52B1C8E9A9D11 /* Pods_Chippmoji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D27E2CA1C3B9D0BED0DBBA1 /* Pods_Chippmoji.framework */; };
+		554CD6311FD648920036E8F5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554CD62F1FD648920036E8F5 /* Bolts.framework */; };
+		554CD6321FD648920036E8F5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554CD6301FD648920036E8F5 /* FBSDKCoreKit.framework */; };
+		554CD6521FD648AB0036E8F5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554CD6501FD648AB0036E8F5 /* Bolts.framework */; };
+		554CD6531FD648AB0036E8F5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554CD6511FD648AB0036E8F5 /* FBSDKCoreKit.framework */; };
 		5557776C1F7B371E00284C4D /* Stickers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5557776B1F7B371E00284C4D /* Stickers.xcassets */; };
 		555777701F7B371E00284C4D /* Chippmojistickers.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 555777691F7B371E00284C4D /* Chippmojistickers.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5595DC2A1EF7522000B3AC92 /* EmojiGifExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5595DC291EF7522000B3AC92 /* EmojiGifExt.swift */; };
@@ -325,6 +329,10 @@
 		412FB73020A1ACD65FD181B1 /* Pods-Chippmojistickers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chippmojistickers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chippmojistickers/Pods-Chippmojistickers.debug.xcconfig"; sourceTree = "<group>"; };
 		451D20AE4B414D24BF57B479 /* CircularStd-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Bold.otf"; path = "../src/assets/fonts/CircularStd-Bold.otf"; sourceTree = "<group>"; };
 		4FDF5E87623048E198441960 /* libRNShare.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNShare.a; sourceTree = "<group>"; };
+		554CD62F1FD648920036E8F5 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		554CD6301FD648920036E8F5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		554CD6501FD648AB0036E8F5 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		554CD6511FD648AB0036E8F5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		555777691F7B371E00284C4D /* Chippmojistickers.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Chippmojistickers.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5557776B1F7B371E00284C4D /* Stickers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Stickers.xcassets; sourceTree = "<group>"; };
 		5557776D1F7B371E00284C4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -384,11 +392,13 @@
 			files = (
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
+				554CD6321FD648920036E8F5 /* FBSDKCoreKit.framework in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
+				554CD6531FD648AB0036E8F5 /* FBSDKCoreKit.framework in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
@@ -396,7 +406,9 @@
 				2552019DF1444514A944384B /* libRNShare.a in Frameworks */,
 				EF5C1E4586B34E97A6EB9962 /* libRCTSplashScreen.a in Frameworks */,
 				9B9CAA9523F54705B0C79BEC /* libRNFS.a in Frameworks */,
+				554CD6521FD648AB0036E8F5 /* Bolts.framework in Frameworks */,
 				77534A9E4549618BEA969FCB /* Pods_Chippendales.framework in Frameworks */,
+				554CD6311FD648920036E8F5 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +511,8 @@
 		13B07FAE1A68108700A75B9A /* Chippendales */ = {
 			isa = PBXGroup;
 			children = (
+				554CD6501FD648AB0036E8F5 /* Bolts.framework */,
+				554CD6511FD648AB0036E8F5 /* FBSDKCoreKit.framework */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -595,6 +609,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		55F865B61FD64FAE00E83CD1 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				4FDF5E87623048E198441960 /* libRNShare.a */,
+				FB6C18A2118943DEBEEF3906 /* libRCTSplashScreen.a */,
+				E6FBF99FD42C4DE0947CCEC9 /* libRNFS.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -655,6 +679,7 @@
 				354BC1CC2E28403782CFFD82 /* Resources */,
 				8532C538349587BCC5737008 /* Pods */,
 				EF4080B1948B41A5DCBF7F16 /* Frameworks */,
+				55F865B61FD64FAE00E83CD1 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -689,6 +714,8 @@
 		EF4080B1948B41A5DCBF7F16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				554CD62F1FD648920036E8F5 /* Bolts.framework */,
+				554CD6301FD648920036E8F5 /* FBSDKCoreKit.framework */,
 				B3C95E20590EDC52A6681BAA /* Pods_Chippendales.framework */,
 				F310861ABA1D034311BA07C1 /* Pods_ChippendalesTests.framework */,
 				6D27E2CA1C3B9D0BED0DBBA1 /* Pods_Chippmoji.framework */,
@@ -1469,6 +1496,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 6G8P5X7J68;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
@@ -1501,6 +1532,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6G8P5X7J68;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",

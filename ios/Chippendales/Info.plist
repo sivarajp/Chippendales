@@ -70,5 +70,18 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb2021330937923987</string>
+      </array>
+    </dict>
+  </array>
+  <key>FacebookAppID</key>
+  <string>2021330937923987</string>
+  <key>FacebookDisplayName</key>
+  <string>Sivaraj</string>
 </dict>
 </plist>
