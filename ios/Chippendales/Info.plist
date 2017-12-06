@@ -10,6 +10,8 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>To save pictures</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -75,12 +77,12 @@
     <dict>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>fb401807430171269</string>
+        <string>fb1979406928755152</string>
       </array>
     </dict>
   </array>
   <key>FacebookAppID</key>
-  <string>401807430171269</string>
+  <string>1979406928755152</string>
   <key>FacebookDisplayName</key>
   <string>Chippendales</string>
 </dict>
