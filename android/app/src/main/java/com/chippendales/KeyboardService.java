@@ -16,6 +16,7 @@ import android.graphics.Color;
 import android.inputmethodservice.InputMethodService;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v13.view.inputmethod.EditorInfoCompat;
@@ -49,6 +50,7 @@ import com.chippendales.stickers.MarginDecoration;
 import com.chippendales.stickers.StickerAdapter;
 import com.chippendales.stickers.StickerData;
 import com.chippendales.stickers.Stickers;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -94,6 +96,8 @@ public class KeyboardService extends InputMethodService {
         put("106_Treat" , "https://boutique.chippendales.com");
         put("101_Vegas" , "http://www.chippendales.com/tickets");
     }};
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     public static boolean rokomojiEnabled(Activity activity) {
 //        requestPermissionIfNeeded(Manifest.permission.READ_EXTERNAL_STORAGE, activity);
@@ -165,6 +169,9 @@ public class KeyboardService extends InputMethodService {
     @Override
     public View onCreateInputView() {
 
+        if (mFirebaseAnalytics == null) {
+            mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        }
         mainBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.main_board_layout, null);
         keyboardViewFlipper = (ViewFlipper) mainBoard.findViewById(R.id.keyboard_viewFlipper);
         speechBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.speech_board, null, false);
@@ -377,6 +384,9 @@ public class KeyboardService extends InputMethodService {
 
     public void onCreate() {
         super.onCreate();
+        if (mFirebaseAnalytics == null) {
+            mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        }
         imagesDir = new File(getFilesDir(), "images");
         imagesDir.mkdirs();
         tempDir = new File(getFilesDir(), "/images/stickers");
@@ -444,6 +454,9 @@ public class KeyboardService extends InputMethodService {
                     intent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(this, authority, tempFile));
                     getApplicationContext().startActivity(intent);
                     shared = true;
+                    Bundle params = new Bundle();
+                    params.putString("name", stickerData.imageName);
+                    mFirebaseAnalytics.logEvent("EmojiShare", params);
                 } finally {
                     if (dataWriter != null) {
                         dataWriter.flush();

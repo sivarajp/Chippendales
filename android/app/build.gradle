@@ -89,15 +89,17 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = true
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.1"
-
+    compileSdkVersion 27
+    buildToolsVersion "27.0.1"
+    dexOptions {
+        jumboMode true
+    }
     defaultConfig {
         applicationId "com.chippendales"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "3.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -145,21 +147,23 @@ android {
 }
 
 dependencies {
+
     compile project(':react-native-fs')
     compile project(':rn-splash-screen')
     compile project(':react-native-share')
     compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:25.0.1"
+    compile "com.android.support:appcompat-v7:27.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
-    compile "com.android.support:recyclerview-v7:25.0.1"
-    compile 'com.android.support:support-v13:25.0.1'
+    compile "com.android.support:recyclerview-v7:27.0.1"
+    compile 'com.android.support:support-v13:27.0.1'
     compile 'com.github.bumptech.glide:glide:4.0.0'
     compile 'com.facebook.fresco:fresco:1.5.0'
     compile 'com.facebook.fresco:animated-gif:1.5.0'
-    compile 'com.android.support:design:25.0.1'
-    compile 'com.android.support:support-v4:25.0.1'
+    compile 'com.android.support:design:27.0.1'
+    compile 'com.android.support:support-v4:27.0.1'
     compile 'com.github.bumptech.glide:compiler:4.0.0'
-
+    compile 'com.google.firebase:firebase-analytics:11.6.0'
+    compile 'com.facebook.android:facebook-core:[4,5)'
 }
 
 // Run this once to be able to run the application with BUCK
@@ -168,3 +172,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+apply plugin: 'com.google.gms.google-services'

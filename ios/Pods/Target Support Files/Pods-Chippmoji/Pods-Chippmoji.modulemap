@@ -1,0 +1,6 @@
+framework module Pods_Chippmoji {
+  umbrella header "Pods-Chippmoji-umbrella.h"
+
+  export *
+  module * { export * }
+}

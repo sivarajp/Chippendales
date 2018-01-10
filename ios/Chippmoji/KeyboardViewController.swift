@@ -9,6 +9,8 @@
 import UIKit
 import QuartzCore
 import MobileCoreServices
+import Firebase
+
 
 
 class KeyboardViewController: UIInputViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, KeyboardActionHandler {
@@ -79,6 +81,9 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    if FirebaseApp.app() == nil {
+      FirebaseApp.configure()
+    }
     Bundle.main.loadNibNamed("KeyboardView", owner: self, options: nil)
     self.view.addSubview(keyboardView)
     self.keyboardView.delegate = self
@@ -107,6 +112,7 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     //    if KeyboardViewController.hasFullAccess() {
     //      self.toastView.makeToast("Keyboard has full access")
     //    }
+    
     
   }
   
@@ -169,6 +175,9 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
       toastView.backgroundColor = UIColor.clear
       toastView.isUserInteractionEnabled = false
       self.view.addSubview(toastView)
+    }
+    if FirebaseApp.app() == nil {
+      FirebaseApp.configure()
     }
   }
   
@@ -300,6 +309,11 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
         self.toastView.makeToast("Chippmoji copied. Now paste it!")
       }
     }
+    
+    Analytics.logEvent("EmojiShare", parameters: [
+      "name": imageName as NSObject
+      ])
+    
   }
   
   func scaleImageDown(_ image: UIImage, scale: CGFloat) -> UIImage {
