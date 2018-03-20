@@ -47,7 +47,8 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     }
     
   }
-  
+  let iPhoneHeight: CGFloat = 220.0
+  let iPadHeight:CGFloat = 280.0
   
   @IBOutlet var keyboardView: KeyboardView!
   @IBOutlet weak var menuView: UIView!
@@ -79,12 +80,35 @@ class KeyboardViewController: UIInputViewController, UICollectionViewDataSource,
     super.updateViewConstraints()
   }
   
+  var heightConstraint: NSLayoutConstraint?
+  
+  func setHeight(_ height: CGFloat) {
+    if heightConstraint == nil {
+      heightConstraint = NSLayoutConstraint(item: view,
+                                            attribute: .height,
+                                            relatedBy: .equal,
+                                            toItem: nil,
+                                            attribute: .notAnAttribute,
+                                            multiplier: 1,
+                                            constant: height)
+      view.addConstraint(heightConstraint!)
+    }
+    else {
+      heightConstraint?.constant = height
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     if FirebaseApp.app() == nil {
       FirebaseApp.configure()
     }
     Bundle.main.loadNibNamed("KeyboardView", owner: self, options: nil)
+    self.keyboardView.frame = self.view.bounds
+    self.keyboardView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    self.setHeight(iPhoneHeight)
+    self.menuView.frame = self.view.bounds
+    self.menuView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     self.view.addSubview(keyboardView)
     self.keyboardView.delegate = self
     let borderWidth: CGFloat = 1.0
